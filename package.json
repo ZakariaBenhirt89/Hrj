@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@tailwindcss/ui": "^0.7.2",
+        "jquery": "^3.6.0",
         "labelmake": "^2.0.20",
         "pspdfkit": "^2021.6.1"
     }

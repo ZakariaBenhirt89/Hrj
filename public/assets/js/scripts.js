@@ -4,7 +4,7 @@
   "use strict";
 
   NioApp.Package.name = "DashLite";
-  NioApp.Package.version = "2.2";
+  NioApp.Package.version = "2.3";
   var $win = $(window),
       $body = $('body'),
       $doc = $(document),
@@ -202,9 +202,12 @@
     });
     $doc.on('mouseup', function (e) {
       if (toggleCurrent) {
-        var $toggleCurrent = $(toggleCurrent);
+        var $toggleCurrent = $(toggleCurrent),
+            $s2c = $('.select2-container'),
+            $dpd = $('.datepicker-dropdown'),
+            $tpc = $('.ui-timepicker-container');
 
-        if (!$toggleCurrent.is(e.target) && $toggleCurrent.has(e.target).length === 0 && !$contentD.is(e.target) && $contentD.has(e.target).length === 0) {
+        if (!$toggleCurrent.is(e.target) && $toggleCurrent.has(e.target).length === 0 && !$contentD.is(e.target) && $contentD.has(e.target).length === 0 && !$s2c.is(e.target) && $s2c.has(e.target).length === 0 && !$dpd.is(e.target) && $dpd.has(e.target).length === 0 && !$tpc.is(e.target) && $tpc.has(e.target).length === 0) {
           NioApp.Toggle.removed($toggleCurrent.data('target'), attr);
           toggleCurrent = false;
         }
@@ -286,6 +289,37 @@
     $win.on('resize', function () {
       if (NioApp.Win.width < _break.xl || NioApp.Win.width < toggleBreak) {
         NioApp.Toggle.removed($toggle.data('target'), attr);
+      }
+    });
+  }; // Compact Sidebar @v1.0
+
+
+  NioApp.sbCompact = function () {
+    var toggle = '.nk-nav-compact',
+        $toggle = $(toggle),
+        $content = $('[data-content]'),
+        $sidebar = $('.' + _sidebar),
+        $sidebar_body = $('.' + _sidebar + '-body');
+    $toggle.on('click', function (e) {
+      e.preventDefault();
+      var $self = $(this),
+          get_target = $self.data('target'),
+          $self_content = $('[data-content=' + get_target + ']');
+      $self.toggleClass('compact-active');
+      $self_content.toggleClass('is-compact');
+
+      if (!$self_content.hasClass('is-compact')) {
+        $self_content.removeClass('has-hover');
+      }
+    });
+    $sidebar_body.on('mouseenter', function (e) {
+      if ($sidebar.hasClass('is-compact')) {
+        $sidebar.addClass('has-hover');
+      }
+    });
+    $sidebar_body.on('mouseleave', function (e) {
+      if ($sidebar.hasClass('is-compact')) {
+        $sidebar.removeClass('has-hover');
       }
     });
   }; // Animate FormSearch @v1.0
@@ -381,75 +415,109 @@
       errorElement: "span",
       errorClass: "invalid",
       errorPlacement: function errorPlacement(error, element) {
-        error.appendTo(element.parent());
+        if (element.parents().hasClass('input-group')) {
+          error.appendTo(element.parent().parent());
+        } else {
+          error.appendTo(element.parent());
+        }
       }
     });
-  }; // Dropzone @v1.0
+  }; // Dropzone @v1.1
 
 
   NioApp.Dropzone = function (elm, opt) {
     if ($(elm).exists()) {
       $(elm).each(function () {
+        var maxFiles = $(elm).data('max-files'),
+            maxFiles = maxFiles ? maxFiles : null;
+        var maxFileSize = $(elm).data('max-file-size'),
+            maxFileSize = maxFileSize ? maxFileSize : 256;
+        var acceptedFiles = $(elm).data('accepted-files'),
+            acceptedFiles = acceptedFiles ? acceptedFiles : null;
         var def = {
-          autoDiscover: false
+          autoDiscover: false,
+          maxFiles: maxFiles,
+          maxFilesize: maxFileSize,
+          acceptedFiles: acceptedFiles
         },
             attr = opt ? extend(def, opt) : def;
         $(this).addClass('dropzone').dropzone(attr);
       });
     }
+  }; // Dropzone Init @v1.0
+
+
+  NioApp.Dropzone.init = function () {
+    NioApp.Dropzone('.upload-zone', {
+      url: "/images"
+    });
   }; // Wizard @v1.0
 
 
   NioApp.Wizard = function () {
-    var $wizard = $(".nk-wizard").show();
-    $wizard.steps({
-      headerTag: ".nk-wizard-head",
-      bodyTag: ".nk-wizard-content",
-      labels: {
-        finish: "Submit",
-        next: "Next",
-        previous: "Prev",
-        loading: "Loading ..."
-      },
-      onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
-        // Allways allow previous action even if the current form is not valid!
-        if (currentIndex > newIndex) {
-          return true;
-        } // Needed in some cases if the user went back (clean up)
+    var $wizard = $(".nk-wizard");
+
+    if ($wizard.exists()) {
+      $wizard.each(function () {
+        var $self = $(this),
+            _self_id = $self.attr('id'),
+            $self_id = $('#' + _self_id).show();
+
+        $self_id.steps({
+          headerTag: ".nk-wizard-head",
+          bodyTag: ".nk-wizard-content",
+          labels: {
+            finish: "Submit",
+            next: "Next",
+            previous: "Prev",
+            loading: "Loading ..."
+          },
+          titleTemplate: '<span class="number">0#index#</span> #title#',
+          onStepChanging: function onStepChanging(event, currentIndex, newIndex) {
+            // Allways allow previous action even if the current form is not valid!
+            if (currentIndex > newIndex) {
+              return true;
+            } // Needed in some cases if the user went back (clean up)
 
 
-        if (currentIndex < newIndex) {
-          // To remove error styles
-          $wizard.find(".body:eq(" + newIndex + ") label.error").remove();
-          $wizard.find(".body:eq(" + newIndex + ") .error").removeClass("error");
-        }
+            if (currentIndex < newIndex) {
+              // To remove error styles
+              $self_id.find(".body:eq(" + newIndex + ") label.error").remove();
+              $self_id.find(".body:eq(" + newIndex + ") .error").removeClass("error");
+            }
 
-        $wizard.validate().settings.ignore = ":disabled,:hidden";
-        return $wizard.valid();
-      },
-      onFinishing: function onFinishing(event, currentIndex) {
-        $wizard.validate().settings.ignore = ":disabled";
-        return $wizard.valid();
-      },
-      onFinished: function onFinished(event, currentIndex) {
-        window.location.href = "#";
-      }
-    }).validate({
-      errorElement: "span",
-      errorClass: "invalid",
-      errorPlacement: function errorPlacement(error, element) {
-        error.appendTo(element.parent());
-      }
-    });
+            $self_id.validate().settings.ignore = ":disabled,:hidden";
+            return $self_id.valid();
+          },
+          onFinishing: function onFinishing(event, currentIndex) {
+            $self_id.validate().settings.ignore = ":disabled";
+            return $self_id.valid();
+          },
+          onFinished: function onFinished(event, currentIndex) {
+            window.location.href = "#";
+          }
+        }).validate({
+          errorElement: "span",
+          errorClass: "invalid",
+          errorPlacement: function errorPlacement(error, element) {
+            error.appendTo(element.parent());
+          }
+        });
+      });
+    }
   }; // DataTable @1.1
 
 
   NioApp.DataTable = function (elm, opt) {
     if ($(elm).exists()) {
       $(elm).each(function () {
-        var auto_responsive = $(this).data('auto-responsive');
-        var dom_normal = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
-        var dom_separate = '<"row justify-between g-2"<"col-7 col-sm-6 text-left"f><"col-5 col-sm-6 text-right"<"datatable-filter"l>>><"my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+        var auto_responsive = $(this).data('auto-responsive'),
+            has_export = typeof opt.buttons !== 'undefined' && opt.buttons ? true : false;
+        var export_title = $(this).data('export-title') ? $(this).data('export-title') : 'Export';
+        var btn = has_export ? '<"dt-export-buttons d-flex align-center"<"dt-export-title d-none d-md-inline-block">B>' : '',
+            btn_cls = has_export ? ' with-export' : '';
+        var dom_normal = '<"row justify-between g-2' + btn_cls + '"<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2"' + btn + 'l>>>><"datatable-wrap my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
+        var dom_separate = '<"row justify-between g-2' + btn_cls + '"<"col-7 col-sm-4 text-left"f><"col-5 col-sm-8 text-right"<"datatable-filter"<"d-flex justify-content-end g-2"' + btn + 'l>>>><"my-3"t><"row align-items-center"<"col-7 col-sm-12 col-md-9"p><"col-5 col-sm-12 col-md-3 text-left text-md-right"i>>';
         var dom = $(this).hasClass('is-separate') ? dom_separate : dom_normal;
         var def = {
           responsive: true,
@@ -475,8 +543,25 @@
           responsive: false
         }) : attr;
         $(this).DataTable(attr);
+        $('.dt-export-title').text(export_title);
       });
     }
+  }; // DataTable Init @v1.0
+
+
+  NioApp.DataTable.init = function () {
+    NioApp.DataTable('.datatable-init', {
+      responsive: {
+        details: true
+      }
+    });
+    NioApp.DataTable('.datatable-init-export', {
+      responsive: {
+        details: true
+      },
+      buttons: ['copy', 'excel', 'csv', 'pdf', 'colvis']
+    });
+    $.fn.DataTable.ext.pager.numbers_length = 7;
   }; // BootStrap Extended
 
 
@@ -551,6 +636,19 @@
   }; // Knob @v1.0
 
 
+  NioApp.Knob = function (elm, opt) {
+    if ($(elm).exists() && typeof $.fn.knob === 'function') {
+      var def = {
+        min: 0
+      },
+          attr = opt ? extend(def, opt) : def;
+      $(elm).each(function () {
+        $(this).knob(attr);
+      });
+    }
+  }; // Knob Init @v1.0
+
+
   NioApp.Knob.init = function () {
     var knob = {
       "default": {
@@ -566,38 +664,190 @@
     };
     NioApp.Knob('.knob', knob["default"]);
     NioApp.Knob('.knob-half', knob.half);
-  }; // Range @v1.0
+  }; // Range @v1.0.1
+
+
+  NioApp.Range = function (elm, opt) {
+    if ($(elm).exists() && typeof noUiSlider !== 'undefined') {
+      $(elm).each(function () {
+        var $self = $(this),
+            self_id = $self.attr('id');
+
+        var _start = $self.data('start'),
+            _start = /\s/g.test(_start) ? _start.split(' ') : _start,
+            _start = _start ? _start : 0,
+            _connect = $self.data('connect'),
+            _connect = /\s/g.test(_connect) ? _connect.split(' ') : _connect,
+            _connect = typeof _connect == 'undefined' ? 'lower' : _connect,
+            _min = $self.data('min'),
+            _min = _min ? _min : 0,
+            _max = $self.data('max'),
+            _max = _max ? _max : 100,
+            _min_distance = $self.data('min-distance'),
+            _min_distance = _min_distance ? _min_distance : null,
+            _max_distance = $self.data('max-distance'),
+            _max_distance = _max_distance ? _max_distance : null,
+            _step = $self.data('step'),
+            _step = _step ? _step : 1,
+            _orientation = $self.data('orientation'),
+            _orientation = _orientation ? _orientation : 'horizontal',
+            _tooltip = $self.data('tooltip'),
+            _tooltip = _tooltip ? _tooltip : false;
+
+        console.log(_tooltip);
+        var target = document.getElementById(self_id);
+        var def = {
+          start: _start,
+          connect: _connect,
+          direction: NioApp.State.isRTL ? "rtl" : "ltr",
+          range: {
+            'min': _min,
+            'max': _max
+          },
+          margin: _min_distance,
+          limit: _max_distance,
+          step: _step,
+          orientation: _orientation,
+          tooltips: _tooltip
+        },
+            attr = opt ? extend(def, opt) : def;
+        noUiSlider.create(target, attr);
+      });
+    }
+  }; // Range Init @v1.0
 
 
   NioApp.Range.init = function () {
+    NioApp.Range('.form-control-slider');
     NioApp.Range('.form-range-slider');
   };
 
   NioApp.Select2.init = function () {
     // NioApp.Select2('.select');
     NioApp.Select2('.form-select');
+  }; // Slick Slider @v1.0.1
+
+
+  NioApp.Slick = function (elm, opt) {
+    if ($(elm).exists() && typeof $.fn.slick === 'function') {
+      $(elm).each(function () {
+        var def = {
+          'prevArrow': '<div class="slick-arrow-prev"><a href="javascript:void(0);" class="slick-prev"><em class="icon ni ni-chevron-left"></em></a></div>',
+          'nextArrow': '<div class="slick-arrow-next"><a href="javascript:void(0);" class="slick-next"><em class="icon ni ni-chevron-right"></em></a></div>',
+          rtl: NioApp.State.isRTL
+        },
+            attr = opt ? extend(def, opt) : def;
+        $(this).slick(attr);
+      });
+    }
   }; // Slick Init @v1.0
 
 
   NioApp.Slider.init = function () {
     NioApp.Slick('.slider-init');
-  }; // Dropzone Init @v1.0
+  }; // Magnific Popup @v1.0.0
 
 
-  NioApp.Dropzone.init = function () {
-    NioApp.Dropzone('.upload-zone', {
-      url: "/images"
+  NioApp.Lightbox = function (elm, type, opt) {
+    if ($(elm).exists()) {
+      $(elm).each(function () {
+        var def = {};
+
+        if (type == 'video' || type == 'iframe') {
+          def = {
+            type: 'iframe',
+            removalDelay: 160,
+            preloader: true,
+            fixedContentPos: false,
+            callbacks: {
+              beforeOpen: function beforeOpen() {
+                this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                this.st.mainClass = this.st.el.attr('data-effect');
+              }
+            }
+          };
+        } else if (type == 'content') {
+          def = {
+            type: 'inline',
+            preloader: true,
+            removalDelay: 400,
+            mainClass: 'mfp-fade content-popup'
+          };
+        } else {
+          def = {
+            type: 'image',
+            mainClass: 'mfp-fade image-popup'
+          };
+        }
+
+        var attr = opt ? extend(def, opt) : def;
+        $(this).magnificPopup(attr);
+      });
+    }
+  }; // Controls @v1.0.0
+
+
+  NioApp.Control = function (elm) {
+    var control = document.querySelectorAll(elm);
+    control.forEach(function (item, index, arr) {
+      item.checked ? item.parentNode.classList.add('checked') : null;
+      item.addEventListener("change", function () {
+        if (item.type == "checkbox") {
+          item.checked ? item.parentNode.classList.add('checked') : item.parentNode.classList.remove('checked');
+        }
+
+        if (item.type == "radio") {
+          document.querySelectorAll('input[name="' + item.name + '"]').forEach(function (item, index, arr) {
+            item.parentNode.classList.remove('checked');
+          });
+          item.checked ? item.parentNode.classList.add('checked') : null;
+        }
+      });
     });
-  }; // DataTable Init @v1.0
+  }; // Number Spinner @v1.0
 
 
-  NioApp.DataTable.init = function () {
-    NioApp.DataTable('.datatable-init', {
-      responsive: {
-        details: true
-      }
+  NioApp.NumberSpinner = function (elm, opt) {
+    var plus = document.querySelectorAll("[data-number='plus']");
+    var minus = document.querySelectorAll("[data-number='minus']");
+    plus.forEach(function (item, index, arr) {
+      var parent = plus[index].parentNode;
+      plus[index].addEventListener("click", function () {
+        var child = plus[index].parentNode.children;
+        child.forEach(function (item, index, arr) {
+          if (child[index].classList.contains("number-spinner")) {
+            var value = !child[index].value == "" ? parseInt(child[index].value) : 0;
+            var step = !child[index].step == "" ? parseInt(child[index].step) : 1;
+            var max = !child[index].max == "" ? parseInt(child[index].max) : Infinity;
+
+            if (max + 1 > value + step) {
+              child[index].value = value + step;
+            } else {
+              child[index].value = value;
+            }
+          }
+        });
+      });
     });
-    $.fn.DataTable.ext.pager.numbers_length = 7;
+    minus.forEach(function (item, index, arr) {
+      var parent = minus[index].parentNode;
+      minus[index].addEventListener("click", function () {
+        var child = minus[index].parentNode.children;
+        child.forEach(function (item, index, arr) {
+          if (child[index].classList.contains("number-spinner")) {
+            var value = !child[index].value == "" ? parseInt(child[index].value) : 0;
+            var step = !child[index].step == "" ? parseInt(child[index].step) : 1;
+            var min = !child[index].min == "" ? parseInt(child[index].min) : 0;
+
+            if (min - 1 < value - step) {
+              child[index].value = value - step;
+            } else {
+              child[index].value = value;
+            }
+          }
+        });
+      });
+    });
   }; // Extra @v1.1
 
 
@@ -606,10 +856,15 @@
     NioApp.PassSwitch();
     NioApp.CurrentLink();
     NioApp.LinkOff('.is-disable');
-    NioApp.ClassNavMenu(); //v1.5
-
+    NioApp.ClassNavMenu();
     NioApp.SetHW('[data-height]', 'height');
     NioApp.SetHW('[data-width]', 'width');
+    NioApp.NumberSpinner();
+    NioApp.Lightbox('.popup-video', 'video');
+    NioApp.Lightbox('.popup-iframe', 'iframe');
+    NioApp.Lightbox('.popup-image', 'image');
+    NioApp.Lightbox('.popup-content', 'content');
+    NioApp.Control('.custom-control-input');
   }; // Animate Init @v1.0
 
 
@@ -642,6 +897,10 @@
     NioApp.Picker.date('.date-picker');
     NioApp.Picker.dob('.date-picker-alt');
     NioApp.Picker.time('.time-picker');
+    NioApp.Picker.date('.date-picker-range', {
+      todayHighlight: false,
+      autoclose: false
+    });
   }; // Addons @v1
 
 
@@ -690,6 +949,7 @@
     NioApp.coms.docReady.push(NioApp.Picker.init);
     NioApp.coms.docReady.push(NioApp.Addons.Init);
     NioApp.coms.docReady.push(NioApp.Wizard);
+    NioApp.coms.docReady.push(NioApp.sbCompact);
     NioApp.coms.winLoad.push(NioApp.ModeSwitch);
   };
 

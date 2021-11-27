@@ -1,7 +1,7 @@
 /*!
  * Theme: Egyptian
- * Package: DashLite v2.2.0
- * Updated: 11.28.2020
+ * Package: DashLite v2.8.0
+ * Updated: 09.07.2021
  * Author: Softnio
  * Author URI: http://themeforest.net/user/softnio
 **/
@@ -77,7 +77,9 @@ a:hover { color: #1b5091; }
 
 .bg-primary { background-color: #2263b3 !important; }
 
-.bg-primary-dim { background-color: #e9eff7 !important; }
+a.bg-primary:hover, a.bg-primary:focus, button.bg-primary:hover, button.bg-primary:focus { background-color: #1a4b88 !important; }
+
+.bg-primary-dim, .dual-listbox .dual-listbox__item:active, .dual-listbox .dual-listbox__item.dual-listbox__item--selected { background-color: #e9eff7 !important; }
 
 .text-primary-dim { color: #e9eff7 !important; }
 
@@ -178,3 +180,13 @@ a:hover { color: #1b5091; }
 .kanban-add-task { color: #2263b3; }
 
 .kanban-add-task:hover { background: #2263b3; border-color: #2263b3; }
+
+.actions ul li a { border-color: #2263b3; background: #2263b3; }
+
+.nk-wizard-simple .steps ul li.done h5, .nk-wizard-simple .steps ul li.done .number, .nk-wizard-simple .steps ul li.current h5, .nk-wizard-simple .steps ul li.current .number { color: #2263b3; }
+
+.nk-wizard-simple .steps ul li:after { background: #2263b3; }
+
+.invoice-contact ul .icon, .invoice-desc .title, .invoice-bills .table th { color: #2263b3; }
+
+.product-gallery .slider-nav .slider-item.slick-current .thumb, .custom-control-pro.no-control .custom-control-input:checked ~ .custom-control-label, .custom-control-pro.no-control .custom-control-input:not(:disabled):active ~ .custom-control-label, .custom-control.color-control .custom-control-label:before { border-color: #2263b3 !important; }

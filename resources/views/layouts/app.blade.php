@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#526484">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" href="{{ asset('favicon.ico') }}">
         <title>{{ config('app.name', 'SARP hrj') }}</title>
@@ -17,9 +18,19 @@
         <!-- Styles -->
         @livewireStyles
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+       <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=2.2.0') }}">
-        <link id="skin-default" rel="stylesheet" href=" {{ asset('assets/css/theme.css?ver=2.2.0') }} ">
+        <!-- Scripts -->
+        <!-- StyleSheets  -->
+        <link rel="stylesheet" href="{{ asset('assets/css/dashlite.css?ver=2.8.0') }}">
+        <link id="skin-default" rel="stylesheet" href="{{ asset('assets/css/theme.css?ver=2.8.0') }}">
         <script src="{{ mix('js/app.js') }}" defer></script>
 
     </head>
@@ -46,13 +57,13 @@
                         <!-- sidebar @s -->
                         <div class="nk-sidebar nk-sidebar-fixed is-dark " data-content="sidebarMenu">
                             <div class="nk-sidebar-element nk-sidebar-head">
-                                <div class="nk-sidebar-brand">
-                                    <a href="#" class="logo-link nk-sidebar-logo">
-                                        <img class="logo-light logo-img" src="{{ asset('assets/images/dashboardlogo.svg') }}" srcset="{{ asset('assets/images/dashboardlogo.svg') }} 2x" alt="logo" width="150">
-                                    </a>
-                                </div>
                                 <div class="nk-menu-trigger mr-n2">
                                     <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+                                </div>
+                                <div class="nk-sidebar-brand" style="width:100%">
+                                    <a href="#" class="logo-link nk-sidebar-logo">
+                                        <img class="logo-light logo-img" src="{{ asset('assets/images/logo_BN.svg') }}" srcset="{{ asset('assets/images/logo_BN.svg') }} 2x" alt="logo" width="300">
+                                    </a>
                                 </div>
                             </div><!-- .nk-sidebar-element -->
                             <div class="nk-sidebar-element">
@@ -60,7 +71,7 @@
                                     <div class="nk-sidebar-menu" data-simplebar>
                                         <ul class="nk-menu">
                                             <li class="nk-menu-item">
-                                                <a href="#" class="nk-menu-link">
+                                                <a href="{{ route('center.dashboard', ['center' => Auth::user()->center]) }}" class="nk-menu-link">
                                                     <span class="nk-menu-icon"><svg width="309" height="273" viewBox="0 0 309 273" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M162.886 0.0695738L172.349 1.50417C174.442 1.83208 176.17 3.1847 176.807 5.00869L200.874 75.6523C201.602 77.7837 203.785 79.2388 206.265 79.2388L277.258 79.1159C279.283 79.1159 281.171 80.0996 282.172 81.6776L285.652 87.2111C287.79 90.5926 285.083 94.7735 280.784 94.794L194.914 95.0399C192.389 95.0399 190.183 93.5438 189.477 91.3714L172.736 38.6397C171.212 33.8441 163.75 33.7006 161.976 38.4348L126.514 134.02C125.285 137.32 120.85 138.549 117.779 136.438L88.0939 116.108C83.772 113.136 86.1604 106.927 91.597 107.009L114.253 107.357C116.71 107.398 118.916 105.984 119.69 103.893L156.653 3.49211C157.495 1.09429 160.156 -0.340311 162.886 0.0695738Z" fill="#808C8F"/>
 <path d="M307.58 111.497L308.945 120.043C309.241 121.949 308.331 123.834 306.579 124.921L239.18 167.036C237.155 168.307 236.268 170.623 237.019 172.754L258.72 233.643C259.334 235.385 258.879 237.29 257.491 238.623L252.692 243.295C249.78 246.144 244.525 245.099 243.206 241.41L216.865 167.795C216.092 165.643 217.001 163.265 219.094 162.015L269.775 131.643C274.369 128.876 272.277 122.42 266.749 122.359L154.879 120.904C151.035 120.863 148.374 117.399 149.648 114.141L162.136 82.4771C163.955 77.8659 171.257 78.0298 172.827 82.723L179.355 102.274C180.06 104.406 182.221 105.861 184.678 105.881L302.075 107.132C304.85 107.193 307.193 109.038 307.58 111.497Z" fill="#808C8F"/>
@@ -83,13 +94,10 @@
                                                 </a>
                                                 <ul class="nk-menu-sub">
                                                     <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text">indicateur mobilisation</span></a>
+                                                        <a href="{{ route('indexMobi') }}" class="nk-menu-link"><span class="nk-menu-text">index</span></a>
                                                     </li>
                                                     <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-file-text"></em><span class="nk-menu-text">fiche d'accueil</span></a>
-                                                    </li>
-                                                    <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">visualisation et charts</span></a>
+                                                        <a href="#" class="nk-menu-link"><span class="nk-menu-text">fiche d'accueil</span></a>
                                                     </li>
                                                 </ul><!-- .nk-menu-sub -->
                                             </li><!-- .nk-menu-item -->
@@ -100,14 +108,12 @@
                                                 </a>
                                                 <ul class="nk-menu-sub">
                                                     <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> Indicateur orientation</span></a>
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> index</span></a>
                                                     </li>
                                                     <li class="nk-menu-item">
                                                         <a href="#" class="nk-menu-link"><em class="icon ni ni-file-text"></em><span class="nk-menu-text">fiche d'orientation</span></a>
                                                     </li>
-                                                    <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">visualisation et charts</span></a>
-                                                    </li>
+
 
                                                 </ul><!-- .nk-menu-sub -->
                                             </li><!-- .nk-menu-item -->
@@ -118,13 +124,10 @@
                                                 </a>
                                                 <ul class="nk-menu-sub">
                                                     <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> Indicateur RFC</span></a>
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> index</span></a>
                                                     </li>
                                                     <li class="nk-menu-item">
                                                         <a href="#" class="nk-menu-link"><em class="icon ni ni-file-text"></em><span class="nk-menu-text">Dossier RFC et Suivi</span></a>
-                                                    </li>
-                                                    <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">visualisation et charts</span></a>
                                                     </li>
 
                                                 </ul><!-- .nk-menu-sub -->
@@ -138,13 +141,10 @@
                                                 </a>
                                                 <ul class="nk-menu-sub">
                                                     <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> Indicateur Placement</span></a>
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text">index</span></a>
                                                     </li>
                                                     <li class="nk-menu-item">
                                                         <a href="#" class="nk-menu-link"><em class="icon ni ni-file-text"></em><span class="nk-menu-text">Fiche Jeune et Suivi</span></a>
-                                                    </li>
-                                                    <li class="nk-menu-item">
-                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">visualisation et charts</span></a>
                                                     </li>
 
                                                 </ul><!-- .nk-menu-sub -->
@@ -165,6 +165,35 @@
                                                     </li>
                                                     <li class="nk-menu-item">
                                                         <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">visualisation et charts</span></a>
+                                                    </li>
+
+                                                </ul><!-- .nk-menu-sub -->
+                                            </li><!-- .nk-menu-item -->
+                                            <li class="nk-menu-item has-sub">
+                                                <a href="#" class="nk-menu-link nk-menu-toggle">
+                                                    <span class="nk-menu-icon"><em class="icon ni ni-menu-squared"></em></span>
+                                                    <span class="nk-menu-text">
+                                                        KPI'S
+                                                    </span>
+                                                </a>
+                                                <ul class="nk-menu-sub">
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-property"></em><span class="nk-menu-text"> Indicateur Mobilisation</span></a>
+                                                    </li>
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-file-text"></em><span class="nk-menu-text">Indicateur  Accueil</span></a>
+                                                    </li>
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">Indicateur Orientation</span></a>
+                                                    </li>
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">Indicateur RFC</span></a>
+                                                    </li>
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">Indicateur Placement</span></a>
+                                                    </li>
+                                                    <li class="nk-menu-item">
+                                                        <a href="#" class="nk-menu-link"><em class="icon ni ni-growth"></em><span class="nk-menu-text">Indicateur Suivi</span></a>
                                                     </li>
 
                                                 </ul><!-- .nk-menu-sub -->
@@ -217,6 +246,7 @@
                                                 </a>
 
                                             </li>
+
                                         </ul><!-- .nk-menu -->
                                     </div><!-- .nk-sidebar-menu -->
                                 </div><!-- .nk-sidebar-content -->
@@ -276,9 +306,9 @@
                                                         </div>
                                                         <div class="dropdown-inner">
                                                             <ul class="link-list">
-                                                                <li><a href="html/user-profile-regular.html"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                                                <li><a href="html/user-profile-setting.html"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
-                                                                <li><a href="html/user-profile-activity.html"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
+                                                                <li><a href="#"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
+                                                                <li><a href="#"><em class="icon ni ni-setting-alt"></em><span>Account Setting</span></a></li>
+                                                                <li><a href="#"><em class="icon ni ni-activity-alt"></em><span>Login Activity</span></a></li>
                                                                 <li><a class="dark-switch" href="#"><em class="icon ni ni-moon"></em><span>Dark Mode</span></a></li>
                                                             </ul>
                                                         </div>
@@ -377,45 +407,7 @@
                             <!-- main header @e -->
                             <!-- content @s -->
                             <div class="nk-content">
-                                <div class="nk-content-inner">
-                                    <div class="nk-content-body">
-                                        <div class="nk-block-head nk-block-head-sm">
-                                            <div class="nk-block-between">
-                                                <div class="nk-block-head-content">
-                                                    <h3 class="nk-block-title page-title"> Overview</h3>
-                                                    <div class="nk-block-des text-soft">
-                                                        <p>Welcome to SARP Dashboard .</p>
-                                                    </div>
-                                                </div><!-- .nk-block-head-content -->
-                                                <div class="nk-block-head-content">
-                                                    <div class="toggle-wrap nk-block-tools-toggle">
-                                                        <a href="#" class="btn btn-icon btn-trigger toggle-expand mr-n1" data-target="pageMenu"><em class="icon ni ni-more-v"></em></a>
-                                                        <div class="toggle-expand-content" data-content="pageMenu">
-                                                            <ul class="nk-block-tools g-3">
-                                                                <li>
-                                                                    <div class="drodown">
-                                                                        <a href="#" class="dropdown-toggle btn btn-white btn-dim btn-outline-light" data-toggle="dropdown"><em class="d-none d-sm-inline icon ni ni-calender-date"></em><span><span class="d-none d-md-inline">Last</span> 30 Days</span><em class="dd-indc icon ni ni-chevron-right"></em></a>
-                                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                                            <ul class="link-list-opt no-bdr">
-                                                                                <li><a href="#"><span>Last 30 Days</span></a></li>
-                                                                                <li><a href="#"><span>Last 6 Months</span></a></li>
-                                                                                <li><a href="#"><span>Last 1 Years</span></a></li>
-                                                                            </ul>
-                                                                        </div>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="nk-block-tools-opt"><a href="#" class="btn btn-primary"><em class="icon ni ni-reports"></em><span>Reports</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div><!-- .nk-block-head-content -->
-                                            </div><!-- .nk-block-between -->
-                                        </div>
-                                    </div>
-                                    <main class="nk-block">
-                                        {{ $slot }}
-                                    </main>
-                                </div>
+                                {{ $slot }}
                             </div>
                             <!-- content @e -->
                             <!-- footer @s -->
@@ -455,9 +447,10 @@
         @stack('modals')
 
         @livewireScripts
-        <script src="{{ asset('assets/js/bundle.js?ver=2.2.0') }}"></script>
-        <script src=" {{ asset('assets/js/scripts.js?ver=2.2.0') }}"></script>
-        <script src=" {{ asset('assets/js/charts/gd-default.js?ver=2.2.0') }} "></script>
+        <script src="{{ asset('assets/js/bundle.js') }}"></script>
+        <script src="{{ asset('assets/js/scripts.js') }}"></script>
+        <script src="{{ asset('assets/js/charts/gd-default.js') }}"></script>
+        <script src="{{ asset('assets/js/libs/datatable-btns.js') }}"></script>
         <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
         <script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
         <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>

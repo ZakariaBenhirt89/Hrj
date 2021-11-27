@@ -47,6 +47,9 @@ class DashboardController extends Controller
         */
         return view('admin.dashboard');
     }
+    public function indexOne(){
+        return view('components.mobi-main-index');
+    }
     public function mobilisationFiche(){
 
     }

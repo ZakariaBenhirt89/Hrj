@@ -22,9 +22,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 Route::get('/admin_dashboard/indexMobi', 'Admin\DashboardController@indexOne')->middleware('role:admin')->name('indexMobi');
+Route::get('/admin_dashboard/ficheAcc', 'Admin\DashboardController@ficheAcc')->middleware('role:admin')->name('ficheAcc');
 
 Route::get('/admin_dashboard/{center}', 'Admin\DashboardController@index')->middleware('role:admin')->name("center.dashboard");
 Route::get('/user_dashboard', 'User\DashboardController@index')->middleware('role:user');
+Route::get('/sendMAil', 'Admin\DashboardController@sendMAil')->middleware('role:admin')->name('admin.mail.send');
+
 Route::get('/teacher_dashboard', 'Teacher\DashboardController@index')->middleware('role:teacher');
 Route::middleware(['auth:sanctum', 'verified'])->get('/watch', function () {
     return view('components.course-player');

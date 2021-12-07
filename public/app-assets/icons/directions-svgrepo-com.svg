@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="26px" height="26px" viewBox="0 0 26 26" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path d="M0 0L24 0L24 24L0 24L0 0Z" id="path_1" />
+    <clipPath id="mask_1">
+      <use xlink:href="#path_1" />
+    </clipPath>
+  </defs>
+  <g id="directions-svgrepo-com" transform="translate(1 1)">
+    <path d="M0 0L24 0L24 24L0 24L0 0Z" id="Background" fill="none" fill-rule="evenodd" stroke="none" />
+    <g clip-path="url(#mask_1)">
+      <path d="M17 11L22 6L17 1M22 6L18 6C14.686 6 12 8.686 12 12L12 24M7 6L2 11L7 16M2 11L6 11C9.314 11 12 13.686 12 17L12 24" id="Shape" fill="none" fill-rule="evenodd" stroke="#565360" stroke-width="2" />
+    </g>
+  </g>
+</svg>

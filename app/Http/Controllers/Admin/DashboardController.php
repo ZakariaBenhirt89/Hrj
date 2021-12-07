@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TestMail;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Twilio\Rest\Client;
 
 
@@ -50,6 +52,9 @@ class DashboardController extends Controller
     public function indexOne(){
         return view('components.mobi-main-index');
     }
+    public function ficheAcc(){
+        return view('components.fiche-acc');
+    }
     public function mobilisationFiche(){
 
     }
@@ -58,5 +63,13 @@ class DashboardController extends Controller
     }
     public function mobilisationChart(){
 
+    }
+    public function sendMAil(){
+        $receiverEmailAddress = "zaki.soussi1996@gmail.com";
+        Mail::to($receiverEmailAddress)->send(new TestMail());
+        if (Mail::failures() != 0) {
+            return "Email has been sent successfully.";
+        }
+        return "Oops! There was some error sending the email.";
     }
 }

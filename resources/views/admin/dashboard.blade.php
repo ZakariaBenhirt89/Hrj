@@ -2,8 +2,11 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <!-- This example requires Tailwind CSS v2.0+ -->
    <div class="app-content content">
-       <h1> This the main place</h1>
-       <a class="btn btn-primary" href="{{ route('admin.mail.send') }}"> Send Email </a>
+       <div class="component1">
+           <h1> This the main place</h1>
+           <email-btn route="{{ route('admin.mail.send') }}" id="xr1"></email-btn>
+           <button class="btn btn-primary trans"></button>
+       </div>
    </div>
 
 </x-app-layout>

@@ -132,7 +132,6 @@ $(function () {
           targets: 4,
           render: function (data, type, full, meta) {
             var $billing = full['billing'];
-
             return '<span class="text-nowrap">' + $billing + '</span>';
           }
         },

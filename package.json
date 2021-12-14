@@ -24,6 +24,8 @@
     },
     "dependencies": {
         "@tailwindcss/ui": "^0.7.2",
+        "i18next": "^21.6.0",
+        "i18next-browser-languagedetector": "^6.1.2",
         "jquery": "^3.6.0",
         "labelmake": "^2.0.20",
         "pspdfkit": "^2021.6.1"

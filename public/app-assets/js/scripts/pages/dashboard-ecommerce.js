@@ -59,9 +59,17 @@ $(window).on('load', function () {
 
   // On load Toast
   setTimeout(function () {
+      let message = ''
+      const date = new Date()
+      const time = date.getHours();
+      if (time >= 12){
+          message = 'Bonsoir'
+      }else {
+          message = 'Bonjour'
+      }
     toastr['success'](
-      'You have successfully logged in to Vuexy. Now you can start to explore!',
-      '👋 Welcome John Doe!',
+      'Vous vous êtes connecté avec succès dans SARP.',
+      '👋 '+message+' Admin',
       {
         closeButton: true,
         tapToDismiss: false,

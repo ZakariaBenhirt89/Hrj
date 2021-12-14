@@ -14,6 +14,9 @@ class Update12UserTable extends Migration
     public function up()
     {
         //
+        Schema::table('users', function($table) {
+            $table->boolean('is_res')->nullable('true');
+        });
     }
 
     /**

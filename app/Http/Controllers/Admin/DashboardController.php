@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Fortify\ResetUserPassword;
 use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Twilio\Rest\Client;
 
 
@@ -65,11 +67,34 @@ class DashboardController extends Controller
 
     }
     public function sendMAil(){
-        $receiverEmailAddress = "zaki.soussi1996@gmail.com";
+        $receiverEmailAddress = "zaki.benhirt94@gmail.com";
         Mail::to($receiverEmailAddress)->send(new TestMail());
         if (Mail::failures() != 0) {
             return "Email has been sent successfully.";
         }
         return "Oops! There was some error sending the email.";
+    }
+    public function storeImage(Request $request){
+              if (!Storage::disk('s3')->exists(\Auth::user()->center)){
+                  Storage::disk('s3')->makeDirectory(\Auth::user()->center);
+              }
+              Log::info('it work uploading pic');
+              if ($request->hasFile('filepond')){
+                  Log::info('the file is there');
+                  Log::info($request->filepond->extension());
+                  //getClientOriginalName()
+                  Log::info($request->filepond->getClientOriginalName());
+                   $path  = Storage::disk('s3')->put(\Auth::user()->center , $request->filepond);
+                  return response()->json(['status' => 200 , 'result' => $path ]);
+              }
+
+    }
+    public function deleteImage(Request $request){
+        Log::info('the img will be deleted');
+        Storage::disk('s3')->delete( $request->json()->all()['result']);
+    }
+    public function handleAcc(Request $request){
+          Log::info($request->nom);
+          return $request->all();
     }
 }

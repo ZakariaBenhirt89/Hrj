@@ -18,20 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
 Route::get('/admin_dashboard/indexMobi', 'Admin\DashboardController@indexOne')->middleware('role:admin')->name('indexMobi');
 Route::get('/admin_dashboard/ficheAcc', 'Admin\DashboardController@ficheAcc')->middleware('role:admin')->name('ficheAcc');
 
 Route::get('/admin_dashboard/{center}', 'Admin\DashboardController@index')->middleware('role:admin')->name("center.dashboard");
 Route::get('/user_dashboard', 'User\DashboardController@index')->middleware('role:user');
 Route::get('/sendMAil', 'Admin\DashboardController@sendMAil')->middleware('role:admin')->name('admin.mail.send');
+Route::post('/storeImg', 'Admin\DashboardController@storeImage')->middleware('role:admin')->name('admin.image.store');
+Route::post('/deleteImg', 'Admin\DashboardController@deleteImage')->middleware('role:admin')->name('admin.image.delete');
+Route::post('/acceuil', 'Admin\DashboardController@handleAcc')->middleware('role:admin')->name('admin.acc.create');
 
 Route::get('/teacher_dashboard', 'Teacher\DashboardController@index')->middleware('role:teacher');
-Route::middleware(['auth:sanctum', 'verified'])->get('/watch', function () {
-    return view('components.course-player');
-})->name('player');
 Route::post('/upload' , 'UploadController@upload')->middleware('role:admin');;
 Route::get('/search' , 'UploadController@search')->middleware('role:admin');;
 Route::delete('/delete' , 'UploadController@delete')->middleware('role:admin');;

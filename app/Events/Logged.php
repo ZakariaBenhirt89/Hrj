@@ -19,9 +19,11 @@ class Logged
      *
      * @return void
      */
-    public function __construct()
+    protected $name;
+    public function __construct($name)
     {
         //
+        $this->name = $name;
     }
 
     /**

@@ -103,21 +103,7 @@
                 <ul class="nav navbar-nav d-xl-none">
                     <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon" data-feather="menu"></i></a></li>
                 </ul>
-                <ul class="nav navbar-nav bookmark-icons">
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-email.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Email"><i class="ficon" data-feather="mail"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-chat.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Chat"><i class="ficon" data-feather="message-square"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-calendar.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Calendar"><i class="ficon" data-feather="calendar"></i></a></li>
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link" href="app-todo.html" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Todo"><i class="ficon" data-feather="check-square"></i></a></li>
-                </ul>
-                <ul class="nav navbar-nav">
-                    <li class="nav-item d-none d-lg-block"><a class="nav-link bookmark-star"><i class="ficon text-warning" data-feather="star"></i></a>
-                        <div class="bookmark-input search-input">
-                            <div class="bookmark-input-icon"><i data-feather="search"></i></div>
-                            <input class="form-control input" type="text" placeholder="Bookmark" tabindex="0" data-search="search">
-                            <ul class="search-list search-list-bookmark"></ul>
-                        </div>
-                    </li>
-                </ul>
+                 <img class="coip-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639574748/Sans_titre_11_d6pmtw.png" height="60" width="120" alt="coip-logo">
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
                 <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span></a>
@@ -217,8 +203,8 @@
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">Belvdere Admin</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1638950709/Teamwork_ycjdaz.png" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item" href="page-profile.html"><i class="me-50" data-feather="user"></i> Profile</a><a class="dropdown-item" href="app-email.html"><i class="me-50" data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="app-todo.html"><i class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item" href="app-chat.html"><i class="me-50" data-feather="message-square"></i> Chats</a>
-                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="me-50" data-feather="settings"></i> Settings</a><a class="dropdown-item" href="page-pricing.html"><i class="me-50" data-feather="credit-card"></i> Pricing</a><a class="dropdown-item" href="page-faq.html"><i class="me-50" data-feather="help-circle"></i> FAQ</a><form method="POST" action="{{ route('logout') }}">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item" href="#"><i class="me-50" data-feather="user"></i> Profile</a><a class="dropdown-item" href="#"><i class="me-50" data-feather="mail"></i> Inbox</a><a class="dropdown-item" href="#"><i class="me-50" data-feather="check-square"></i> Task</a><a class="dropdown-item" href="#"><i class="me-50" data-feather="message-square"></i> Chats</a>
+                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="me-50" data-feather="settings"></i> Settings</a><a class="dropdown-item" href="#"><i class="me-50" data-feather="credit-card"></i> Pricing</a><a class="dropdown-item" href="#"><i class="me-50" data-feather="help-circle"></i> FAQ</a><form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -235,7 +221,7 @@
         <li class="d-flex align-items-center"><a href="#">
                 <h6 class="section-label mt-75 mb-0">Files</h6>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
                 <div class="d-flex">
                     <div class="me-75"><img src="../../../app-assets/images/icons/xls.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -243,7 +229,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
                 <div class="d-flex">
                     <div class="me-75"><img src="../../../app-assets/images/icons/jpg.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -251,7 +237,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;11kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
                 <div class="d-flex">
                     <div class="me-75"><img src="../../../app-assets/images/icons/pdf.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -259,7 +245,7 @@
                     </div>
                 </div><small class="search-data-size me-50 text-muted">&apos;150kb</small>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="app-file-manager.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
                 <div class="d-flex">
                     <div class="me-75"><img src="../../../app-assets/images/icons/doc.png" alt="png" height="32"></div>
                     <div class="search-data">
@@ -270,7 +256,7 @@
         <li class="d-flex align-items-center"><a href="#">
                 <h6 class="section-label mt-75 mb-0">Members</h6>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -278,7 +264,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -286,7 +272,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-14.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -294,7 +280,7 @@
                     </div>
                 </div>
             </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="app-user-view-account.html">
+        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
                 <div class="d-flex align-items-center">
                     <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-6.jpg" alt="png" height="32"></div>
                     <div class="search-data">
@@ -315,7 +301,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow content-right" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item me-auto"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/index.html"><span class="brand-logo">
+                <li class="nav-item me-auto"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/#"><span class="brand-logo">
 <svg  height="24" viewBox="0 0 135 95" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <path d="M0 0L135 0L135 95L0 95L0 0Z" id="path_1" />
@@ -374,6 +360,11 @@
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Gestionnaire de fichiers</span></a>
                 </li>
                 <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="File Manager">Rapport</span></a>
+                </li>
+                <li class=" nav-item">
+                    <hr>
+                    <img class="coip-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639577068/Sans_titre_500_x_250_px_gflzv8.png" width="250">
+
                 </li>
 
 
@@ -463,13 +454,15 @@
                 localStorage.setItem('theme' , 'dark')
                 if (typeof $('.comp-logo') !== undefined && $('.comp-logo') !== null ){
                     $('.comp-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg')
+                    $('.coip-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg')
                 }
+
             }else {
                 console.log("noop look light")
                 localStorage.setItem('theme' , 'light')
                 if (typeof $('.comp-logo') !== undefined && $('.comp-logo') !== null ){
                     $('.comp-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639399302/Group_2_obm2zi.svg')
-
+                    $('.coip-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639399302/Group_2_obm2zi.svg')
                 }
             }
         }

@@ -132,6 +132,7 @@
                                                        name="filepond"
                                                        accept="image/png, image/jpeg, image/gif"/>
                                                 <input type="text" name="photo" hidden="true">
+                                                <input type="text" name="ref" hidden="true">
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="name">Nom</label>
@@ -154,6 +155,7 @@
                                                 <label class="form-label-rtl"  >جنس</label>
                                                 <label class="form-label" for="genre">Genre</label>
                                                 <select class="form-select" name="sex" id="basicSelect">
+                                                    <option></option>
                                                     <option value="homme">homme</option>
                                                     <option value="femme">femme</option>
                                                 </select>
@@ -443,6 +445,7 @@
                                             <label class="form-label" for="modern-language">Situation familiale :</label>
                                             <label class="form-label form-label-rtl" for="modern-language">حالة العائلية</label>
                                             <select class="form-select" id="situationFam" name="situationFam" >
+                                                <option></option>
                                                 <option value="Célibataire">Célibataire</option>
                                                 <option value="Marié">Marié(e)</option>
                                                 <option value="Divorcé">Divorcé(e)</option>
@@ -520,7 +523,7 @@
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </button>
-                                        <button class="btn btn-primary next next2" disabled>
+                                        <button class="btn btn-primary next next2" >
                                             <span class="align-middle d-sm-inline-block d-none">Next</span>
                                             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                         </button>
@@ -799,7 +802,12 @@
 
     <script src="{{ asset('app-assets/js/scripts/forms/form-wizard.js') }}"></script>
     <script>
-        $('.refNum').text("#BL"+Math.floor(Math.random() * Date.now()))
+        if (!localStorage.getItem('ref')){
+            localStorage.setItem('ref' , "#BL"+Math.floor(Math.random() * Date.now()))
+            $('[name="ref"]').val("#BL"+Math.floor(Math.random() * Date.now()))
+        }
+        $('[name="ref"]').val(localStorage.getItem('ref'))
+        $('.refNum').text(localStorage.getItem('ref'))
         const input1 = $('#modern-username')
         const requiredMemo = new Map()
         const matchMemo = new Map()
@@ -867,8 +875,9 @@
         form.on('click' , function (evt) {
             evt.preventDefault()
             console.log('submited')
+            localStorage.removeItem('ref')
             console.dir($('form').serializeArray() );
-         //   this.closest('form').submit()
+            this.closest('form').submit()
         })
         const stepper = new Stepper(document.querySelector('.bs-stepper'))
         $('.next').on('click' , function (evt) {

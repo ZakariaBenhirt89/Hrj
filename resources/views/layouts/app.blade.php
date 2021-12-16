@@ -103,7 +103,7 @@
                 <ul class="nav navbar-nav d-xl-none">
                     <li class="nav-item"><a class="nav-link menu-toggle" href="#"><i class="ficon" data-feather="menu"></i></a></li>
                 </ul>
-                 <img class="coip-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639574748/Sans_titre_11_d6pmtw.png" height="60" width="120" alt="coip-logo">
+                 <img class="coip-logo" src="" height="60" width="120" alt="coip-logo">
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
                 <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span></a>

@@ -5,7 +5,7 @@
        <div class="component1">
            <h1> This the main place</h1>
            <email-btn route="{{ route('admin.mail.send') }}" id="xr1"></email-btn>
-           <button class="btn btn-primary trans"></button>
+           <a class="btn btn-primary" href="{{ route('admin.user.detail' , ['id' => 12]) }}"> go to </a>
        </div>
    </div>
 

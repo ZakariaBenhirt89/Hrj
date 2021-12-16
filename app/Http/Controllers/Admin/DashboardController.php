@@ -122,6 +122,20 @@ class DashboardController extends Controller
             $field->data = $request->input('photo');
             $field->save();
         }
+        if( ($request->input('photo') == null || empty($request->input('photo')) ) &&  $request->input('sex') == 'femme'){
+            $field = new Field();
+            $field->form_id = $form->id ;
+            $field->type = 'photo';
+            $field->data = "https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639657788/Afterclap-8_dt5tnz.png";
+            $field->save();
+        }
+        if( ($request->input('photo') == null || empty($request->input('photo')) ) &&  $request->input('sex') == 'homme'){
+            $field = new Field();
+            $field->form_id = $form->id ;
+            $field->type = 'photo';
+            $field->data = "https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639657778/Afterclap-2_jhksvx.png";
+            $field->save();
+        }
 
         if ($request->input('adresse')){
             $field = new Field();
@@ -356,5 +370,8 @@ class DashboardController extends Controller
           }
 
          return response()->json(['status' => 200 , 'result' => $fields]);
+    }
+    public function detail(Request $request , $id){
+        return view('components.details');
     }
 }

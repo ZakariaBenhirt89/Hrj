@@ -25,6 +25,8 @@ Route::get('/admin_dashboard/ficheAcc', 'Admin\DashboardController@ficheAcc')->m
 Route::get('/admin_dashboard/{center}', 'Admin\DashboardController@index')->middleware('role:admin')->name("center.dashboard");
 Route::get('/user_dashboard', 'User\DashboardController@index')->middleware('role:user');
 Route::get('/sendMAil', 'Admin\DashboardController@sendMAil')->middleware('role:admin')->name('admin.mail.send');
+Route::get('/userDetails/{id}', 'Admin\DashboardController@detail')->middleware('role:admin')->name('admin.user.detail');
+
 Route::post('/storeImg', 'Admin\DashboardController@storeImage')->middleware('role:admin')->name('admin.image.store');
 Route::post('/deleteImg', 'Admin\DashboardController@deleteImage')->middleware('role:admin')->name('admin.image.delete');
 Route::post('/acceuil', 'Admin\DashboardController@handleAcc')->middleware('role:admin')->name('admin.acc.create');

@@ -59,15 +59,25 @@ $(function () {
 
   // Horizontal Wizard
   // --------------------------------------------------------------------
+
   if (typeof horizontalWizard !== undefined && horizontalWizard !== null) {
     var numberedStepper = new Stepper(horizontalWizard),
       $form = $(horizontalWizard).find('form');
+    console.log(horizontalWizard)
     $form.each(function () {
       var $this = $(this);
+        $.validator.addMethod("regex",
+            function(value, element , regexR) {
+                console.log(value , regexR)
+                return (new RegExp(regexR)).test(value);
+            },
+            "Désole . vérifier l'écriture dans le champ"
+        );
       $this.validate({
         rules: {
-          username: {
-            required: true
+          nom : {
+            required: true ,
+              regex: '([A-Za-zء-ي]+)'
           },
           email: {
             required: true

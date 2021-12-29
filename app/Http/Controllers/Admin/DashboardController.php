@@ -372,6 +372,11 @@ class DashboardController extends Controller
          return response()->json(['status' => 200 , 'result' => $fields]);
     }
     public function detail(Request $request , $id){
+        Log::info($id);
+        $form = Form::where('id' , intval($id))->first();
+        Log::info('==================');
+        Log::info($form);
+        Log::info('==================');
         return view('components.details');
     }
 }

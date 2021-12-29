@@ -4,568 +4,304 @@
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
             <div class="content-header row">
+                <div class="content-header-left col-md-9 col-12 mb-2">
+                    <div class="row breadcrumbs-top">
+
+                    </div>
+                </div>
+                <div class="content-header-right text-md-end col-md-3 col-12 d-md-block d-none">
+                    <div class="mb-1 breadcrumb-right">
+                        <div class="dropdown">
+                            <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle waves-effect waves-float waves-light" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></button>
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square me-1"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-square me-1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail me-1"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar me-1"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg><span class="align-middle">Calendar</span></a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="content-body">
-                <section class="app-user-view-account">
-                    <div class="row">
-                        <!-- User Sidebar -->
-                        <div class="col-xl-4 col-lg-5 col-md-5 order-1 order-md-0">
-                            <!-- User Card -->
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="user-avatar-section">
-                                        <div class="d-flex align-items-center flex-column">
-                                            <img class="img-fluid rounded mt-3 mb-2" src="../../../app-assets/images/portrait/small/avatar-s-2.jpg" height="110" width="110" alt="User avatar" />
-                                            <div class="user-info text-center">
-                                                <h4>Gertrude Barton</h4>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-around my-2 pt-75">
-                                        <div class="d-flex align-items-start me-2">
-                                            <span class="badge bg-light-primary p-75 rounded">
-                                                <i data-feather="check" class="font-medium-2"></i>
-                                            </span>
-                                            <div class="ms-75">
-                                                <h4 class="mb-0">1.23k</h4>
-                                                <small>Tasks Done</small>
-                                            </div>
-                                        </div>
-                                        <div class="d-flex align-items-start">
-                                            <span class="badge bg-light-primary p-75 rounded">
-                                                <i data-feather="briefcase" class="font-medium-2"></i>
-                                            </span>
-                                            <div class="ms-75">
-                                                <h4 class="mb-0">568</h4>
-                                                <small>Projects Done</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <h4 class="fw-bolder border-bottom pb-50 mb-1">Details</h4>
-                                    <div class="info-container">
-                                        <ul class="list-unstyled">
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Username:</span>
-                                                <span>violet.dev</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Billing Email:</span>
-                                                <span>vafgot@vultukir.org</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Status:</span>
-                                                <span class="badge bg-light-success">Active</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Role:</span>
-                                                <span>Author</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Tax ID:</span>
-                                                <span>Tax-8965</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Contact:</span>
-                                                <span>+1 (609) 933-44-22</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Language:</span>
-                                                <span>English</span>
-                                            </li>
-                                            <li class="mb-75">
-                                                <span class="fw-bolder me-25">Country:</span>
-                                                <span>Wake Island</span>
-                                            </li>
-                                        </ul>
-                                        <div class="d-flex justify-content-center pt-2">
-                                            <a href="javascript:;" class="btn btn-outline-danger suspend-user">Télecharger Dossier <i data-feather='download-cloud'></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                <section class="modern-horizontal-wizard">
+                    <div class="bs-stepper wizard-modern modern-wizard-example">
+                        <div class="bs-stepper-header justify-content-between">
+                            <div class="step active" data-target="#account-details-modern" role="tab" id="account-details-modern-trigger">
+                                <button type="button" class="step-trigger" aria-selected="true">
+                                    <span class="bs-stepper-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text font-medium-3"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Account Details</span>
+                                        <span class="bs-stepper-subtitle">Setup Account Details</span>
+                                    </span>
+                                </button>
                             </div>
-                            <!-- /User Card -->
-                            <!-- Plan Card -->
-
-                            <!-- /Plan Card -->
+                            <div class="line">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right font-medium-2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                            <div class="step" data-target="#personal-info-modern" role="tab" id="personal-info-modern-trigger">
+                                <button type="button" class="step-trigger" aria-selected="false">
+                                    <span class="bs-stepper-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user font-medium-3"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Personal Info</span>
+                                        <span class="bs-stepper-subtitle">Add Personal Info</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right font-medium-2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                            <div class="step" data-target="#address-step-modern" role="tab" id="address-step-modern-trigger">
+                                <button type="button" class="step-trigger" aria-selected="false">
+                                    <span class="bs-stepper-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin font-medium-3"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Address</span>
+                                        <span class="bs-stepper-subtitle">Add Address</span>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="line">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right font-medium-2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                            <div class="step" data-target="#social-links-modern" role="tab" id="social-links-modern-trigger">
+                                <button type="button" class="step-trigger" aria-selected="false">
+                                    <span class="bs-stepper-box">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link font-medium-3"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                                    </span>
+                                    <span class="bs-stepper-label">
+                                        <span class="bs-stepper-title">Social Links</span>
+                                        <span class="bs-stepper-subtitle">Add Social Links</span>
+                                    </span>
+                                </button>
+                            </div>
                         </div>
-                        <!--/ User Sidebar -->
-
-                        <!-- User Content -->
-                        <div class="col-xl-8 col-lg-7 col-md-7 order-0 order-md-1 bs-stepper">
-                            <!-- User Pills -->
-                            <ul class="nav nav-pills mb-2 bs-stepper-header" role="tablist">
-                                <li class="nav-item step">
-                                    <a id="t1" class="nav-link stepper " href="#">
-                                        <i data-feather="user" class="font-medium-3 me-50"></i>
-                                        <span class="fw-bold">Detaille</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a id="t2" class="nav-link stepper" href="#">
-                                        <i data-feather="lock" class="font-medium-3 me-50"></i>
-                                        <span class="fw-bold">Orientation</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a id="t3" class="nav-link stepper" href="#">
-                                        <i data-feather="bookmark" class="font-medium-3 me-50"></i>
-                                        <span class="fw-bold">Suivi</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a id="t4" class="nav-link stepper" href="#">
-                                        <i data-feather="bell" class="font-medium-3 me-50"></i><span class="fw-bold">Placement</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            <!--/ User Pills -->
-
-                            <!-- Project table -->
-                            <!-- /Project table -->
-
-                            <!-- Activity Timeline -->
-
-                                <div id="one" class="card holder"  role="tabpanel" aria-labelledby="one-trigger">
-                                    <h4 class="card-header">User Activity Timeline</h4>
-                                    <div class="card-body pt-1">
-                                        <ul class="timeline ms-50">
-                                            <li class="timeline-item">
-                                                <span class="timeline-point timeline-point-indicator"></span>
-                                                <div class="timeline-event">
-                                                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                        <h6>User login</h6>
-                                                        <span class="timeline-event-time me-1">12 min ago</span>
-                                                    </div>
-                                                    <p>User login at 2:12pm</p>
-                                                </div>
-                                            </li>
-                                            <li class="timeline-item">
-                                                <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
-                                                <div class="timeline-event">
-                                                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                        <h6>Meeting with john</h6>
-                                                        <span class="timeline-event-time me-1">45 min ago</span>
-                                                    </div>
-                                                    <p>React Project meeting with john @10:15am</p>
-                                                    <div class="d-flex flex-row align-items-center mb-50">
-                                                        <div class="avatar me-50">
-                                                            <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="38" height="38" />
-                                                        </div>
-                                                        <div class="user-info">
-                                                            <h6 class="mb-0">Leona Watkins (Client)</h6>
-                                                            <p class="mb-0">CEO of pixinvent</p>
-                                                        </div>
+                        <div class="bs-stepper-content">
+                            <div id="account-details-modern" class="content active dstepper-block" role="tabpanel" aria-labelledby="account-details-modern-trigger">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Account Details</h5>
+                                    <small class="text-muted">Enter Your Account Details.</small>
+                                    <img class="coip-logo dossier-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg" width="250">
+                                </div>
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="user-avatar-section">
+                                                <div class="d-flex align-items-center flex-column">
+                                                    <img class="img-fluid rounded mt-3 mb-2" src="../../../app-assets/images/portrait/small/avatar-s-2.jpg" height="110" width="110" alt="User avatar">
+                                                    <div class="user-info text-center">
+                                                        <h4>Gertrude Barton</h4>
+                                                        <span class="badge bg-light-secondary">Author</span>
                                                     </div>
                                                 </div>
-                                            </li>
-                                            <li class="timeline-item">
-                                                <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
-                                                <div class="timeline-event">
-                                                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                        <h6>Create a new react project for client</h6>
-                                                        <span class="timeline-event-time me-1">2 day ago</span>
-                                                    </div>
-                                                    <p>Add files to new design folder</p>
-                                                </div>
-                                            </li>
-                                            <li class="timeline-item">
-                                                <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
-                                                <div class="timeline-event">
-                                                    <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                        <h6>Create Invoices for client</h6>
-                                                        <span class="timeline-event-time me-1">12 min ago</span>
-                                                    </div>
-                                                    <p class="mb-0">Create new Invoices and send to Leona Watkins</p>
-                                                    <div class="d-flex flex-row align-items-center mt-50">
-                                                        <img class="me-1" src="../../../app-assets/images/icons/pdf.png" alt="data.json" height="25" />
-                                                        <h6 class="mb-0">Invoices.pdf</h6>
+                                            </div>
+                                            <div class="d-flex justify-content-around my-2 pt-75">
+                                                <div class="d-flex align-items-start me-2">
+                                            <span class="badge bg-light-primary p-75 rounded">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check font-medium-2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                            </span>
+                                                    <div class="ms-75">
+                                                        <h4 class="mb-0">1.23k</h4>
+                                                        <small>Tasks Done</small>
                                                     </div>
                                                 </div>
-                                            </li>
-                                        </ul>
+                                                <div class="d-flex align-items-start">
+                                            <span class="badge bg-light-primary p-75 rounded">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase font-medium-2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                                            </span>
+                                                    <div class="ms-75">
+                                                        <h4 class="mb-0">568</h4>
+                                                        <small>Projects Done</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <h4 class="fw-bolder border-bottom pb-50 mb-1">Details</h4>
+                                            <div class="info-container">
+                                                <ul class="list-unstyled">
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Username:</span>
+                                                        <span>violet.dev</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Billing Email:</span>
+                                                        <span>vafgot@vultukir.org</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Status:</span>
+                                                        <span class="badge bg-light-success">Active</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Role:</span>
+                                                        <span>Author</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Tax ID:</span>
+                                                        <span>Tax-8965</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Contact:</span>
+                                                        <span>+1 (609) 933-44-22</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Language:</span>
+                                                        <span>English</span>
+                                                    </li>
+                                                    <li class="mb-75">
+                                                        <span class="fw-bolder me-25">Country:</span>
+                                                        <span>Wake Island</span>
+                                                    </li>
+                                                </ul>
+                                                <div class="d-flex justify-content-center pt-2">
+                                                    <a href="javascript:;" class="btn btn-primary me-1 waves-effect waves-float waves-light" data-bs-target="#editUser" data-bs-toggle="modal">
+                                                        Edit
+                                                    </a>
+                                                    <a href="javascript:;" class="btn btn-outline-danger suspend-user waves-effect">Suspended</a>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            <div id="two" class="card holder"  role="tabpanel" aria-labelledby="one-trigger" hidden>
-                                <h4 class="card-header">User Activity 2</h4>
-                                <div class="card-body pt-1">
-                                    <ul class="timeline ms-50">
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>User login</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p>User login at 2:12pm</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Meeting with john</h6>
-                                                    <span class="timeline-event-time me-1">45 min ago</span>
-                                                </div>
-                                                <p>React Project meeting with john @10:15am</p>
-                                                <div class="d-flex flex-row align-items-center mb-50">
-                                                    <div class="avatar me-50">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="38" height="38" />
-                                                    </div>
-                                                    <div class="user-info">
-                                                        <h6 class="mb-0">Leona Watkins (Client)</h6>
-                                                        <p class="mb-0">CEO of pixinvent</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create a new react project for client</h6>
-                                                    <span class="timeline-event-time me-1">2 day ago</span>
-                                                </div>
-                                                <p>Add files to new design folder</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create Invoices for client</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p class="mb-0">Create new Invoices and send to Leona Watkins</p>
-                                                <div class="d-flex flex-row align-items-center mt-50">
-                                                    <img class="me-1" src="../../../app-assets/images/icons/pdf.png" alt="data.json" height="25" />
-                                                    <h6 class="mb-0">Invoices.pdf</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+
+                                <div class="d-flex justify-content-between">
+                                     <div></div>
+                                    <button class="btn btn-primary btn-next waves-effect waves-float waves-light">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right align-middle ms-sm-25 ms-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
                                 </div>
                             </div>
-                            <div id="tree" class="card holder"  role="tabpanel" aria-labelledby="one-trigger" hidden>
-                                <h4 class="card-header">User Activity 3</h4>
-                                <div class="card-body pt-1">
-                                    <ul class="timeline ms-50">
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>User login</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p>User login at 2:12pm</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Meeting with john</h6>
-                                                    <span class="timeline-event-time me-1">45 min ago</span>
-                                                </div>
-                                                <p>React Project meeting with john @10:15am</p>
-                                                <div class="d-flex flex-row align-items-center mb-50">
-                                                    <div class="avatar me-50">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="38" height="38" />
-                                                    </div>
-                                                    <div class="user-info">
-                                                        <h6 class="mb-0">Leona Watkins (Client)</h6>
-                                                        <p class="mb-0">CEO of pixinvent</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create a new react project for client</h6>
-                                                    <span class="timeline-event-time me-1">2 day ago</span>
-                                                </div>
-                                                <p>Add files to new design folder</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create Invoices for client</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p class="mb-0">Create new Invoices and send to Leona Watkins</p>
-                                                <div class="d-flex flex-row align-items-center mt-50">
-                                                    <img class="me-1" src="../../../app-assets/images/icons/pdf.png" alt="data.json" height="25" />
-                                                    <h6 class="mb-0">Invoices.pdf</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            <div id="personal-info-modern" class="content" role="tabpanel" aria-labelledby="personal-info-modern-trigger">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Personal Info</h5>
+                                    <small>Enter Your Personal Info.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-first-name">First Name</label>
+                                        <input type="text" id="modern-first-name" class="form-control" placeholder="John">
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-last-name">Last Name</label>
+                                        <input type="text" id="modern-last-name" class="form-control" placeholder="Doe">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-country">Country</label>
+                                        <div class="position-relative"><select class="select2 w-100 select2-hidden-accessible" id="modern-country" data-select2-id="modern-country" tabindex="-1" aria-hidden="true">
+                                                <option label=" " data-select2-id="8"></option>
+                                                <option>UK</option>
+                                                <option>USA</option>
+                                                <option>Spain</option>
+                                                <option>France</option>
+                                                <option>Italy</option>
+                                                <option>Australia</option>
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="7" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-modern-country-container"><span class="select2-selection__rendered" id="select2-modern-country-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Select value</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-language">Language</label>
+                                        <div class="position-relative"><select class="select2 w-100 select2-hidden-accessible" id="modern-language" multiple="" data-select2-id="modern-language" tabindex="-1" aria-hidden="true">
+                                                <option>English</option>
+                                                <option>French</option>
+                                                <option>Spanish</option>
+                                            </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="9" style="width: auto;"><span class="selection"><span class="select2-selection select2-selection--multiple" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="-1" aria-disabled="false"><ul class="select2-selection__rendered"><li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="0" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" aria-autocomplete="list" placeholder="Select value" style="width: 0px;"></li></ul></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev waves-effect waves-float waves-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left align-middle me-sm-25 me-0"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next waves-effect waves-float waves-light">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right align-middle ms-sm-25 ms-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
                                 </div>
                             </div>
-                            <div id="four" class="card holder"  role="tabpanel" aria-labelledby="one-trigger" hidden>
-                                <h4 class="card-header">User Activity 4</h4>
-                                <div class="card-body pt-1">
-                                    <ul class="timeline ms-50">
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>User login</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p>User login at 2:12pm</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-warning timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Meeting with john</h6>
-                                                    <span class="timeline-event-time me-1">45 min ago</span>
-                                                </div>
-                                                <p>React Project meeting with john @10:15am</p>
-                                                <div class="d-flex flex-row align-items-center mb-50">
-                                                    <div class="avatar me-50">
-                                                        <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="Avatar" width="38" height="38" />
-                                                    </div>
-                                                    <div class="user-info">
-                                                        <h6 class="mb-0">Leona Watkins (Client)</h6>
-                                                        <p class="mb-0">CEO of pixinvent</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-info timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create a new react project for client</h6>
-                                                    <span class="timeline-event-time me-1">2 day ago</span>
-                                                </div>
-                                                <p>Add files to new design folder</p>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-item">
-                                            <span class="timeline-point timeline-point-danger timeline-point-indicator"></span>
-                                            <div class="timeline-event">
-                                                <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
-                                                    <h6>Create Invoices for client</h6>
-                                                    <span class="timeline-event-time me-1">12 min ago</span>
-                                                </div>
-                                                <p class="mb-0">Create new Invoices and send to Leona Watkins</p>
-                                                <div class="d-flex flex-row align-items-center mt-50">
-                                                    <img class="me-1" src="../../../app-assets/images/icons/pdf.png" alt="data.json" height="25" />
-                                                    <h6 class="mb-0">Invoices.pdf</h6>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                            <div id="address-step-modern" class="content" role="tabpanel" aria-labelledby="address-step-modern-trigger">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Address</h5>
+                                    <small>Enter Your Address.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-address">Address</label>
+                                        <input type="text" id="modern-address" class="form-control" placeholder="98  Borough bridge Road, Birmingham">
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-landmark">Landmark</label>
+                                        <input type="text" id="modern-landmark" class="form-control" placeholder="Borough bridge">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="pincode3">Pincode</label>
+                                        <input type="text" id="pincode3" class="form-control" placeholder="658921">
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="city3">City</label>
+                                        <input type="text" id="city3" class="form-control" placeholder="Birmingham">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev waves-effect waves-float waves-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left align-middle me-sm-25 me-0"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
+                                    <button class="btn btn-primary btn-next waves-effect waves-float waves-light">
+                                        <span class="align-middle d-sm-inline-block d-none">Next</span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right align-middle ms-sm-25 ms-0"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div id="social-links-modern" class="content" role="tabpanel" aria-labelledby="social-links-modern-trigger">
+                                <div class="content-header">
+                                    <h5 class="mb-0">Social Links</h5>
+                                    <small>Enter Your Social Links.</small>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-twitter">Twitter</label>
+                                        <input type="text" id="modern-twitter" class="form-control" placeholder="https://twitter.com/abc">
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-facebook">Facebook</label>
+                                        <input type="text" id="modern-facebook" class="form-control" placeholder="https://facebook.com/abc">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-google">Google+</label>
+                                        <input type="text" id="modern-google" class="form-control" placeholder="https://plus.google.com/abc">
+                                    </div>
+                                    <div class="mb-1 col-md-6">
+                                        <label class="form-label" for="modern-linkedin">Linkedin</label>
+                                        <input type="text" id="modern-linkedin" class="form-control" placeholder="https://linkedin.com/abc">
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary btn-prev waves-effect waves-float waves-light">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left align-middle me-sm-25 me-0"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                                        <span class="align-middle d-sm-inline-block d-none">Previous</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
-                        <!--/ User Content -->
                     </div>
                 </section>
-                <!-- Edit User Modal -->
-                <div class="modal fade" id="editUser" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body pb-5 px-sm-5 pt-50">
-                                <div class="text-center mb-2">
-                                    <h1 class="mb-1">Edit User Information</h1>
-                                    <p>Updating user details will receive a privacy audit.</p>
-                                </div>
-                                <form id="editUserForm" class="row gy-1 pt-75" onsubmit="return false">
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserFirstName">First Name</label>
-                                        <input type="text" id="modalEditUserFirstName" name="modalEditUserFirstName" class="form-control" placeholder="John" value="Gertrude" data-msg="Please enter your first name" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLastName">Last Name</label>
-                                        <input type="text" id="modalEditUserLastName" name="modalEditUserLastName" class="form-control" placeholder="Doe" value="Barton" data-msg="Please enter your last name" />
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="form-label" for="modalEditUserName">Username</label>
-                                        <input type="text" id="modalEditUserName" name="modalEditUserName" class="form-control" value="gertrude.dev" placeholder="john.doe.007" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserEmail">Billing Email:</label>
-                                        <input type="text" id="modalEditUserEmail" name="modalEditUserEmail" class="form-control" value="gertrude@gmail.com" placeholder="example@domain.com" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserStatus">Status</label>
-                                        <select id="modalEditUserStatus" name="modalEditUserStatus" class="form-select" aria-label="Default select example">
-                                            <option selected>Status</option>
-                                            <option value="1">Active</option>
-                                            <option value="2">Inactive</option>
-                                            <option value="3">Suspended</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditTaxID">Tax ID</label>
-                                        <input type="text" id="modalEditTaxID" name="modalEditTaxID" class="form-control modal-edit-tax-id" placeholder="Tax-8894" value="Tax-8894" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserPhone">Contact</label>
-                                        <input type="text" id="modalEditUserPhone" name="modalEditUserPhone" class="form-control phone-number-mask" placeholder="+1 (609) 933-44-22" value="+1 (609) 933-44-22" />
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserLanguage">Language</label>
-                                        <select id="modalEditUserLanguage" name="modalEditUserLanguage" class="select2 form-select" multiple>
-                                            <option value="english">English</option>
-                                            <option value="spanish">Spanish</option>
-                                            <option value="french">French</option>
-                                            <option value="german">German</option>
-                                            <option value="dutch">Dutch</option>
-                                            <option value="hebrew">Hebrew</option>
-                                            <option value="sanskrit">Sanskrit</option>
-                                            <option value="hindi">Hindi</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label" for="modalEditUserCountry">Country</label>
-                                        <select id="modalEditUserCountry" name="modalEditUserCountry" class="select2 form-select">
-                                            <option value="">Select Value</option>
-                                            <option value="Australia">Australia</option>
-                                            <option value="Bangladesh">Bangladesh</option>
-                                            <option value="Belarus">Belarus</option>
-                                            <option value="Brazil">Brazil</option>
-                                            <option value="Canada">Canada</option>
-                                            <option value="China">China</option>
-                                            <option value="France">France</option>
-                                            <option value="Germany">Germany</option>
-                                            <option value="India">India</option>
-                                            <option value="Indonesia">Indonesia</option>
-                                            <option value="Israel">Israel</option>
-                                            <option value="Italy">Italy</option>
-                                            <option value="Japan">Japan</option>
-                                            <option value="Korea">Korea, Republic of</option>
-                                            <option value="Mexico">Mexico</option>
-                                            <option value="Philippines">Philippines</option>
-                                            <option value="Russia">Russian Federation</option>
-                                            <option value="South Africa">South Africa</option>
-                                            <option value="Thailand">Thailand</option>
-                                            <option value="Turkey">Turkey</option>
-                                            <option value="Ukraine">Ukraine</option>
-                                            <option value="United Arab Emirates">United Arab Emirates</option>
-                                            <option value="United Kingdom">United Kingdom</option>
-                                            <option value="United States">United States</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="d-flex align-items-center mt-1">
-                                            <div class="form-check form-switch form-check-primary">
-                                                <input type="checkbox" class="form-check-input" id="customSwitch10" checked />
-                                                <label class="form-check-label" for="customSwitch10">
-                                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                                </label>
-                                            </div>
-                                            <label class="form-check-label fw-bolder" for="customSwitch10">Use as a billing address?</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 text-center mt-2 pt-50">
-                                        <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                        <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
-                                            Discard
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/ Edit User Modal -->
-                <!-- upgrade your plan Modal -->
-                <div class="modal fade" id="upgradePlanModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-upgrade-plan">
-                        <div class="modal-content">
-                            <div class="modal-header bg-transparent">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body px-5 pb-2">
-                                <div class="text-center mb-2">
-                                    <h1 class="mb-1">Upgrade Plan</h1>
-                                    <p>Choose the best plan for user.</p>
-                                </div>
-                                <form id="upgradePlanForm" class="row pt-50" onsubmit="return false">
-                                    <div class="col-sm-8">
-                                        <label class="form-label" for="choosePlan">Choose Plan</label>
-                                        <select id="choosePlan" name="choosePlan" class="form-select" aria-label="Choose Plan">
-                                            <option selected>Choose Plan</option>
-                                            <option value="standard">Standard - $99/month</option>
-                                            <option value="exclusive">Exclusive - $249/month</option>
-                                            <option value="Enterprise">Enterprise - $499/month</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-4 text-sm-end">
-                                        <button type="submit" class="btn btn-primary mt-2">Upgrade</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <hr />
-                            <div class="modal-body px-5 pb-3">
-                                <h6>User current plan is standard plan</h6>
-                                <div class="d-flex justify-content-between align-items-center flex-wrap">
-                                    <div class="d-flex justify-content-center me-1 mb-1">
-                                        <sup class="h5 pricing-currency pt-1 text-primary">$</sup>
-                                        <h1 class="fw-bolder display-4 mb-0 text-primary me-25">99</h1>
-                                        <sub class="pricing-duration font-small-4 mt-auto mb-2">/month</sub>
-                                    </div>
-                                    <button class="btn btn-outline-danger cancel-subscription mb-1">Cancel Subscription</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--/ upgrade your plan Modal -->
-
             </div>
         </div>
     </div>
     <style>
-
+         .dossier-logo{
+             float: right;
+             margin-right: -34px;
+             margin-top: -33px;
+         }
+         .row {
+             clear: right;
+         }
     </style>
-    <script>
-        $('#two').attr('hidden' , false)
-     function findShowable(){
-         let numshow = 0
-        document.querySelectorAll('.holder').forEach(e => {
-            if (e.hidden === false){
-                if (numshow >= 1){
-                    $('#'+e.id).attr('hidden' , true)
-                    numshow++
-                }else {
-                    console.log('********************')
-                    console.dir(e.id)
-                    localStorage.setItem('currentcard' , e.id)
-                    numshow++
-                }
-
-            }
-        })
-      }
-      findShowable()
-        $('.stepper').on('click' , function (evt) {
-            evt.preventDefault()
-            console.log('///////////////////////////////')
-
-            if (evt.target.id === '' || typeof evt.target.id === undefined){
-                if ($(evt.target).parents('a').length === 0){
-                    console.log('empty')
-                }else {
-
-                }
-            }else {
-                console.log(evt.target.id)
-            }
-            console.log('///////////////////////////////')
-
-        })
-    </script>
+    <script src="{{ asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/forms/form-wizard.js') }}"></script>
 </x-app-layout>

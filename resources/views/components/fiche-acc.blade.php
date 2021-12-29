@@ -25,7 +25,6 @@
                     <div class="mb-1 breadcrumb-right">
                         <div class="dropdown">
                             <button class="btn-icon btn btn-primary btn-round btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="grid"></i></button>
-                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="app-todo.html"><i class="me-1" data-feather="check-square"></i><span class="align-middle">Todo</span></a><a class="dropdown-item" href="app-chat.html"><i class="me-1" data-feather="message-square"></i><span class="align-middle">Chat</span></a><a class="dropdown-item" href="app-email.html"><i class="me-1" data-feather="mail"></i><span class="align-middle">Email</span></a><a class="dropdown-item" href="app-calendar.html"><i class="me-1" data-feather="calendar"></i><span class="align-middle">Calendar</span></a></div>
                         </div>
                     </div>
                 </div>
@@ -35,7 +34,7 @@
                 <!-- Modern Horizontal Wizard -->
                 <section class="modern-horizontal-wizard">
                     <div class="bs-stepper wizard-modern modern-wizard-example">
-                        <form class="needs-validation" action="{{ route('admin.acc.create') }}" method="POST">
+                        <form id="formAcc" action="{{ route('admin.acc.create') }}" method="POST">
                             @csrf
                             <div class="bs-stepper-header">
                                 <div class="step" data-target="#account-details-modern" role="tab" id="account-details-modern-trigger" disabled="true">
@@ -46,8 +45,9 @@
                                                                                 <i data-feather="user" class="font-medium-3"></i>
                                     </span>
                                         <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Informations personnelles</span>
-                                            <span class="bs-stepper-title">معلومات شخصية</span>
+                                        <span class="bs-stepper-title">Informations <br>personnelles</span>
+                                            <hr class="hr">
+                                            <span class="bs-stepper-title title-bs">معلومات شخصية</span>
                                     </span>
                                     </button>
                                 </div>
@@ -62,8 +62,9 @@
                                         <i data-feather="file-text" class="font-medium-3"></i>
                                     </span>
                                         <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Informations générales</span>
-                                            <span class="bs-stepper-title">معلومات عامة</span>
+                                        <span class="bs-stepper-title">Informations <br>générales</span>
+                                            <hr class="hr">
+                                            <span class="bs-stepper-title title-bs">معلومات عامة</span>
                                     </span>
                                     </button>
                                 </div>
@@ -78,8 +79,9 @@
                                         <i data-feather='activity'></i>
                                     </span>
                                             <span class="bs-stepper-label">
-                                            <span class="bs-stepper-title">État physique </span>
-                                            <span class="bs-stepper-title">حالة جسدية</span>
+                                            <span class="bs-stepper-title">État <br> physique </span>
+                                                <hr class="hr">
+                                            <span class="bs-stepper-title title-bs">حالة جسدية</span>
                                     </span>
                                     </button>
                                 </div>
@@ -94,8 +96,9 @@
                                         <i data-feather='briefcase'></i>
                                     </span>
                                         <span class="bs-stepper-label">
-                                        <span class="bs-stepper-title">Informations professionnelles</span>
-                                        <span class="bs-stepper-title">معلومات مهنية</span>
+                                        <span class="bs-stepper-title">Informations <br> professionnelles</span>
+                                            <hr class="hr">
+                                        <span class="bs-stepper-title title-bs">معلومات مهنية</span>
                                     </span>
                                     </button>
                                 </div>
@@ -111,7 +114,8 @@
                                     </span>
                                         <span class="bs-stepper-label">
                                         <span class="bs-stepper-title">Acceptabilité</span>
-                                         <span class="bs-stepper-title">قبول</span>
+                                            <hr class="hr">
+                                         <span class="bs-stepper-title title-bs">قبول</span>
                                     </span>
                                     </button>
                                 </div>
@@ -137,24 +141,24 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="name">Nom</label>
                                                 <label class="form-label-rtl" for="name"  >اﻹسم</label>
-                                                <input type="text" id="modern-username" name="nom" class="form-control" placeholder="nom" required pattern="^[A-Za-zأ-ي]+$" />
+                                                <input type="text" id="modern-username" name="nom" class="form-control stepOne" placeholder="nom" required pattern="^[A-Za-zأ-ي]+$" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label-rtl"  >النسب</label>
                                                 <label class="form-label" for="prenom">Prénom</label>
-                                                <input type="text" id="prenom" name="prenom" class="form-control" placeholder="prénom" aria-label="prenom" required pattern="^[A-Za-zأ-ي]+$"/>
+                                                <input type="text" id="prenom" name="prenom" class="form-control stepOne" placeholder="prénom" aria-label="prenom" required pattern="^[A-Za-zأ-ي]+$"/>
                                             </div>
                                             <div class="mb-1 form-password-toggle col-md-6">
                                                 <label class="form-label-rtl"  >عنوان</label>
                                                 <label class="form-label" for="adress">Adresse</label>
-                                                <input type="text" id="adresse" name="adresse" class="form-control" placeholder="adresse" required />
+                                                <input type="text" id="adresse" name="adresse" class="form-control stepOne" placeholder="adresse" required />
                                             </div>
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label-rtl"  >جنس</label>
+                                                <label class="form-label-rtl"  >نوع</label>
                                                 <label class="form-label" for="genre">Genre</label>
-                                                <select class="form-select" name="sex" id="basicSelect">
+                                                <select class="form-select stepOne" name="sex" id="sex">
                                                     <option></option>
                                                     <option value="homme">homme</option>
                                                     <option value="femme">femme</option>
@@ -163,200 +167,8 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label-rtl"  >جنسية</label>
                                                 <label class="form-label" for="nationaité">Nationalité</label>
-                                                <select class="form-select" name="nation" id="nationalité" required >
-                                                    <option value=""></option>
-                                                    <option value="moroccan">Moroccan</option>
-                                                    <option value="afghan">Afghan</option>
-                                                    <option value="albanian">Albanian</option>
-                                                    <option value="algerian">Algerian</option>
-                                                    <option value="american">American</option>
-                                                    <option value="andorran">Andorran</option>
-                                                    <option value="angolan">Angolan</option>
-                                                    <option value="antiguans">Antiguans</option>
-                                                    <option value="argentinean">Argentinean</option>
-                                                    <option value="armenian">Armenian</option>
-                                                    <option value="australian">Australian</option>
-                                                    <option value="austrian">Austrian</option>
-                                                    <option value="azerbaijani">Azerbaijani</option>
-                                                    <option value="bahamian">Bahamian</option>
-                                                    <option value="bahraini">Bahraini</option>
-                                                    <option value="bangladeshi">Bangladeshi</option>
-                                                    <option value="barbadian">Barbadian</option>
-                                                    <option value="barbudans">Barbudans</option>
-                                                    <option value="batswana">Batswana</option>
-                                                    <option value="belarusian">Belarusian</option>
-                                                    <option value="belgian">Belgian</option>
-                                                    <option value="belizean">Belizean</option>
-                                                    <option value="beninese">Beninese</option>
-                                                    <option value="bhutanese">Bhutanese</option>
-                                                    <option value="bolivian">Bolivian</option>
-                                                    <option value="bosnian">Bosnian</option>
-                                                    <option value="brazilian">Brazilian</option>
-                                                    <option value="british">British</option>
-                                                    <option value="bruneian">Bruneian</option>
-                                                    <option value="bulgarian">Bulgarian</option>
-                                                    <option value="burkinabe">Burkinabe</option>
-                                                    <option value="burmese">Burmese</option>
-                                                    <option value="burundian">Burundian</option>
-                                                    <option value="cambodian">Cambodian</option>
-                                                    <option value="cameroonian">Cameroonian</option>
-                                                    <option value="canadian">Canadian</option>
-                                                    <option value="cape verdean">Cape Verdean</option>
-                                                    <option value="central african">Central African</option>
-                                                    <option value="chadian">Chadian</option>
-                                                    <option value="chilean">Chilean</option>
-                                                    <option value="chinese">Chinese</option>
-                                                    <option value="colombian">Colombian</option>
-                                                    <option value="comoran">Comoran</option>
-                                                    <option value="congolese">Congolese</option>
-                                                    <option value="costa rican">Costa Rican</option>
-                                                    <option value="croatian">Croatian</option>
-                                                    <option value="cuban">Cuban</option>
-                                                    <option value="cypriot">Cypriot</option>
-                                                    <option value="czech">Czech</option>
-                                                    <option value="danish">Danish</option>
-                                                    <option value="djibouti">Djibouti</option>
-                                                    <option value="dominican">Dominican</option>
-                                                    <option value="dutch">Dutch</option>
-                                                    <option value="east timorese">East Timorese</option>
-                                                    <option value="ecuadorean">Ecuadorean</option>
-                                                    <option value="egyptian">Egyptian</option>
-                                                    <option value="emirian">Emirian</option>
-                                                    <option value="equatorial guinean">Equatorial Guinean</option>
-                                                    <option value="eritrean">Eritrean</option>
-                                                    <option value="estonian">Estonian</option>
-                                                    <option value="ethiopian">Ethiopian</option>
-                                                    <option value="fijian">Fijian</option>
-                                                    <option value="filipino">Filipino</option>
-                                                    <option value="finnish">Finnish</option>
-                                                    <option value="french">French</option>
-                                                    <option value="gabonese">Gabonese</option>
-                                                    <option value="gambian">Gambian</option>
-                                                    <option value="georgian">Georgian</option>
-                                                    <option value="german">German</option>
-                                                    <option value="ghanaian">Ghanaian</option>
-                                                    <option value="greek">Greek</option>
-                                                    <option value="grenadian">Grenadian</option>
-                                                    <option value="guatemalan">Guatemalan</option>
-                                                    <option value="guinea-bissauan">Guinea-Bissauan</option>
-                                                    <option value="guinean">Guinean</option>
-                                                    <option value="guyanese">Guyanese</option>
-                                                    <option value="haitian">Haitian</option>
-                                                    <option value="herzegovinian">Herzegovinian</option>
-                                                    <option value="honduran">Honduran</option>
-                                                    <option value="hungarian">Hungarian</option>
-                                                    <option value="icelander">Icelander</option>
-                                                    <option value="indian">Indian</option>
-                                                    <option value="indonesian">Indonesian</option>
-                                                    <option value="iranian">Iranian</option>
-                                                    <option value="iraqi">Iraqi</option>
-                                                    <option value="irish">Irish</option>
-                                                    <option value="israeli">Israeli</option>
-                                                    <option value="italian">Italian</option>
-                                                    <option value="ivorian">Ivorian</option>
-                                                    <option value="jamaican">Jamaican</option>
-                                                    <option value="japanese">Japanese</option>
-                                                    <option value="jordanian">Jordanian</option>
-                                                    <option value="kazakhstani">Kazakhstani</option>
-                                                    <option value="kenyan">Kenyan</option>
-                                                    <option value="kittian and nevisian">Kittian and Nevisian</option>
-                                                    <option value="kuwaiti">Kuwaiti</option>
-                                                    <option value="kyrgyz">Kyrgyz</option>
-                                                    <option value="laotian">Laotian</option>
-                                                    <option value="latvian">Latvian</option>
-                                                    <option value="lebanese">Lebanese</option>
-                                                    <option value="liberian">Liberian</option>
-                                                    <option value="libyan">Libyan</option>
-                                                    <option value="liechtensteiner">Liechtensteiner</option>
-                                                    <option value="lithuanian">Lithuanian</option>
-                                                    <option value="luxembourger">Luxembourger</option>
-                                                    <option value="macedonian">Macedonian</option>
-                                                    <option value="malagasy">Malagasy</option>
-                                                    <option value="malawian">Malawian</option>
-                                                    <option value="malaysian">Malaysian</option>
-                                                    <option value="maldivan">Maldivan</option>
-                                                    <option value="malian">Malian</option>
-                                                    <option value="maltese">Maltese</option>
-                                                    <option value="marshallese">Marshallese</option>
-                                                    <option value="mauritanian">Mauritanian</option>
-                                                    <option value="mauritian">Mauritian</option>
-                                                    <option value="mexican">Mexican</option>
-                                                    <option value="micronesian">Micronesian</option>
-                                                    <option value="moldovan">Moldovan</option>
-                                                    <option value="monacan">Monacan</option>
-                                                    <option value="mongolian">Mongolian</option>
-                                                    <option value="mosotho">Mosotho</option>
-                                                    <option value="motswana">Motswana</option>
-                                                    <option value="mozambican">Mozambican</option>
-                                                    <option value="namibian">Namibian</option>
-                                                    <option value="nauruan">Nauruan</option>
-                                                    <option value="nepalese">Nepalese</option>
-                                                    <option value="new zealander">New Zealander</option>
-                                                    <option value="ni-vanuatu">Ni-Vanuatu</option>
-                                                    <option value="nicaraguan">Nicaraguan</option>
-                                                    <option value="nigerien">Nigerien</option>
-                                                    <option value="north korean">North Korean</option>
-                                                    <option value="northern irish">Northern Irish</option>
-                                                    <option value="norwegian">Norwegian</option>
-                                                    <option value="omani">Omani</option>
-                                                    <option value="pakistani">Pakistani</option>
-                                                    <option value="palauan">Palauan</option>
-                                                    <option value="panamanian">Panamanian</option>
-                                                    <option value="papua new guinean">Papua New Guinean</option>
-                                                    <option value="paraguayan">Paraguayan</option>
-                                                    <option value="peruvian">Peruvian</option>
-                                                    <option value="polish">Polish</option>
-                                                    <option value="portuguese">Portuguese</option>
-                                                    <option value="qatari">Qatari</option>
-                                                    <option value="romanian">Romanian</option>
-                                                    <option value="russian">Russian</option>
-                                                    <option value="rwandan">Rwandan</option>
-                                                    <option value="saint lucian">Saint Lucian</option>
-                                                    <option value="salvadoran">Salvadoran</option>
-                                                    <option value="samoan">Samoan</option>
-                                                    <option value="san marinese">San Marinese</option>
-                                                    <option value="sao tomean">Sao Tomean</option>
-                                                    <option value="saudi">Saudi</option>
-                                                    <option value="scottish">Scottish</option>
-                                                    <option value="senegalese">Senegalese</option>
-                                                    <option value="serbian">Serbian</option>
-                                                    <option value="seychellois">Seychellois</option>
-                                                    <option value="sierra leonean">Sierra Leonean</option>
-                                                    <option value="singaporean">Singaporean</option>
-                                                    <option value="slovakian">Slovakian</option>
-                                                    <option value="slovenian">Slovenian</option>
-                                                    <option value="solomon islander">Solomon Islander</option>
-                                                    <option value="somali">Somali</option>
-                                                    <option value="south african">South African</option>
-                                                    <option value="south korean">South Korean</option>
-                                                    <option value="spanish">Spanish</option>
-                                                    <option value="sri lankan">Sri Lankan</option>
-                                                    <option value="sudanese">Sudanese</option>
-                                                    <option value="surinamer">Surinamer</option>
-                                                    <option value="swazi">Swazi</option>
-                                                    <option value="swedish">Swedish</option>
-                                                    <option value="swiss">Swiss</option>
-                                                    <option value="syrian">Syrian</option>
-                                                    <option value="taiwanese">Taiwanese</option>
-                                                    <option value="tajik">Tajik</option>
-                                                    <option value="tanzanian">Tanzanian</option>
-                                                    <option value="thai">Thai</option>
-                                                    <option value="togolese">Togolese</option>
-                                                    <option value="tongan">Tongan</option>
-                                                    <option value="trinidadian or tobagonian">Trinidadian or Tobagonian</option>
-                                                    <option value="tunisian">Tunisian</option>
-                                                    <option value="turkish">Turkish</option>
-                                                    <option value="tuvaluan">Tuvaluan</option>
-                                                    <option value="ugandan">Ugandan</option>
-                                                    <option value="ukrainian">Ukrainian</option>
-                                                    <option value="uruguayan">Uruguayan</option>
-                                                    <option value="uzbekistani">Uzbekistani</option>
-                                                    <option value="venezuelan">Venezuelan</option>
-                                                    <option value="vietnamese">Vietnamese</option>
-                                                    <option value="welsh">Welsh</option>
-                                                    <option value="yemenite">Yemenite</option>
-                                                    <option value="zambian">Zambian</option>
-                                                    <option value="zimbabwean">Zimbabwean</option>
+                                                <select class="form-select stepOne" name="nation" id="nationalité" required >
+                                                    <option value="Afghanistan">Afghanistan</option><option value="Åland Islands">Åland Islands</option><option value="Albanie">Albanie</option><option value="Algérie">Algérie</option><option value="Samoa">Samoa</option><option value="Andorre">Andorre</option><option value="Angola">Angola</option><option value="Anguilla">Anguilla</option><option value="Antarctique">Antarctique</option><option value="Antigua et Barbuda">Antigua et Barbuda</option><option value="Argentine">Argentine</option><option value="Arménie">Arménie</option><option value="Aruba">Aruba</option><option value="Australie">Australie</option><option value="Autriche">Autriche</option><option value="Azerbaïdjan">Azerbaïdjan</option><option value="Bahamas">Bahamas</option><option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbade">Barbade</option><option value="Belarus">Belarus</option><option value="Belgique">Belgique</option><option value="Belize">Belize</option><option value="Bénin">Bénin</option><option value="Bermuda">Bermuda</option><option value="Bhutan">Bhutan</option><option value="Bolivie">Bolivie</option><option value="Bonaire, Saint-Eustache et Saba">Bonaire, Saint-Eustache et Saba</option><option value="Bosnie-Herzégovine">Bosnie-Herzégovine</option><option value="Botswana">Botswana</option><option value="Île Bouvet">Île Bouvet</option><option value="Brésil">Brésil</option><option value="Territoire britannique de l'océan Indien">Territoire britannique de l'océan Indien</option><option value="Brunéi Darussalam">Brunéi Darussalam</option><option value="Bulgarie">Bulgarie</option><option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cambodge">Cambodge</option><option value="Cameroun">Cameroun</option><option value="Canada">Canada</option><option value="Cap-Vert">Cap-Vert</option><option value="Îles Caïmans">Îles Caïmans</option><option value="République centrafricaine">République centrafricaine</option><option value="Tchad">Tchad</option><option value="Chili">Chili</option><option value="Chine">Chine</option><option value="Île Christmas">Île Christmas</option><option value="Îles Cocos (Keeling)">Îles Cocos (Keeling)</option><option value="Colombie">Colombie</option><option value="Comores">Comores</option><option value="Congo">Congo</option><option value="Congo, République démocratique du Congo">Congo, République démocratique du Congo</option><option value="Îles Cook">Îles Cook</option><option value="Costa Rica">Costa Rica</option><option value="Côte d'Ivoire">Côte d'Ivoire</option><option value="Croatie">Croatie</option><option value="Cuba">Cuba</option><option value="Curaçao">Curaçao</option><option value="Chypre">Chypre</option><option value="République tchèque">République tchèque</option><option value="Danemark">Danemark</option><option value="Djibouti">Djibouti</option><option value="Dominique">Dominique</option><option value="République dominicaine">République dominicaine</option><option value="Équateur">Équateur</option><option value="Égypte">Égypte</option><option value="El Salvador">El Salvador</option><option value="Guinée équatoriale">Guinée équatoriale</option><option value="Érythrée">Érythrée</option><option value="Estonie">Estonie</option><option value="Éthiopie">Éthiopie</option><option value="Îles Falkland (Malvinas)">Îles Falkland (Malvinas)</option><option value="Îles Féroé">Îles Féroé</option><option value="Fidji">Fidji</option><option value="Finlande">Finlande</option><option value="France">France</option><option value="Guyane française">Guyane française</option><option value="Polynésie française">Polynésie française</option><option value="Terres australes françaises">Terres australes françaises</option><option value="Gabon">Gabon</option><option value="Gambie">Gambie</option><option value="Géorgie">Géorgie</option><option value="Allemagne">Allemagne</option><option value="Ghana">Ghana</option><option value="Gibraltar">Gibraltar</option><option value="Grèce">Grèce</option><option value="Groenland">Groenland</option><option value="Grenade">Grenade</option><option value="Guadeloupe">Guadeloupe</option><option value="Guam">Guam</option><option value="Guatemala">Guatemala</option><option value="Guernesey">Guernesey</option><option value="Guinée">Guinée</option><option value="Guinée-Bissau">Guinée-Bissau</option><option value="Guyane">Guyane</option><option value="Haïti">Haïti</option><option value="Île Heard et îles McDonald">Île Heard et îles McDonald</option><option value="Saint-Siège (État de la Cité du Vatican)">Saint-Siège (État de la Cité du Vatican)</option><option value="Honduras">Honduras</option><option value="Hong Kong">Hong Kong</option><option value="Hongrie">Hongrie</option><option value="Islande">Islande</option><option value="Inde">Inde</option><option value="Indonésie">Indonésie</option><option value="Iran, République islamique d Iran'">Iran, République islamique d Iran'</option><option value="Irak">Irak</option><option value="Irlande">Irlande</option><option value="Île de Man">Île de Man</option><option value="Israël">Israël</option><option value="Italie">Italie</option><option value="Jamaïque">Jamaïque</option><option value="Japon">Japon</option><option value="Jersey">Jersey</option><option value="Jordanie">Jordanie</option><option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option><option value="Kiribati">Kiribati</option><option value="Corée, République populaire démocratique de Corée">Corée, République populaire démocratique de Corée</option><option value="Corée, République de Corée">Corée, République de Corée</option><option value="Koweït">Koweït</option><option value="Kirghizistan">Kirghizistan</option><option value="République démocratique populaire lao">République démocratique populaire lao</option><option value="Lettonie">Lettonie</option><option value="Liban">Liban</option><option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libye">Libye</option><option value="Liechtenstein">Liechtenstein</option><option value="Lituanie">Lituanie</option><option value="Luxembourg">Luxembourg</option><option value="Macao">Macao</option><option value="Macédoine, ancienne République de Yougoslavie">Macédoine, ancienne République de Yougoslavie</option><option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaisie">Malaisie</option><option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malte">Malte</option><option value="Îles Marshall">Îles Marshall</option><option value="Martinique">Martinique</option><option value="Mauritanie">Mauritanie</option><option value="Maurice">Maurice</option><option value="Mayotte">Mayotte</option><option value="Mexique">Mexique</option><option value="Micronésie, États fédérés de Micronésie">Micronésie, États fédérés de Micronésie</option><option value="Moldavie, République de Moldavie">Moldavie, République de Moldavie</option><option value="Monaco">Monaco</option><option value="Mongolie">Mongolie</option><option value="Monténégro">Monténégro</option><option value="Montserrat">Montserrat</option><option value="Maroc">Maroc</option><option value="Mozambique">Mozambique</option><option value="Myanmar">Myanmar</option><option value="Namibie">Namibie</option><option value="Nauru">Nauru</option><option value="Népal">Népal</option><option value="Pays-Bas">Pays-Bas</option><option value="Nouvelle-Calédonie">Nouvelle-Calédonie</option><option value="Nouvelle-Zélande">Nouvelle-Zélande</option><option value="Nicaragua">Nicaragua</option><option value="Niger">Niger</option><option value="Nigéria">Nigéria</option><option value="Niue">Niue</option><option value="Île Norfolk">Île Norfolk</option><option value="Îles Mariannes du Nord">Îles Mariannes du Nord</option><option value="Norvège">Norvège</option><option value="Oman">Oman</option><option value="Pakistan">Pakistan</option><option value="Palau">Palau</option><option value="Territoire palestinien occupé">Territoire palestinien occupé</option><option value="Panama">Panama</option><option value="Papouasie-Nouvelle-Guinée">Papouasie-Nouvelle-Guinée</option><option value="Paraguay">Paraguay</option><option value="Pérou">Pérou</option><option value="Philippines">Philippines</option><option value="Pitcairn">Pitcairn</option><option value="Pologne">Pologne</option><option value="Portugal">Portugal</option><option value="Porto Rico">Porto Rico</option><option value="Qatar">Qatar</option><option value="Réunion">Réunion</option><option value="Roumanie">Roumanie</option><option value="Fédération de Russie">Fédération de Russie</option><option value="Rwanda">Rwanda</option><option value="Saint Barthélemy">Saint Barthélemy</option><option value="Sainte-Hélène, Ascension et Tristan da Cunha">Sainte-Hélène, Ascension et Tristan da Cunha</option><option value="Saint-Kitts-et-Nevis">Saint-Kitts-et-Nevis</option><option value="Sainte-Lucie">Sainte-Lucie</option><option value="Saint-Martin (partie française)">Saint-Martin (partie française)</option><option value="Saint-Pierre-et-Miquelon">Saint-Pierre-et-Miquelon</option><option value="Saint-Vincent-et-les Grenadines">Saint-Vincent-et-les Grenadines</option><option value="Samoa">Samoa</option><option value="Saint-Marin">Saint-Marin</option><option value="Sao Tomé-et-Principe">Sao Tomé-et-Principe</option><option value="Arabie saoudite">Arabie saoudite</option><option value="Sénégal">Sénégal</option><option value="Serbie">Serbie</option><option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapour">Singapour</option><option value="Sint Maarten (partie néerlandaise)">Sint Maarten (partie néerlandaise)</option><option value="Slovaquie">Slovaquie</option><option value="Slovénie">Slovénie</option><option value="Îles Salomon">Îles Salomon</option><option value="Somalie">Somalie</option><option value="Afrique du Sud">Afrique du Sud</option><option value="Géorgie du Sud et îles Sandwich du Sud">Géorgie du Sud et îles Sandwich du Sud</option><option value="Soudan du Sud">Soudan du Sud</option><option value="Espagne">Espagne</option><option value="Sri Lanka">Sri Lanka</option><option value="Soudan">Soudan</option><option value="Suriname">Suriname</option><option value="Svalbard et Jan Mayen">Svalbard et Jan Mayen</option><option value="Swaziland">Swaziland</option><option value="Suède">Suède</option><option value="Suisse">Suisse</option><option value="République arabe syrienne">République arabe syrienne</option><option value="Taïwan, province de Chine">Taïwan, province de Chine</option><option value="Tadjikistan">Tadjikistan</option><option value="Tanzanie, République-Unie de Tanzanie">Tanzanie, République-Unie de Tanzanie</option><option value="Thaïlande">Thaïlande</option><option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option><option value="Tokelau">Tokelau</option><option value="Tonga">Tonga</option><option value="Trinité-et-Tobago">Trinité-et-Tobago</option><option value="Tunisie">Tunisie</option><option value="Turquie">Turquie</option><option value="Turkménistan">Turkménistan</option><option value="Îles Turques et Caïques">Îles Turques et Caïques</option><option value="Tuvalu">Tuvalu</option><option value="Ouganda">Ouganda</option><option value="Ukraine">Ukraine</option><option value="Émirats arabes unis">Émirats arabes unis</option><option value="Royaume-Uni">Royaume-Uni</option><option value="États-Unis">États-Unis</option><option value="Îles mineures éloignées des États-Unis">Îles mineures éloignées des États-Unis</option><option value="Uruguay">Uruguay</option><option value="Ouzbékistan">Ouzbékistan</option><option value="Vanuatu">Vanuatu</option><option value="Venezuela, République bolivarienne">Venezuela, République bolivarienne</option><option value="Viet Nam">Viet Nam</option><option value="Îles Vierges britanniques">Îles Vierges britanniques</option><option value="Îles Vierges américaines.">Îles Vierges américaines.</option><option value="Wallis et Futuna">Wallis et Futuna</option><option value="Sahara occidental">Sahara occidental</option><option value="Yémen">Yémen</option><option value="Zambie">Zambie</option><option value="Zimbabwe">Zimbabwe</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -364,42 +176,38 @@
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label-rtl"  >مكان الإزدياد</label>
                                                 <label class="form-label" for="prenom">Lieu de naissance</label>
-                                                <input type="text" id="lncss" name="lieu-naissance" class="form-control" placeholder="lieu de naissance" aria-label="prenom" required/>
+                                                <input type="text" id="lncss" name="lieu-naissance" class="form-control stepOne" placeholder="lieu de naissance" aria-label="prenom" required/>
                                             </div>
                                             <div class="col-md-6 mb-1">
                                                 <label class="form-label-rtl"  >تاريخ الإزدياد</label>
                                                 <label class="form-label" for="fp-default">Date de naissance</label>
-                                                <input type="text" id="data-de-naissance" name="date-naisance" class="form-control flatpickr-basic flatpickr-input" placeholder="YYYY-MM-DD" readonly="readonly" required>
+                                                <input type="text" id="data-de-naissance" name="date-naisance" class="form-control flatpickr-basic flatpickr-input stepOne" placeholder="YYYY-MM-DD" readonly="readonly" required>
                                             </div>
-
+                                            <div class="mb-1 col-md-6">
+                                                <label class="form-label-rtl"  >السن</label>
+                                                <label class="form-label" for="age">age</label>
+                                                <input type="text" class="form-control " id="age" name="age" readonly="readonly" >
+                                            </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label-rtl"  >رقم البطاقة وطنية</label>
                                                 <label class="form-label" for="cin">N° de CIN</label>
-                                                <input type="text" id="cin" name="cin" class="form-control" placeholder="CIN" required pattern="[a-zA-Z]+[0-9]+" />
+                                                <input type="text" id="cin" name="cin" class="form-control stepOne" placeholder="CIN" required pattern="[a-zA-Z]+[0-9]+" />
 
                                             </div>
                                             <div class="mb-1 col-md-6">
                                                 <label class="form-label-rtl"  >رقم الهاتف</label>
                                                 <label class="form-label" for="gsm">Numéro de telephone</label>
-                                                <input type="text" id="gsm" name="phone" class="form-control" placeholder="+212.........." pattern="^(06)([0-9]{8})$"/>
+                                                <input type="text" id="gsm" name="phone" class="form-control stepOne" placeholder="+212.........." pattern="^(06)([0-9]{8})$"/>
                                             </div>
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label-rtl" >اﻹيميل</label>
+                                                <label class="form-label-rtl" >بريد اﻹلكتروني</label>
                                                 <label class="form-label" for="gsm">Email Personnel</label>
-                                                <input type="text" id="email" name="email" class="form-control" placeholder="example@email.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
+                                                <input type="text" id="email" name="email" class="form-control stepOne" placeholder="example@email.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
                                             </div>
                                             <div class="mb-1 col-md-6">
-                                                <label class="form-label-rtl"  >كيف تم التعرف على خدماتنا ؟</label>
-                                                <label class="form-label" for="basicSelect">Comment avez-vous connu notre service ?</label>
-                                                <select class="form-select" name="how" id="savoir-service" required>
-                                                        <option >Choisir</option>
-                                                        <option value="Bo">Par le bouche à oreille</option>
-                                                        <option value="In">Sur Internet</option>
-                                                        <option value="Am">Agent de mobilisation</option>
-                                                        <option value="Par">Par le biais d’un partenaire</option>
-                                                        <option value="La">︎Lauréat / Ambassadeur</option>
-                                                        <option value="Au">Autre.....</option>
-                                                </select>
+                                                <label class="form-label" for="exampleFormControlTextarea1">Remarques</label>
+                                                <label class="form-label form-label-rtl" for="exampleFormControlTextarea1">ملاحظات</label>
+                                                <textarea class="form-control stepOne" id="remarque" rows="3" placeholder="Textarea" name="remarque" spellcheck="true"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -407,7 +215,7 @@
                                         <div >
 
                                         </div>
-                                        <button class="btn btn-primary next" disabled>
+                                        <button class="btn btn-primary next next1" disabled>
                                             <span class="align-middle d-sm-inline-block d-none">Next</span>
                                             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                         </button>
@@ -419,22 +227,13 @@
                                         <hr>
                                     </div>
                                     <div class="row">
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="Nbsalaire">Nb. de personnes ayant une activité salariale</label>
-                                            <label class="form-label form-label-rtl" for="modern-first-name">عدد اﻷشخاص من دوي نشاط مهني</label>
-                                            <input type="text" id="Nbsalaire" name="Nbsalaire" class="form-control" pattern="[0-9]+" />
-                                        </div>
-                                        <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="modern-last-name">Nombre des membres de famille :</label>
-                                            <label class="form-label form-label-rtl" for="modern-last-name">عدد أفراد العائلة</label>
-                                            <input type="text" id="nbFamille" class="form-control" name="nbFammille" pattern="[0-9]+" />
-                                        </div>
+
                                     </div>
                                     <div class="row">
                                         <div class="mb-1 col-md-6 situationFam">
-                                            <label class="form-label" for="modern-country">Ressources</label>
-                                            <label class="form-label form-label-rtl" for="modern-country">Ressources</label>
-                                            <select class="select2 w-100" id="" name="ressource">
+                                            <label class="form-label" for="modern-country">Situation sociale</label>
+                                            <label class="form-label form-label-rtl" for="modern-country">حالة اﻹجتماعية</label>
+                                            <select class="select2 w-100" id="" name="SituationFam">
                                                 <option label=" ">choisire</option>
                                                 <option value="Ressources propres">Ressources propres - مصادر داتية </option>
                                                 <option value="Pris en charge par les parents ">Pris en charge par les parents - الأسرة</option>
@@ -714,7 +513,8 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6">
-                                            <label class="form-label" for="modern-facebook">La personne est-elle disponible pour suivre la formation ? - المترشح يمتلك القدرة على مواصلة تدريب</label>
+                                            <label class="form-label" for="modern-facebook">La personne est-elle disponible pour suivre la formation ? </label>
+                                            <label class="form-label form-label-rtl">المترشح يمتلك القدرة على مواصلة تدريب</label>
                                             <select class="form-select" name="despo" >
                                                 <option></option>
                                                 <option value="oui">oui</option>
@@ -793,14 +593,15 @@
         .form-check-inline {
             margin-bottom: 16px;
         }
-        .line{
-            padding: 0px 1rem;
+        .hr{
+            margin: 0.25rem 0px;
         }
+
     </style>
     <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets/vendors/js/forms/wizard/bs-stepper.min.js') }}"></script>
 
-    <script src="{{ asset('app-assets/js/scripts/forms/form-wizard.js') }}"></script>
+
     <script>
         if (!localStorage.getItem('ref')){
             localStorage.setItem('ref' , "#BL"+Math.floor(Math.random() * Date.now()))
@@ -808,66 +609,7 @@
         }
         $('[name="ref"]').val(localStorage.getItem('ref'))
         $('.refNum').text(localStorage.getItem('ref'))
-        const input1 = $('#modern-username')
-        const requiredMemo = new Map()
-        const matchMemo = new Map()
-        const numberOfRequired1 = $('.container1 [required=""]').length
-        function disabledNext() {
-            $('.next').attr('disabled' , true)
-        }
-        function enableNext() {
-            $('.next').attr('disabled' , false)
-        }
-        function canGo() {
-            console.log('number of required element attached ', Array.from(requiredMemo.keys()).length)
-            if (Array.from(matchMemo.values()).includes(false) || Array.from(requiredMemo.values()).includes(false) || Array.from(requiredMemo.keys()).length !== numberOfRequired1 ){
-                console.log('*************')
-                console.log('contain false')
-                disabledNext()
-            }else {
-                console.log('*************')
-                console.log('not containig false')
-                enableNext()
-            }
-        }
-        function doingMatch(target , pattern , elementId) {
-            const element = $('#'+elementId)
-            if (target.match(new RegExp(pattern))){
-                console.log('**************************')
-                console.log('matching')
-                console.log('**************************')
-                matchMemo.set(elementId , true)
-                element.hasClass('is-invalid') ? element.removeClass('is-invalid').addClass('is-valid') : element.addClass('is-valid')
-                if (!(typeof element.attr('required') === undefined  || element.attr('required') == null)){
-                    canGo()
-                }
-            }else {
-                matchMemo.set(elementId , false)
-                console.log('**************************')
-                console.log('not matching')
-                console.log('**************************')
-                element.hasClass('is-valid') ? element.removeClass('is-valid').addClass('is-invalid') : element.addClass('is-invalid')
-                if (!(typeof element.attr('required') === undefined  || element.attr('required') == null)){
-                    canGo()
-                }
-            }
-        }
-        // input1.on('change' , function (evt) {
-        //     evt.preventDefault()
-        //     console.log(evt.target.value)
-        //     if (evt.target.value.match(/^[A-Za-z]+$/) || evt.target.value.match(/^[أ-ي]+$/)){
-        //         console.log('it match')
-        //         console.log(this)
-        //         input1.hasClass('is-invalid') ? input1.removeClass('is-invalid').addClass('is-valid') : input1.addClass('is-valid')
-        //
-        //        enableNext()
-        //     }else {
-        //         console.log('error matching')
-        //         console.log(input1.closest('.next'))
-        //         input1.hasClass('is-valid') ? input1.removeClass('is-valid').addClass('is-invalid') : input1.addClass('is-invalid')
-        //         disabledNext()
-        //     }
-        // })
+
         $('.step-trigger').on('click' , function (evt) {
             console.dir(evt)
         })
@@ -879,169 +621,135 @@
             console.dir($('form').serializeArray() );
             this.closest('form').submit()
         })
-        const stepper = new Stepper(document.querySelector('.bs-stepper'))
-        $('.next').on('click' , function (evt) {
-            evt.preventDefault()
-            return  stepper.next()
+        const fr = $('form')
+        fr.submit(function (e) {
+            console.dir(e.target)
         })
-
+        const stepper = new Stepper(document.querySelector('.bs-stepper'))
+        $('.next1').on('click' , function (evt) {
+            evt.preventDefault()
+            stepper.next()
+        })
         $('.prev').on('click' , function (evt) {
             evt.preventDefault()
-            return stepper.previous()
+            stepper.previous()
         })
-        const cin =  $('#cin')
-        cin.on('change' , function (evt) {
-            evt.preventDefault()
-            if (evt.target.value.match(/[a-zA-Z]+[0-9]+/)) {
-                cin.hasClass('is-invalid') ? cin.removeClass('is-invalid').addClass('is-valid') : cin.addClass('is-valid')
-                enableNext()
-            }else {
-                cin.hasClass('is-valid') ? cin.removeClass('is-valid').addClass('is-invalid') : cin.addClass('is-invalid')
-                disabledNext()
-            }
-        })
-        $('input').on('change' , function (evt) {
-            evt.preventDefault()
-            if (this.hasAttribute('pattern')){
-                console.log(evt.target.value)
-                console.log(evt.target.name)
-                const element = $('[name="'+`${evt.target.name}`+'"]')
-                if (evt.target.value.match(new RegExp(evt.target.pattern))){
-                    element.hasClass('is-invalid') ? element.removeClass('is-invalid') : console.log('tata')
-                    element.hasClass('is-valid') ? console.log('it has') : element.addClass('is-valid')
+        $.validator.addMethod("regex",
+            function(value, element , regexR) {
+                var re = new RegExp(regexR)
+                console.log(element.id)
+                if (re.test(value)){
+                    $(`#${element.id}`).hasClass('is-invalid') ? $(`#${element.id}`).removeClass('is-invalid') : ''
+                    $(`#${element.id}`).hasClass('is-valid') ? '' : $(`#${element.id}`).addClass('is-valid')
                 }else {
-                    element.hasClass('is-valid') ? element.removeClass('is-valid') : console.log('tata')
-                    element.hasClass('is-invalid') ? console.log('it has') : element.addClass('is-invalid')
+                    $(`#${element.id}`).hasClass('is-valid') ? $(`#${element.id}`).removeClass('is-valid') : ''
+                    $(`#${element.id}`).hasClass('is-invalid') ? '' : $(`#${element.id}`).addClass('is-invalid')
+                }
+                return this.optional(element) || re.test(value);
+            },
+            "Désole . vérifier l'écriture dans le champ"
+        );
+        $.validator.addMethod('range' ,
+          function (value , element ) {
+            console.log('the age value : ', value)
+              if (value> 0 && value < 35){
+                  $(`#${element.id}`).hasClass('is-invalid') ? $(`#${element.id}`).removeClass('is-invalid') : ''
+                  $(`#${element.id}`).hasClass('is-valid') ? '' : $(`#${element.id}`).addClass('is-valid')
+              }else {
+                  $(`#${element.id}`).hasClass('is-valid') ? $(`#${element.id}`).removeClass('is-valid') : ''
+                  $(`#${element.id}`).hasClass('is-invalid') ? '' : $(`#${element.id}`).addClass('is-invalid')
+              }
+              return this.optional(element) || (value> 0 && value < 35);
+          } ,
+            "svp voir l'intervalle d'age"
+        )
+        var validator = $('#formAcc').validate({
+            rules : {
+                nom : {
+                    required : true,
+                    regex : '^[A-Za-zء-ي]+$'
+                },
+                prenom : {
+                    required : true,
+                    regex : '^[A-Za-zء-ي]+$'
+                },
+                adresse : {
+                    required : true
+                } ,
+                lncss : {
+                    required : true
+                },
+                'date-naisance' : {
+                    required : true
+                },
+                sex : {
+                    required : true
+                } ,
+                cin : {
+                    required : true ,
+                    regex : '[a-zA-Z]+[0-9]+'
+                } ,
+                phone : {
+                    required : true,
+                    regex : '^(06|05|07)([0-9]{8})$'
+                } ,
+                email : {
+                    email : true
+                } ,
+                age : {
+                    required : true,
+                    range : true
                 }
 
+            }
+        })
+        let map = new Map()
+        function canGo() {
+           let result = [...map.values()]
+            if (result.includes(false)){
+                $('.next1').attr('disabled' , true)
             }else {
-                console.log('**************** it ************* ')
+                $('.next1').attr('disabled' , false)
             }
+        }
 
-        })
-        $('[required=""]').on('change' , function (evt) {
-            evt.preventDefault()
-            console.log('%c ==================== ', 'background: #222; color: #bada55');
-            console.log(evt.target.value)
-            const target = evt.target.value
-            if (this.hasAttribute("pattern")){
-                console.log('pattern ' , this["pattern"])
-                console.log('id ' , this['id'])
-                doingMatch(target , this["pattern"] , this["id"])
-            }
-            const statement1 = evt.target.value === 'Au'
-            const statement2 = evt.target.value === 'Par'
-            if (statement1){
-                console.log('%c ==================== ', 'background: red; color: #bada55');
-                if ( !(typeof $('.precise') === undefined || $('.precise') === null)){
-                    console.log('%c ==================== ', 'background: yellow; color: #bada55');
-                    $('.precise').remove()
-                    $('.brd').append(`<div class="mb-1 col-md-6 precise">
-                                                <label class="form-label-rtl"  >تحديد</label>
-                                                <label class="form-label" for="precise">Précisé</label>
-                                                <input type="text" id="precise" name="precise" class="form-control" required/>
-                                            </div>`)
-                    console.log('%c ==================== ', 'background: red; color: #bada55');
+        $('.stepOne').each((i , e) => {
+            console.log('********************')
+            console.log(i , e.id)
+            console.log('********************')
+            const element = $(`#${e.id}`)
+            map.set(e.id , false)
+            element.on('change' , function (evt){
+                if (element.valid()){
+                    map.set(e.id , true)
+                    canGo()
                 }else {
-                    console.log('%c ==================== ', 'background: green; color: #bada55');
-                    $('.brd').append(`<div class="mb-1 col-md-6 precise">
-                                                <label class="form-label" for="precise">Précisé</label>
-                                                <input type="text" id="precise" name="precise" class="form-control" required/>
-                                            </div>
-                                          <div class="mb-1 col-md-6 precise">
-                                                <label class="form-label-rtl"  >  نوع الشريك</label>
-                                                <label class="form-label" for="precise">Précisé Type de Partenaire</label>
-                                                <input type="text" id="preciseType" name="preciseType" class="form-control" required/>
-                                            </div>`)
-                    console.log('%c ==================== ', 'background: red; color: #bada55');
+                    map.set(e.id , false)
+                    canGo()
                 }
-            }
-            if (statement2){
-                console.log('%c ==================== ', 'background: red; color: #bada55');
-                if ( !(typeof $('.precise') === undefined || $('.precise') === null)){
-                    console.log('%c ==================== ', 'background: yellow; color: #bada55');
-                    $('.precise').remove()
-                    $('.brd').append(`<div class="mb-1 col-md-6 precise">
-                                                <label class="form-label-rtl"  >  شريك</label>
-                                                <label class="form-label" for="precise">Précisé Partenaire</label>
-                                                <input type="text" id="precise" name="precise" class="form-control" required/>
-                                            </div>
-                                            <div class="mb-1 col-md-6 precise">
-                                                <label class="form-label-rtl"  >  نوع الشريك</label>
-                                                <label class="form-label" for="precise">Précisé Type de Partenaire </label>
-                                                <input type="text" id="preciseType" name="preciseType" class="form-control" required/>
-                                            </div>`)
-                    console.log('%c ==================== ', 'background: red; color: #bada55');
-                }else {
-                    console.log('%c ==================== ', 'background: green; color: #bada55');
-                    $('.brd').append(`<div class="mb-1 col-md-6 precise">
-                                                <label class="form-label-rtl"  >  شريك</label>
-                                                <label class="form-label" for="precise">Précisé Partenaire</label>
-                                                <input type="text" id="precise" name="precise" class="form-control" required/>
-                                                <input type="text" id="preciseType" name="preciseType" class="form-control" required/>
-                                            </div>`)
-                    console.log('%c ==================== ', 'background: red; color: #bada55');
-                }
-            }
-            if (!(statement1 || statement2)){
-                console.log('%c ==================== ', 'background: red; color: #bada55');
-                if ( !(typeof $('.precise') === undefined || $('.precise') === null)){
-                    console.log('%c ==================== ', 'background: yellow; color: #bada55');
-                    $('.precise').remove()
-                    console.log('%c ==================== ', 'background: red; color: #bada55');
-                }
-            }
 
-            if (typeof evt.target.value === undefined || evt.target.value === null || evt.target.value === 'Choisir'){
-                requiredMemo.set(this['id'] , false)
-               canGo()
-                console.log('%c ==================== ', 'background: #222; color: #bada55');
-            }else {
-                requiredMemo.set(this['id'] , true)
-                canGo()
-                console.log('%c ==================== ', 'background: #222; color: #bada55');
-            }
-        })
-        $('#gsm').on('change' , function (evt) {
-            evt.preventDefault()
-            const  target = evt.target.value
-            if (this.hasAttribute("pattern")){
-                console.log('pattern ' , this["pattern"])
-                console.log('id ' , this['id'])
-                doingMatch(target , this["pattern"] , this["id"])
-            }
+                console.table(map)
+            })
 
         })
-        $('#email').on('change' , function (evt) {
-            evt.preventDefault()
-            const  target = evt.target.value
-            if (this.hasAttribute("pattern")){
-                console.log('pattern ' , this["pattern"])
-                console.log('id ' , this['id'])
-                doingMatch(target , this["pattern"] , this["id"])
-            }
-        })
-
-    </script>
-    <script>
         $('#data-de-naissance').on('change' , function (evt) {
-            evt.preventDefault()
-            if (!(typeof $('.ageHolder') === undefined || $('.ageHolder') === null) ){
-                $('.ageHolder').remove()
-            }
             console.log(evt.target.value)
-            const yearOf =  Date.now() - (new Date(evt.target.value))
-            const result = (new Date(yearOf)).getUTCFullYear() - 1970
-            const refinedResult = Math.abs(result) + 1
-            console.log(refinedResult)
-            if (refinedResult > 40 || refinedResult < 15){
-                $('.brd').append(`<div class="mb-1 col-md-6 ageHolder"> <label class="form-label-rtl" for="age">سن</label> <label class="form-label" for="age">Age</label> <input type="text" name="age" class="form-control is-invalid" id="readonlyInput" readonly="readonly" value=${refinedResult}> </div>`)
-
+            const currentDate = Date.now()
+            const givvenDat = new Date(evt.target.value)
+            const years = Math.floor(Math.abs(givvenDat - currentDate) / (1000 * 60 * 60 * 24 * 365))
+            $("#age").val(years)
+            if (years <= 35){
+                map.set('age' , true)
+                canGo()
             }else {
-                $('.brd').append(`<div class="mb-1 col-md-6 ageHolder"> <label class="form-label-rtl" for="age">سن</label> <label class="form-label" for="age">Age</label> <input type="text" name="age" class="form-control is-valid" id="readonlyInput" readonly="readonly" value=${refinedResult}> </div>`)
-
+                map.set('age' , false)
+                canGo()
             }
         })
+         $('#age').on('change' , function (evt) {
+             console.log($(this).valid())
+         })
+        console.dir(validator)
 
     </script>
     <script>

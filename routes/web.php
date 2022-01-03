@@ -26,12 +26,16 @@ Route::get('/admin_dashboard/{center}', 'Admin\DashboardController@index')->midd
 Route::get('/user_dashboard', 'User\DashboardController@index')->middleware('role:user');
 Route::get('/sendMAil', 'Admin\DashboardController@sendMAil')->middleware('role:admin')->name('admin.mail.send');
 Route::get('/userDetails/{id}', 'Admin\DashboardController@detail')->middleware('role:admin')->name('admin.user.detail');
+Route::get('/comité/{id}', 'Admin\DashboardController@comite')->middleware('role:admin')->name('admin.user.comite');
 
 Route::post('/storeImg', 'Admin\DashboardController@storeImage')->middleware('role:admin')->name('admin.image.store');
 Route::post('/deleteImg', 'Admin\DashboardController@deleteImage')->middleware('role:admin')->name('admin.image.delete');
 Route::post('/acceuil', 'Admin\DashboardController@handleAcc')->middleware('role:admin')->name('admin.acc.create');
+Route::post('/mobilization', 'Admin\DashboardController@mobi')->middleware('role:admin')->name('admin.mobi.create');
+Route::get('/orientation', 'Admin\DashboardController@orientation')->middleware('role:admin')->name('admin.orientation.go');
 
-Route::get('/teacher_dashboard', 'Teacher\DashboardController@index')->middleware('role:teacher');
 Route::post('/upload' , 'UploadController@upload')->middleware('role:admin');;
 Route::get('/search' , 'UploadController@search')->middleware('role:admin');;
 Route::delete('/delete' , 'UploadController@delete')->middleware('role:admin');;
+Route::post('/post/member' , 'Admin\DashboardController@addMember')->middleware('role:admin')->name('admin.add.member');
+

@@ -205,6 +205,20 @@
                                                 <input type="text" id="email" name="email" class="form-control stepOne" placeholder="example@email.com" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"/>
                                             </div>
                                             <div class="mb-1 col-md-6">
+                                                <label class="form-label-rtl" >كيف تم التعرف على خدماتنا</label>
+                                                <label class="form-label" for="conaissance">moyens de prise de connaissance </label>
+                                                <select class="form-select stepOne" name="conaissance" id="conaissance">
+                                                    <option></option>
+                                                    <option value="Bouche à oreille">Bouche à oreille - شخص ما أخبرك</option>
+                                                    <option value="internet">internet - اﻷنترنت</option>
+                                                    <option value="resaux-media">resaux sociaux - مواقع التواصل</option>
+                                                    <option value="mobilisation">mobilisation - التعبئة</option>
+                                                    <option value="partenaire">partenaire - شركاء</option>
+                                                    <option value="embcoip">embassadeures coip - سفراء كواب</option>
+                                                    <option value="autre">autre - أخرى</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-1 col-md-6">
                                                 <label class="form-label" for="exampleFormControlTextarea1">Remarques</label>
                                                 <label class="form-label form-label-rtl" for="exampleFormControlTextarea1">ملاحظات</label>
                                                 <textarea class="form-control stepOne" id="remarque" rows="3" placeholder="Textarea" name="remarque" spellcheck="true"></textarea>
@@ -229,11 +243,11 @@
                                     <div class="row">
 
                                     </div>
-                                    <div class="row">
+                                    <div class="row parentsStat">
                                         <div class="mb-1 col-md-6 situationFam">
                                             <label class="form-label" for="modern-country">Situation sociale</label>
                                             <label class="form-label form-label-rtl" for="modern-country">حالة اﻹجتماعية</label>
-                                            <select class="select2 w-100" id="" name="SituationFam">
+                                            <select class="select2 form-select w-100" id="" name="SituationFam">
                                                 <option label=" ">choisire</option>
                                                 <option value="Ressources propres">Ressources propres - مصادر داتية </option>
                                                 <option value="Pris en charge par les parents ">Pris en charge par les parents - الأسرة</option>
@@ -241,79 +255,22 @@
                                             </select>
                                         </div>
                                         <div class="mb-1 col-md-6 ">
-                                            <label class="form-label" for="modern-language">Situation familiale :</label>
-                                            <label class="form-label form-label-rtl" for="modern-language">حالة العائلية</label>
-                                            <select class="form-select" id="situationFam" name="situationFam" >
+                                            <label class="form-label form-label-par" for="modern-language">Père</label>
+                                            <label class="form-label form-label-rtl" for="dad">الأب</label>
+                                            <select class="form-select parents" id="dad" name="dad" >
                                                 <option></option>
-                                                <option value="Célibataire">Célibataire</option>
-                                                <option value="Marié">Marié(e)</option>
-                                                <option value="Divorcé">Divorcé(e)</option>
-                                                <option value="Veuf">Veuf(e)</option>
+                                                <option value="vivant">vivant</option>
+                                                <option value="décédé">décédé</option>
                                             </select>
                                         </div>
-                                        <div class="d-flex">
-                                            <div class="container">
-                                                <div class="content-header">
-                                                    <h5 class="mb-0">Situation Parentale</h5>
-                                                    <hr>
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio1">︎En rupture totale avec son entourage - إنقطاع كلي </label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio1" value="En rupture totale avec son entourage" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline  ">
-                                                        <label class="form-check-label" for="inlineRadio2">︎En rupture partielle avec son entourage - إنقطاع جزئي</label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio2" value="En rupture partielle avec son entourage" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio3">︎Est orphelin - يتيم </label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio3" value="Est orphelin" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio4">︎Du père - يتيم اﻷب</label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio4" value="Du père" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio5">De la mère - يتيم اﻷم </label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio5" value="De la mère" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio6">︎Pris en charge par les parents - في وسط عائلي </label>
-                                                        <input class="form-check-input" type="radio" name="situationPar" id="inlineRadio6" value="Pris en charge par les parents" >
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="container">
-                                                <div class="content-header">
-                                                    <h5 class="mb-0">Logement</h5>
-                                                    <hr>
-                                                </div>
-                                                <div class="mb-1 col-md-6">
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio21"> Locataire  - كراء</label>
-                                                        <input class="form-check-input" type="radio" name="logement" id="inlineRadio21" value="︎Locataire" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline  ">
-                                                        <label class="form-check-label" for="inlineRadio22">︎Propriétaire - صاحب سكن</label>
-                                                        <input class="form-check-input" type="radio" name="logement" id="inlineRadio22" value="︎Propriétaire" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio23">︎ Chez la famille - سكن عائلي  </label>
-                                                        <input class="form-check-input" type="radio" name="logement" id="inlineRadio23" value="Chez la famille" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio24">︎Bidonvilles - سكن غير لائق</label>
-                                                        <input class="form-check-input" type="radio" name="logement" id="inlineRadio24" value="︎Bidonvilles" >
-                                                    </div>
-                                                    <div class="form-check form-check-inline ">
-                                                        <label class="form-check-label" for="inlineRadio25">Autres - أمور أخرى </label>
-                                                        <input class="form-check-input" type="radio" name="logement" id="inlineRadio25" value="Autres" >
-                                                    </div>
-
-                                                </div>
-                                            </div>
+                                        <div class="mb-1 col-md-6 ">
+                                            <label class="form-label form-label-par" for="modern-language">Mère</label>
+                                            <label class="form-label form-label-rtl" for="mom">الأم</label>
+                                            <select class="form-select parents" id="mom" name="mom" >
+                                                <option></option>
+                                                <option value="vivant">vivant</option>
+                                                <option value="décédé">décédé</option>
+                                            </select>
                                         </div>
 
                                     </div>
@@ -322,7 +279,7 @@
                                             <i data-feather="arrow-left" class="align-middle me-sm-25 me-0"></i>
                                             <span class="align-middle d-sm-inline-block d-none">Previous</span>
                                         </button>
-                                        <button class="btn btn-primary next next2" >
+                                        <button class="btn btn-primary next " >
                                             <span class="align-middle d-sm-inline-block d-none">Next</span>
                                             <i data-feather="arrow-right" class="align-middle ms-sm-25 ms-0"></i>
                                         </button>
@@ -626,14 +583,7 @@
             console.dir(e.target)
         })
         const stepper = new Stepper(document.querySelector('.bs-stepper'))
-        $('.next1').on('click' , function (evt) {
-            evt.preventDefault()
-            stepper.next()
-        })
-        $('.prev').on('click' , function (evt) {
-            evt.preventDefault()
-            stepper.previous()
-        })
+
         $.validator.addMethod("regex",
             function(value, element , regexR) {
                 var re = new RegExp(regexR)
@@ -749,6 +699,84 @@
          $('#age').on('change' , function (evt) {
              console.log($(this).valid())
          })
+        $('.next').on('click',function (evt) {
+            evt.preventDefault()
+            stepper.next()
+        })
+        $('.prev').on('click',function (evt) {
+            evt.preventDefault()
+            stepper.previous()
+        })
+        $('.parents').on('change' , function (evt) {
+            console.log(evt.target.value)
+            const text = $(this).siblings('.form-label-par').text()
+            console.log(text)
+            if(evt.target.value === 'vivant' && text !== null){
+                console.log('*************')
+                console.log( $('.'+text).length)
+               if ($('.'+text).length === 0){
+                   console.log('$$$$$$$$$$$$$$$$$$$$')
+                   $('.parentsStat').append(`<div class="mb-1 col-md-6 ${text}">
+                                            <label class="form-label form-label-par" for="modern-language">acitivité ${text}</label>
+                                            <label class="form-label form-label-rtl" for="work${text}">عمل</label>
+                                            <select class="form-select parents" id="work${text}" name="work${text}" >
+                                                <option></option>
+                                                <option value="travail">travail</option>
+                                                <option value="chomage">chomage</option>
+                                            </select>
+                                        </div>`)
+               }
+            }else {
+                if (typeof $('.'+text) !== undefined || $('.'+text) !== null){
+                    $('.'+text).remove()
+                }
+            }
+        })
+        let dad = ''
+        let mom = ''
+        function testParentStat(){
+            if (dad === 'décédé' && mom === 'décédé'){
+                console.log('here .................... here')
+                if ( $('.tuteur').length === 0 && $('.tuteurWork').length === 0){
+                    $('.parentsStat').append(`<div class="mb-1 col-md-6 tuteur">
+                                            <label class="form-label form-label-par" for="tuteur">Tuteur</label>
+                                            <label class="form-label form-label-rtl" for="tuteur">الواصي</label>
+                                            <select class="form-select parents" id="tuteur" name="tuteur" >
+                                                <option></option>
+                                                <option value="famille">famille</option>
+                                                <option value="autre">autre</option>
+                                            </select>
+                                        </div>
+                                       <div class="mb-1 col-md-6 tuteurWork">
+                                            <label class="form-label form-label-par" for="tuteurWork">activité du tuteur</label>
+                                            <label class="form-label form-label-rtl" for="tuteurWork">عمل الواصي</label>
+                                            <input type="text" id="tuteurWork" name="tuteurWork" class="form-control" placeholder="tuteur travail"  />
+                                        </div>
+
+`)
+                }else {
+                    $('.tuteur').remove()
+                    $('.tuteurWork').remove()
+                }
+            }else {
+                if(!( $('.tuteur').length === 0 && $('.tuteurWork').length === 0)){
+                    $('.tuteur').remove()
+                    $('.tuteurWork').remove()
+                }
+            }
+        }
+        $('#dad').on('change' , function(evt){
+            dad = evt.target.value
+            console.log(dad)
+            testParentStat()
+
+        })
+        $('#mom').on('change' , function(evt){
+            mom = evt.target.value
+            console.log(mom)
+             testParentStat()
+        })
+
         console.dir(validator)
 
     </script>

@@ -3,6 +3,7 @@
         <div class="content-wrapper container-xxl p-0">
             <div class="content-body">
                 <section id="basic-datatable">
+                    <button id="addMob" type="button" class="btn btn-success waves-effect waves-float waves-light mb-2 w-20" >Ajouter Mobilisation <i data-feather='plus'></i></button>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -21,10 +22,12 @@
                                         <tbody>
                                         @if(\App\Models\Form::all()->count() > 0)
 
-                                        @foreach( \App\Models\Form::where('center_form' , Auth::user()->center)->get() as $form)
+                                        @foreach( \App\Models\Form::where('center_form' , Auth::user()->center) ->orderBy('id', 'desc')->get() as $form)
                                             <tr>
-                                                @foreach( $form->fields()->where('type' , 'name')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
+                                                @foreach( $form->fields()->where('type' , 'nom')->get() as $f)
+                                                    @foreach( $form->fields()->where('type' , 'prenom')->get() as $p )
+                                                        <td>{{ $f->data }} &nbsp; {{ $p->data }}</td>
+                                                    @endforeach
                                                 @endforeach
                                                         <td>{{ Auth::user()->center }}</td>
                                                     @foreach( $form->fields()->where('type' , 'sex')->get() as $f)
@@ -33,7 +36,7 @@
                                                     @foreach($form->fields()->where('type' , 'age')->get() as $f)
                                                         <td>{{ $f->data }}</td>
                                                     @endforeach
-                                                        <td>{{ $form->created_at }}</td>
+                                                        <td>{{ (new DateTime($form->created_at))->format('Y-m-d') }}</td>
                                                     @foreach( $form->fields()->where('type' , 'nation')->get() as $f)
                                                         <td>{{ $f->data }}</td>
                                                     @endforeach
@@ -63,6 +66,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!-- Modal to add new record -->
                     <div class="modal modal-slide-in fade" id="modals-slide-in">
                         <div class="modal-dialog sidebar-sm">
@@ -102,16 +106,99 @@
                 </section>
             </div>
         </div>
+        <div class="modal fade" id="mobilization" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body pb-5 px-sm-5 pt-50">
+                        <div class="text-center mb-2">
+                            <h1 class="mb-1">Formulaire de Mobilisation</h1>
+                        </div>
+                        <form id="mobForm" class="row gy-1 pt-75" method="POST" action="{{ route('admin.mobi.create') }}" >
+                            @csrf
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="chargéName">Nom du Chargé</label>
+                                <label class="form-label form-label-rtl" for="chargéName">إسم المسؤول</label>
+                                <input type="text" id="chargéName" name="chergéName" class="form-control" readonly="readonly" value="{{Auth::user()->name}}" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="dateMob">Heure et Date de mobilisation</label>
+                                <label class="form-label form-label-rtl" for="dateMob">تاريخ و ساعة عملية التعبئة </label>
+                                <input type="text" id="dateMob" name="dateMob" class="form-control" readonly="readonly"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="numMob">Nombre de sortie</label>
+                                <label class="form-label form-label-rtl" for="numMob">عدد الخرجات التعبئة </label>
+                                <input type="text" id="numMob" name="numMob" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Type de sortie</label>
+                                <label class="form-label form-label-rtl" for="typeMob">نوع التعبئة </label>
+                                <select class="form-select" name="typeMob">
+                                    <option value="chez partenaire">chez partenaire</option>
+                                    <option value="porte à porte">porte à porte</option>
+                                    <option value="mobilisation interne">mobilisation interne</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label" for="quartierMob">Quartiers</label>
+                                <label class="form-label form-label-rtl" for="quartierMob">أحياء التعبئة</label>
+                                <select id="quartierMob" class="js-example-basic-multiple" name="states[]" multiple="multiple">
+                                    @if( Auth::user()->center == 'BN')
+                                        <option value="AIN DEYAB">AIN DEYAB</option>
+                                        <option value="AIN SEBAA">AIN SEBAA</option>
+                                        <option value="AL FIDA">AL FIDA</option>
+                                        <option value="HAY MOHAMEDI">HAY MOHAMEDI</option>
+                                        <option value="LAHRAOUINE">LAHRAOUINE</option>
+                                        <option value="L'ANCIENNE VILLE">L'ANCIENNE VILLE</option>
+                                        <option value="MERS SELTAN">MERS SELTAN</option>
+                                        <option value="MOULAY RACHID">MOULAY RACHID </option>
+                                        <option value="ROCHES NOIRES">ROCHES NOIRES </option>
+                                        <option value="SIDI BERNOUSSI">SIDI BERNOUSSI </option>
+                                        <option value="SIDI OTHMAN ">SIDI OTHMAN  </option>
+                                        <option value="AUTRES">AUTRES</option>
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6" id="quertierSpef" hidden>
+                                <label class="form-label" for="quertierAutre">Spécifier quartier</label>
+                                <label class="form-label form-label-rtl" for="quertierAutre"> تحديد الشارع</label>
+                                <input type="text" id="quertierAutre" name="quertierAutre" class="form-control" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="numMobHomme">nombre de mobilisé par homme</label>
+                                <label class="form-label form-label-rtl" for="numMobHomme">عدد الدكور  </label>
+                                <input type="text" id="numMobHomme" name="numMobHomme" class="form-control"   />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="numMobFemme">nombre de mobilisé par femme</label>
+                                <label class="form-label form-label-rtl" for="numMobFemme">عدد اﻹناث  </label>
+                                <input type="text" id="numMobFemme" name="numMobFemme" class="form-control"   />
+                            </div>
+                            <div class="col-12 text-center mt-2 pt-50">
+                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <style>
         [input='search']{
             margin-left: 12px;
+        }
+        .form-label-rtl{
+            float: right;
         }
     </style>
     <script>
         $(document).ready(function() {
             $('#example').DataTable( {
                 dom: 'Bfrtip',
+                "order": [[ 4, "desc" ]],
                 buttons: [
                     'copy', 'excel', 'pdf', 'print'
                 ]
@@ -156,6 +243,57 @@
 
         } );
 
+
+    </script>
+    <script>
+        $('#addMob').on('click' , function (evt) {
+            $('#mobilization').modal('show')
+        })
+        const d = new Date()
+        var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
+        $('#dateMob').val(date_format_str)
+        let multiple =   $('.js-example-basic-multiple').select2();
+
+        multiple.on('change' , function (evt) {
+            console.log(evt.target.value)
+            if (evt.target.value === 'AUTRES'){
+                $('#quertierSpef').attr('hidden' , false)
+            }else {
+                $('#quertierSpef').attr('hidden' , true)
+            }
+        })
+    </script>
+    <script>
+        $('#numMob').on('input' , function (evt) {
+            const regex = new RegExp('[0-9]+')
+            if (regex.test(evt.target.value)){
+                $(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid') : ''
+                $(this).hasClass('is-valid') ? '' : $(this).addClass('is-valid')
+            }else {
+                $(this).hasClass('is-valid') ? $(this).removeClass('is-valid') : ''
+                $(this).hasClass('is-invalid') ? '' :  $(this).addClass('is-invalid')
+            }
+        })
+        $('#numMobHomme').on('input' , function (evt) {
+            const regex = new RegExp('[0-9]+')
+            if (regex.test(evt.target.value)){
+                $(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid') : ''
+                $(this).hasClass('is-valid') ? '' : $(this).addClass('is-valid')
+            }else {
+                $(this).hasClass('is-valid') ? $(this).removeClass('is-valid') : ''
+                $(this).hasClass('is-invalid') ? '' :  $(this).addClass('is-invalid')
+            }
+        })
+        $('#numMobFemme').on('input' , function (evt) {
+            const regex = new RegExp('[0-9]+')
+            if (regex.test(evt.target.value)){
+                $(this).hasClass('is-invalid') ? $(this).removeClass('is-invalid') : ''
+                $(this).hasClass('is-valid') ? '' : $(this).addClass('is-valid')
+            }else {
+                $(this).hasClass('is-valid') ? $(this).removeClass('is-valid') : ''
+                $(this).hasClass('is-invalid') ? '' :  $(this).addClass('is-invalid')
+            }
+        })
 
     </script>
 </x-app-layout>

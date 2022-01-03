@@ -84,7 +84,7 @@
                                     <img class="coip-logo dossier-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg" width="250">
                                 </div>
                                 <div class="row">
-                                    <div class="card">
+                                    <div class="card dossier1" id="dossier1">
                                         <div class="card-body">
                                             <div class="user-avatar-section">
                                                 <div class="d-flex align-items-center flex-column">
@@ -152,10 +152,8 @@
                                                     </li>
                                                 </ul>
                                                 <div class="d-flex justify-content-center pt-2">
-                                                    <a href="javascript:;" class="btn btn-primary me-1 waves-effect waves-float waves-light" data-bs-target="#editUser" data-bs-toggle="modal">
-                                                        Edit
-                                                    </a>
-                                                    <a href="javascript:;" class="btn btn-outline-danger suspend-user waves-effect">Suspended</a>
+
+                                                    <a  id="downloadDossier" class="btn btn-outline-danger suspend-user waves-effect ">Telechargé Dossier <i data-feather='download-cloud'></i></a>
                                                 </div>
                                             </div>
                                         </div>

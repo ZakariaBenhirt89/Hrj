@@ -31,7 +31,8 @@
                                 <!--/ header section -->
 
                                 <!-- form -->
-                                <form class="validate-form mt-2 pt-50" novalidate="novalidate">
+                                <form class="validate-form mt-2 pt-50" action="{{ route('admin.store.pv' , ['id' =>$id]) }}" method="POST" novalidate="novalidate">
+                                     @csrf
                                     <div class="row">
                                         <div class="col-12 col-sm-6 mb-1">
                                             <label class="form-label" for="accountFirstName">nom</label>
@@ -110,7 +111,7 @@
 
 
                                         <div class="col-12 d-flex justify-content-between">
-                                            <button type="submit" class="btn btn-gradient-success mt-1 me-1 waves-effect waves-float waves-light">Sauvegarder &nbsp;<i data-feather='save'></i></button>
+                                            <button id="sbOri" type="submit" class="btn btn-gradient-success mt-1 me-1 waves-effect waves-float waves-light">Sauvegarder &nbsp;<i data-feather='save'></i></button>
                                             <button id="addMember" class="btn btn-primary mt-1 me-1 waves-effect waves-float waves-light">Ajouter un membre de comité &nbsp; <i data-feather='user-plus'></i></button>
 
                                         </div>
@@ -132,9 +133,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-sm-5 mx-50 pb-5">
-                    <h1 class="text-center mb-1" id="addNewCardTitle">Add New Card</h1>
-                    <p class="text-center">Definire un membre de comité </p>
-
+                    <h1 class="text-center mb-1" id="addNewCardTitle">Definire un membre de comité </h1>
+                    <p class="text-center"> nom et prenom du membre</p>
                     <!-- form -->
                     <form id="addNewCardValidation" class="row gy-1 gx-2 mt-75" action="{{ route('admin.add.member') }}" method="POST" novalidate="novalidate">
                        @csrf
@@ -202,6 +202,10 @@
             $('#addNewCard').modal('show')
         })
         $('#modalCommité').on('click' , function (evt) {
+            $(this).closest('form').submit()
+        })
+        $('#sbOri').on('click' , function (evt) {
+            evt.preventDefault()
             $(this).closest('form').submit()
         })
     </script>

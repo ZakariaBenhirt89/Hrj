@@ -149,6 +149,7 @@
                                                 <label class="form-label-rtl"  >النسب</label>
                                                 <label class="form-label" for="prenom">Prénom</label>
                                                 <input type="text" id="prenom" name="prenom" class="form-control stepOne" placeholder="prénom" aria-label="prenom" required pattern="^[A-Za-zأ-ي]+$"/>
+
                                             </div>
                                             <div class="mb-1 form-password-toggle col-md-6">
                                                 <label class="form-label-rtl"  >عنوان</label>
@@ -414,7 +415,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="mb-1 col-md-6" style="margin-top: 12px">
-                                            <h5>Niveau scolaire</h5>
+                                            <h5>Niveau scolaire- مستوى الدراسي</h5>
                                             <hr>
                                             <select class="form-select" name="niveauScholaire" >
                                                 <option></option>
@@ -428,7 +429,7 @@
 
                                         </div>
                                         <div class="mb-1 col-md-6" style="margin-top: 12px">
-                                            <h5>Diplomé</h5>
+                                            <h5>Diplomé - شهادة دراسية</h5>
                                             <hr>
                                             <select class="form-select" name="diplom" >
                                                 <option></option>
@@ -440,7 +441,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="mb-1 col-md-6 typeDep" hidden>
-                                            <label class="form-label" for="modern-google">Type de deplome</label>
+                                            <label class="form-label" for="modern-google">Type de deplome - نوع شهادة محصل عليها</label>
                                             <input type="text" name="typeDeplome" class="form-control"  />
                                         </div>
                                     </div>
@@ -588,7 +589,7 @@
             function(value, element , regexR) {
                 var re = new RegExp(regexR)
                 console.log(element.id)
-                if (re.test(value)){
+                if (re.test(value) && value !== ''){
                     $(`#${element.id}`).hasClass('is-invalid') ? $(`#${element.id}`).removeClass('is-invalid') : ''
                     $(`#${element.id}`).hasClass('is-valid') ? '' : $(`#${element.id}`).addClass('is-valid')
                 }else {
@@ -669,13 +670,17 @@
             console.log('********************')
             const element = $(`#${e.id}`)
             map.set(e.id , false)
-            element.on('change' , function (evt){
+            element.on('change input' , function (evt){
                 if (element.valid()){
                     map.set(e.id , true)
                     canGo()
+                    $(`#${e.id}`).hasClass('is-invalid') ? $(`#${e.id}`).removeClass('is-invalid') : ''
+                    $(`#${e.id}`).hasClass('is-valid') ? '' : $(`#${e.id}`).addClass('is-valid')
                 }else {
                     map.set(e.id , false)
                     canGo()
+                    $(`#${e.id}`).hasClass('is-valid') ? $(`#${e.id}`).removeClass('is-valid') : ''
+                    $(`#${e.id}`).hasClass('is-invalid') ? '' : $(`#${e.id}`).addClass('is-invalid')
                 }
 
                 console.table(map)
@@ -890,6 +895,90 @@
             }else {
                 $('.typeDep').attr('hidden' , true)
             }
+        })
+    </script>
+    <script>
+       $(document).ready(function () {
+           $script(
+               'https://maps.googleapis.com/maps/api/js?v=weekly&key=AIzaSyBawL8VbstJDdU5397SUX7pEt9DslAwWgQ',
+               () => {
+                   const searchClient = algoliasearch(
+                       'latency',
+                       '6be0576ff61c053d5f9a3225e2a90f76'
+                   );
+                   const search = instantsearch({
+                       indexName: 'cities',
+                       searchClient,
+                   });
+                   search.addWidgets([
+                       instantsearch.widgets.places({
+                           container: '#lncss',
+                           placesReference: window.places,
+                       })
+                   ]);
+
+                   search.start();
+               }
+           );
+
+       })
+    </script>
+    <script>
+        let searchName = ''
+        let searchPrenom = ''
+        function searchDublicate(nom , prenom , ref) {
+
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            })
+            $.ajax({
+                type:'GET',
+                url:"{{ route('admin.search.dup') }}",
+                data:{name:nom, second:prenom},
+                success:function(data){
+                    console.log(data);
+                    if (data.hasOwnProperty('ref')){
+                        let comp = ` <button type="button" id="alertExist" class="btn btn-outline-danger waves-effect mt-1" data-bs-toggle="popover" data-bs-placement="top" data-bs-container="body" title="" data-bs-content="il exist un dossier dans la base de données avec le meme nom et prénom reference ${data['ref']}" data-bs-original-title="Popover on top">
+                                                   <i data-feather='alert-triangle'></i> duplication - يوجد إسم مشابه <i data-feather='alert-triangle'></i>
+                                                </button>`
+                        $('#prenom').after(comp)
+                        $('#alertExist').popover({
+                            title: 'Click Inside',
+                            placement: 'bottom',
+                            template: '<div class="popover fade show bs-popover-top" role="tooltip" id="popover121799" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(248px, -82px);" data-popper-placement="top"><div class="popover-arrow" style="position: absolute; transform: translate(131px, 0px); left: 0px;"></div><h3 class="popover-header">Popover on top</h3><div class="popover-body">Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie.</div></div>'
+                        });
+                    }
+                    if (data.hasOwnProperty('center') && data.hasOwnProperty('ref')){
+                        let comp = ` <button type="button" id="alertExist" class="btn btn-outline-danger waves-effect mt-1" data-bs-toggle="popover" data-bs-placement="top" data-bs-container="body" title="" data-bs-content="il exist un dossier dans la base de données avec le meme nom et prénom reference ${data['ref']} mais dans le center ${data['center']}" data-bs-original-title="Popover on top">
+                                                   <i data-feather='alert-triangle'></i> duplication - يوجد إسم مشابه <i data-feather='alert-triangle'></i>
+                                                </button>`
+                        $('#prenom').after(comp)
+                        $('#alertExist').popover({
+                            title: 'Click Inside',
+                            placement: 'bottom',
+                            template: '<div class="popover fade show bs-popover-top" role="tooltip" id="popover121799" style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(248px, -82px);" data-popper-placement="top"><div class="popover-arrow" style="position: absolute; transform: translate(131px, 0px); left: 0px;"></div><h3 class="popover-header">Popover on top</h3><div class="popover-body">Macaroon chocolate candy. I love carrot cake gingerbread cake lemon drops. Muffin sugar plum marzipan pie.</div></div>'
+                        });
+                    }
+
+                }
+            });
+        }
+        $('#modern-username').on('change' , function (evt) {
+            searchName = evt.target.value
+        })
+        $('#prenom').on('change' , function (evt) {
+            if (evt.target.value === ''){
+                if ($('#alertExist').length !== 0){
+                    $('#alertExist').remove()
+                }
+            }else {
+                searchPrenom = evt.target.value
+                searchDublicate(searchName , searchPrenom)
+            }
+
         })
     </script>
     <!-- END: Page JS-->

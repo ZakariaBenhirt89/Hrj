@@ -80,6 +80,8 @@
 
         <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
         <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 
 
         <!-- Scripts -->
@@ -87,12 +89,15 @@
             href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7.1.0/themes/algolia.css" />
+
 
         <!-- add before </body> -->
 
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script src="{{ asset('js/buttonComp.js') }}" defer></script>
         <script src="{{ asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
+        <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNlBv0dK-iotdgWbs9-CJzVWFZ1zwwFqM&libraries=places&callback=initMap"></script>
 
     </head>
     <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
@@ -108,7 +113,6 @@
             </div>
             <ul class="nav navbar-nav align-items-center ms-auto">
                 <li class="nav-item dropdown dropdown-language"><a class="nav-link dropdown-toggle" id="dropdown-flag" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="flag-icon flag-icon-fr"></i><span class="selected-language">Français</span></a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-flag"><a class="dropdown-item" href="#" data-language="fr"><i class="flag-icon flag-icon-fr"></i> Français</a><a class="dropdown-item" href="#" data-language="ar"><i class="flag-icon flag-icon-ma"></i> Arabic</a></div>
                 </li>
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-style"><i class="ficon" data-feather="moon"></i></a></li>
                 <li class="nav-item nav-search"><a class="nav-link nav-link-search"><i class="ficon" data-feather="search"></i></a>
@@ -119,88 +123,7 @@
                         <ul class="search-list search-list-main"></ul>
                     </div>
                 </li>
-                <li class="nav-item dropdown dropdown-notification me-25"><a class="nav-link" href="#" data-bs-toggle="dropdown"><i class="ficon" data-feather="bell"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-media dropdown-menu-end">
-                        <li class="dropdown-menu-header">
-                            <div class="dropdown-header d-flex">
-                                <h4 class="notification-title mb-0 me-auto">Notifications</h4>
-                                <div class="badge rounded-pill badge-light-primary">6 New</div>
-                            </div>
-                        </li>
-                        <li class="scrollable-container media-list"><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar"><img src="{{ asset('app-assets/images/portrait/small/avatar-s-15.jpg') }}" alt="avatar" width="32" height="32"></div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">Congratulation Sam 🎉</span>winner!</p><small class="notification-text"> Won the monthly best seller badge.</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar"><img src="{{ asset('app-assets/images/portrait/small/avatar-s-3.jpg') }}" alt="avatar" width="32" height="32"></div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">New message</span>&nbsp;received</p><small class="notification-text"> You have 10 unread messages</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar bg-light-danger">
-                                            <div class="avatar-content">MD</div>
-                                        </div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">Revised Order 👋</span>&nbsp;checkout</p><small class="notification-text"> MD Inc. order updated</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="list-item d-flex align-items-center">
-                                <h6 class="fw-bolder me-auto mb-0">System Notifications</h6>
-                                <div class="form-check form-check-primary form-switch">
-                                    <input class="form-check-input" id="systemNotification" type="checkbox" checked="">
-                                    <label class="form-check-label" for="systemNotification"></label>
-                                </div>
-                            </div><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar bg-light-danger">
-                                            <div class="avatar-content"><i class="avatar-icon" data-feather="x"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">Server down</span>&nbsp;registered</p><small class="notification-text"> USA Server is down due to high CPU usage</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar bg-light-success">
-                                            <div class="avatar-content"><i class="avatar-icon" data-feather="check"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">Sales report</span>&nbsp;generated</p><small class="notification-text"> Last month sales report generated</small>
-                                    </div>
-                                </div>
-                            </a><a class="d-flex" href="#">
-                                <div class="list-item d-flex align-items-start">
-                                    <div class="me-1">
-                                        <div class="avatar bg-light-warning">
-                                            <div class="avatar-content"><i class="avatar-icon" data-feather="alert-triangle"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="list-item-body flex-grow-1">
-                                        <p class="media-heading"><span class="fw-bolder">High memory</span>&nbsp;usage</p><small class="notification-text"> BLR Server using high memory</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="dropdown-menu-footer"><a class="btn btn-primary w-100" href="#">Read all notifications</a></li>
-                    </ul>
-                </li>
+
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">Belvdere Admin</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1638950709/Teamwork_ycjdaz.png" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
                     </a>
@@ -219,81 +142,9 @@
         </div>
     </nav>
     <ul class="main-search-list-defaultlist d-none">
-        <li class="d-flex align-items-center"><a href="#">
-                <h6 class="section-label mt-75 mb-0">Files</h6>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
-                <div class="d-flex">
-                    <div class="me-75"><img src="../../../app-assets/images/icons/xls.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Two new item submitted</p><small class="text-muted">Marketing Manager</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;17kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
-                <div class="d-flex">
-                    <div class="me-75"><img src="../../../app-assets/images/icons/jpg.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">52 JPG file Generated</p><small class="text-muted">FontEnd Developer</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;11kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
-                <div class="d-flex">
-                    <div class="me-75"><img src="../../../app-assets/images/icons/pdf.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">25 PDF File Uploaded</p><small class="text-muted">Digital Marketing Manager</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;150kb</small>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between w-100" href="#">
-                <div class="d-flex">
-                    <div class="me-75"><img src="../../../app-assets/images/icons/doc.png" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Anna_Strong.doc</p><small class="text-muted">Web Designer</small>
-                    </div>
-                </div><small class="search-data-size me-50 text-muted">&apos;256kb</small>
-            </a></li>
-        <li class="d-flex align-items-center"><a href="#">
-                <h6 class="section-label mt-75 mb-0">Members</h6>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-8.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">John Doe</p><small class="text-muted">UI designer</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-1.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Michal Clark</p><small class="text-muted">FontEnd Developer</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-14.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Milena Gibson</p><small class="text-muted">Digital Marketing Manager</small>
-                    </div>
-                </div>
-            </a></li>
-        <li class="auto-suggestion"><a class="d-flex align-items-center justify-content-between py-50 w-100" href="#">
-                <div class="d-flex align-items-center">
-                    <div class="avatar me-75"><img src="../../../app-assets/images/portrait/small/avatar-s-6.jpg" alt="png" height="32"></div>
-                    <div class="search-data">
-                        <p class="search-data-title mb-0">Anna Strong</p><small class="text-muted">Web Designer</small>
-                    </div>
-                </div>
-            </a></li>
     </ul>
     <ul class="main-search-list-defaultlist-other-list d-none">
-        <li class="auto-suggestion justify-content-between"><a class="d-flex align-items-center justify-content-between w-100 py-50">
-                <div class="d-flex justify-content-start"><span class="me-75" data-feather="alert-circle"></span><span>No results found.</span></div>
-            </a></li>
+
     </ul>
     <!-- END: Header-->
 
@@ -302,7 +153,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow content-right" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item me-auto"><a class="navbar-brand" href="../../../html/ltr/vertical-menu-template/#"><span class="brand-logo">
+                <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('indexMobi') }}"><span class="brand-logo">
 <svg  height="24" viewBox="0 0 135 95" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <path d="M0 0L135 0L135 95L0 95L0 0Z" id="path_1" />
@@ -351,39 +202,35 @@
         <div class="shadow-bottom"></div>
         <div class="main-menu-content ">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('center.dashboard' , Auth::user()->center) }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span><span class="badge badge-light-warning rounded-pill ms-auto me-1 numberOf" >2</span></a>
+                <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('center.dashboard' , Auth::user()->center) }}"><i data-feather="home"></i><span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span></a>
                     <ul class="menu-content">
-                        <li><a class="d-flex align-items-center holla" href="{{ route('indexMobi') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/social-svgrepo-com.svg') }}" alt="icon" height="20" width="20"> <span class="menu-item text-truncate" data-i18n="Analytics" >Mobilisation</span></a>
-                        </li>
-                        <li ><a class="d-flex align-items-center holla" href="{{ route('ficheAcc') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/welcome-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Acceuil</span></a>
-                        </li>
-                        <li ><a class="d-flex align-items-center holla" href="{{ route('admin.orientation.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/directions-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Orientation</span></a>
-                        </li>
-                        <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/train-track-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Suivi</span></a>
-                        </li>
-                        <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/rating-graphic-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Placement</span></a>
-                        </li>
+
                     </ul>
                 </li>
-                <li class=" navigation-header"><span data-i18n="Apps &amp; Pages">fonctionnalités principales</span><i data-feather="more-horizontal"></i>
+                <hr>
+                <li><a class="d-flex align-items-center holla" href="{{ route('indexMobi') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/social-svgrepo-com.svg') }}" alt="icon" height="20" width="20"> <span class="menu-item text-truncate" data-i18n="Analytics" >Mobilisation</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="mail"></i><span class="menu-title text-truncate" data-i18n="Email">Email</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('ficheAcc') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/welcome-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Acceuil</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="message-square"></i><span class="menu-title text-truncate" data-i18n="Chat">Messages</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.orientation.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/directions-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Orientation</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="check-square"></i><span class="menu-title text-truncate" data-i18n="Todo">Todo list</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.rfc.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/reinforcement.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">RFC</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="calendar"></i><span class="menu-title text-truncate" data-i18n="Calendar">Calendrier</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.placement.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/rating-graphic-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Placement</span></a>
                 </li>
-
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="save"></i><span class="menu-title text-truncate" data-i18n="File Manager">Gestionnaire de fichiers</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.suivi.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/train-track-svgrepo-com.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Suivi</span></a>
                 </li>
-                <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather='file-text'></i><span class="menu-title text-truncate" data-i18n="File Manager">Rapport</span></a>
+                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/all.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Tous les données</span></a>
+                </li>
+                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/administration.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Administration</span></a>
+                </li>
+                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/partner.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Partenaire</span></a>
+                </li>
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.charge.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/person.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Chargé d’accompagnement</span></a>
                 </li>
                 <li class=" nav-item">
                     <hr>
                     <img class="coip-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639577068/Sans_titre_500_x_250_px_gflzv8.png" width="250">
-
                 </li>
 
 
@@ -409,6 +256,9 @@
     <style>
         .sideIcon{
             margin-right: 15.4px;
+        }
+        .vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub > a:after {
+            display: none;
         }
     </style>
     <!-- BEGIN: Vendor JS-->
@@ -442,6 +292,7 @@
     <script src="{{ asset('app-assets/vendors/js/pickers/pickadate/legacy.js') }}"></script>
     <script src="{{ asset('app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js') }}"></script>
     <script src="{{ asset('app-assets/js/scripts/forms/pickers/form-pickers.js') }}"></script>
+    <script src="{{ asset('app-assets/js/scripts/components/components-popovers.js') }}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
@@ -449,6 +300,7 @@
 
     <!-- END: Page JS-->
     <script>
+
         $(window).on('load', function() {
 
             if (feather) {
@@ -470,6 +322,8 @@
             if(listClass.contains('dark-layout')){
                 console.log("seems like dar")
                 localStorage.setItem('theme' , 'dark')
+                $('tr').css('border-top' , 'solid 1px cornsilk')
+                $('.coip-title').css('border-bottom-color' , 'cornsilk')
                 if (typeof $('.comp-logo') !== undefined && $('.comp-logo') !== null ){
                     $('.comp-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg')
                     $('.coip-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639397584/Group_1_sfcyrg.svg')
@@ -482,6 +336,8 @@
                     $('.comp-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639399302/Group_2_obm2zi.svg')
                     $('.coip-logo').attr('src' , 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639399302/Group_2_obm2zi.svg')
                 }
+                $('tr').css('border-top' , 'solid 1px #685ed9')
+                $('.coip-title').css('border-bottom-color' , ' #685ed9')
             }
         }
         $('.nav-link-style').on('click' , function (evt) {
@@ -499,6 +355,14 @@
         })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/scriptjs@2.5.9/dist/script.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/places.js@^1.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
+    <script src="{{ asset('app-assets/vendors/js/charts/chart.min.js') }}"></script>
+    <script>
+
+    </script>
 
     </body>
 </html>

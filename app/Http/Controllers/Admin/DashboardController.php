@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use App\Models\Field;
 use App\Models\Form;
+use App\Models\User;
 use Auth;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Database\Eloquent\Model;
@@ -155,15 +156,57 @@ class DashboardController extends Controller
     }
     public function detail(Request $request , $id){
         Log::info($id);
+        $data = array();
         $form = Form::where('id' , intval($id))->first();
         Log::info('==================');
-        Log::info($form);
-        Log::info('==================');
-        return view('components.details');
+        $image = $form->fields()->where('type' , 'photo')->first()->data;
+        $name = $form->fields()->where('type' , 'nom')->first()->data . ' ' . $form->fields()->where('type' , 'prenom')->first()->data ;
+        $charger = User::where('id' , $form->editor)->first()->name;
+        $genre = $form->fields()->where('type' , 'sex')->first()->data;
+        $joinedAt = $form->created_at ;
+        $address = $form->fields()->where('type' , 'adresse')->first()->data;
+        $phone =  $form->fields()->where('type' , 'phone')->first()->data;
+        $lieuDeNaissance = $form->fields()->where('type' , 'lieu-naissance')->first()->data;
+        $cin = $form->fields()->where('type' , 'cin')->first()->data;
+        //is handicape
+        $handicape = $form->fields()->where('type' , 'handicape')->first()->data;
+        $chronique = $form->fields()->where('type' , 'chronicDes')->first()->data;
+        $niveauScholaire = $form->fields()->where('type' , 'niveauScholaire')->first()->data;
+        $diplome = $form->fields()->where('type' , 'diplom')->first()->data;
+        //orientation
+        $orientation = $form->fields()->where('type' , 'orientation')->first()->data;
+        if ($diplome == 'oui'){
+            $typeDiplome = $form->fields()->where('type' , 'typeDeplome')->first()->data;
+            $data = ['image' => $image , 'name' => $name , 'charger' => $charger , 'genre' => $genre , 'dateIns' => $joinedAt , 'adress' => $address ,'phone' => $phone , 'lieuDeNaissance' => $lieuDeNaissance , 'cin' => $cin , 'handicape' => $handicape , 'chronique' => $chronique ,'niveau' => $niveauScholaire , 'diplome' => $diplome , 'typeDiplome' => $typeDiplome ,'orientation' => $orientation];
+            return view('components.details' , $data);
+        }
+        $data = ['image' => $image , 'name' => $name , 'charger' => $charger , 'genre' => $genre , 'dateIns' => $joinedAt , 'adress' => $address ,'phone' => $phone , 'lieuDeNaissance' => $lieuDeNaissance , 'cin' => $cin , 'handicape' => $handicape , 'chronique' => $chronique ,'niveau' => $niveauScholaire , 'diplome' => $diplome , 'orientation' => $orientation];
+        return view('components.details' , $data);
     }
     public function mobi(Request $request){
         $results = $request->all();
-        return ['status' => 200 , 'result' => $results] ;
+        $form = new Form();
+        $form->identifiant = 'mobilzation' ;
+        $form->editor = Auth::user()->id;
+        $form->center_form = Auth::user()->center ;
+        $form->save();
+        foreach ($results as $key => $value){
+            $field = new Field();
+            $field->form_id = $form->id ;
+            $field->type = $key;
+            if ($key == 'states' && gettype($value) == 'array'){
+                $data = '';
+               foreach ($value as $item){
+                   $data .= $item . "-";
+               }
+                $field->data = $data;
+            }else{
+                $field->data = $value;
+            }
+            $field->save();
+
+        }
+        return redirect()->route('indexMobi');
     }
     public function orientation(Request $request){
         return view('components.orientation');
@@ -177,7 +220,7 @@ class DashboardController extends Controller
         $address =  Form::where('id' , $id)->first()->fields()->where('type' , 'adresse')->first()->data;
         $gsm = Form::where('id' , $id)->first()->fields()->where('type' , 'phone')->first()->data;
         $nscolaire = Form::where('id' , $id)->first()->fields()->where('type' , 'niveauScholaire')->first()->data;
-        $comite = \App\Models\Form::where('identifiant','member comite')->get() ;
+        $comite = \App\Models\Form::where('identifiant','member comite')->where('center_form' , Auth::user()->center)->get() ;
         $arr = array();
         foreach ($comite as $com){
             Log::info('******************');
@@ -213,5 +256,282 @@ class DashboardController extends Controller
         $field->save();
         Log::info(url()->previous());
        return redirect()->route('admin.user.comite' , ['id' => $id]);
+    }
+    public function storePv(Request $request , $id){
+             $results = $request->all();
+             $required = array('Situation_actuelle' , 'Orientation-too' , 'oriLocation' , 'comité-members' , 'remarqueOrientation');
+             Log::info('**************** id **************');
+             Log::info($id);
+             $form = Form::where('id' , $id)->first();
+             Log::info($form->identifiant);
+             $form->identifiant .= ' orientation';
+             $form->save();
+             foreach ($results as $key => $value){
+                 if ( in_array($key , $required)){
+                     $field = new Field();
+                     $field->form_id = $id ;
+                     Log::info('************ key ***************');
+                     Log::info($key);
+                     $field->type = $key;
+                     Log::info('***************** value ***************');
+                     Log::info($value);
+                     if ($key == 'comité-members'){
+                         foreach ($value as $item){
+                             $field->data .= $item.'--';
+                         }
+                     }else{
+                         $field->data = $value;
+                     }
+                     $field->save();
+                 }
+             }
+        return redirect()->route('admin.orientation.go');
+    }
+    public function suivi(Request $request){
+        $fields = Field::where('data','coip')->where('type','Orientation-too')->get();
+        $arrOfForms = array();
+        foreach ($fields as $field){
+            $form = $field->forms()->where('identifiant' ,'like', '%placement%')->first();
+            if ($form !== null){
+                array_push($arrOfForms , $form);
+            }
+        }
+        if (count($arrOfForms) > 0){
+            foreach ($arrOfForms as $form){
+                Log::info('***************** form ******************');
+                Log::info($form->id);
+                Log::info('***************** form ******************');
+            }
+            $suivi = Form::where('center_form' , Auth::user()->center)->where('identifiant' , 'like' , '%suivi%')->get();
+            return view('components.suivi' , ['forms' => $arrOfForms  , 'suivi' => $suivi]);
+
+
+        }else {
+            $suivi = Form::where('center_form' , Auth::user()->center)->where('identifiant' , 'like' , '%suivi%')->get();
+            return view('components.suivi' , ['forms' => $arrOfForms  , 'suivi' => $suivi]);
+        }
+
+    }
+    public function rfc(Request $request){
+            $fields = Field::where('data','coip')->where('type','Orientation-too')->get();
+            $others = Field::where('data','hors-coip')->where('type','Orientation-too')->get();
+            $arrOfForms = array();
+            $arrOfFormsOutCoip = array();
+            foreach ($fields as $field){
+                $form = $field->forms()->first();
+                array_push($arrOfForms , $form);
+            }
+        foreach ($others as $field){
+            $form = $field->forms()->first();
+            array_push($arrOfFormsOutCoip , $form);
+        }
+            foreach ($arrOfForms as $form){
+                Log::info('***************** form ******************');
+                Log::info($form->id);
+                Log::info('***************** form ******************');
+            }
+        foreach ($arrOfFormsOutCoip as $form){
+            Log::info('***************** form hors-coip ******************');
+            Log::info($form->id);
+            Log::info('***************** form hors-coip ******************');
+        }
+            return view('components.rfc' , ['forms' => $arrOfForms , 'hors' =>$arrOfFormsOutCoip]);
+    }
+    public function placement(Request $request){
+        $fields = Field::where('data','coip')->where('type','Orientation-too')->get();
+        $arrOfForms = array();
+        foreach ($fields as $field){
+            $form = $field->forms()->where('identifiant', 'acceuil orientation')->first();
+            if ($form !== null){
+                array_push($arrOfForms , $form);
+            }
+        }
+        if (count($arrOfForms) > 0){
+            foreach ($arrOfForms as $form){
+                Log::info('***************** form ******************');
+                Log::info($form->id);
+                Log::info('***************** form ******************');
+            }
+        }
+        $place = Form::where('identifiant' , 'like' , 'acceuil orientation placement%')->where('center_form' , Auth::user()->center)->get();
+        return view('components.placement' , ['place' => $place ,'forms' => $arrOfForms ]);
+    }
+    public function goPlacement(Request $request , $id){
+        $img = Form::where('id' , $id)->first()->fields()->where('type' , 'photo')->first()->data;
+        $nom = Form::where('id' , $id)->first()->fields()->where('type' , 'nom')->first()->data;
+        $prenom =  Form::where('id' , $id)->first()->fields()->where('type' , 'prenom')->first()->data;
+        $email =  Form::where('id' , $id)->first()->fields()->where('type' , 'email')->first()->data;
+        $cin =  Form::where('id' , $id)->first()->fields()->where('type' , 'cin')->first()->data;
+        $address =  Form::where('id' , $id)->first()->fields()->where('type' , 'adresse')->first()->data;
+        $gsm = Form::where('id' , $id)->first()->fields()->where('type' , 'phone')->first()->data;
+        $nscolaire = Form::where('id' , $id)->first()->fields()->where('type' , 'niveauScholaire')->first()->data;
+        $comite = \App\Models\Form::where('identifiant','member comite')->where('center_form' , Auth::user()->center)->get() ;
+        $arr = array();
+        foreach ($comite as $com){
+            Log::info('******************');
+            Log::info($com->fields()->first());
+            array_push($arr , $com->fields()->first()) ;
+            Log::info('*********************');
+        }
+        Log::info($img);
+        if ($img !== null && $comite->count() > 0){
+            Log::info('the one');
+            return view('components.placement-sub' , [ 'id' => $id ,'url' =>$img , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' =>$email , 'phone' => $gsm , 'nscholaire' => $nscolaire , 'comite' => $arr] );
+        }else{
+            $url = 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639571913/photo_2021-12-15_13-24-52_xgsjgw.jpg';
+            $sub = collect(['data' => 'rien' ] );
+            Log::info('the 2');
+            return view('components.placement-sub' , ['id' => $id ,'url' =>$url  , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' => $email , 'phone' => $gsm , 'nscholaire' => $nscolaire ,  'comite' => $sub]);
+        }
+    }
+    public function goSuivi(Request $request , $id){
+        $img = Form::where('id' , $id)->first()->fields()->where('type' , 'photo')->first()->data;
+        $nom = Form::where('id' , $id)->first()->fields()->where('type' , 'nom')->first()->data;
+        $prenom =  Form::where('id' , $id)->first()->fields()->where('type' , 'prenom')->first()->data;
+        $email =  Form::where('id' , $id)->first()->fields()->where('type' , 'email')->first()->data;
+        $cin =  Form::where('id' , $id)->first()->fields()->where('type' , 'cin')->first()->data;
+        $address =  Form::where('id' , $id)->first()->fields()->where('type' , 'adresse')->first()->data;
+        $gsm = Form::where('id' , $id)->first()->fields()->where('type' , 'phone')->first()->data;
+        $nscolaire = Form::where('id' , $id)->first()->fields()->where('type' , 'niveauScholaire')->first()->data;
+        $comite = \App\Models\Form::where('identifiant','member comite')->where('center_form' , Auth::user()->center)->get() ;
+        $arr = array();
+        foreach ($comite as $com){
+            Log::info('******************');
+            Log::info($com->fields()->first());
+            array_push($arr , $com->fields()->first()) ;
+            Log::info('*********************');
+        }
+        Log::info($img);
+        if ($img !== null && $comite->count() > 0){
+            Log::info('the one');
+            return view('components.suivi-sub' , [ 'id' => $id ,'url' =>$img , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' =>$email , 'phone' => $gsm , 'nscholaire' => $nscolaire , 'comite' => $arr] );
+        }else{
+            $url = 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639571913/photo_2021-12-15_13-24-52_xgsjgw.jpg';
+            $sub = collect(['data' => 'rien' ] );
+            Log::info('the 2');
+            return view('components.suivi-sub' , ['id' => $id ,'url' =>$url  , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' => $email , 'phone' => $gsm , 'nscholaire' => $nscolaire ,  'comite' => $sub]);
+        }
+    }
+    public function charger(Request $request){
+        $charge = Form::where('center_form' , Auth::user()->center)->where('identifiant', 'charger de comité')->get();
+        return view('components.charger', ['charge' => $charge]);
+    }
+    public function storecharger(Request $request){
+        $result = $request->all();
+        $form = new Form();
+        $form->identifiant = 'charger de comité' ;
+        $form->editor = Auth::user()->id;
+        $form->center_form = Auth::user()->center ;
+        $form->save();
+        foreach ($result as $key => $value){
+            $field = new Field();
+            $field->form_id = $form->id;
+            Log::info('************ key ***************');
+            Log::info($key);
+            Log::info('**************** value **************');
+            Log::info($value);
+            $field->type = $key;
+            $field->data = $value;
+            $field->save();
+        }
+        return redirect()->route('admin.charge.go');
+    }
+    public function storePlacement(Request $request , $id){
+        $form = Form::where('id' , $id)->first();
+        Log::info('the form is ****');
+        Log::info($form->id);
+        Log::info($form->identifiant);
+        $form->identifiant .= ' placement';
+        $form->save();
+        $results = $request->all();
+        foreach ($results as $key => $value){
+            $field = new Field();
+            $field->form_id = $id;
+            Log::info('*********** key **********');
+            Log::info($key);
+            $field->type = $key;
+            Log::info('************* value **********');
+            Log::info($value);
+            $field->data = $value ;
+            $field->save();
+        }
+        $fields = Field::where('data','coip')->where('type','Orientation-too')->get();
+        $arrOfForms = array();
+        foreach ($fields as $field){
+            $form = $field->forms()->where('identifiant','acceuil orientation')->first();
+            if ( $form !== null){
+                array_push($arrOfForms , $form);
+            }
+
+        }
+       if (count($arrOfForms)){
+           foreach ($arrOfForms as $form){
+               Log::info('***************** form ******************');
+               Log::info($form->id);
+               Log::info('***************** form ******************');
+           }
+       }
+         $place = Form::where('identifiant'  , 'acceuil orientation placement')->where('center_form' , Auth::user()->center)->get();
+         return view('components.placement' , ['place' => $place , 'forms' => $arrOfForms ]);
+    }
+    public function searchDup(Request $request){
+        $result = $request->all();
+        $nomExist = Field::where('type' ,'nom')->where('data' , 'like' , '%'.$result['name'].'%')->count();
+        $prenomExist = Field::where('type' , 'prenom')->where('data' , 'like' , '%'.$result['second'].'%')->count();
+        foreach ($result as $key => $value){
+            Log::info("************ key of ajax **************");
+            Log::info($key);
+            Log::info("************ value of ajax **************");
+            Log::info($value);
+        }
+        if ($nomExist > 0 && $prenomExist > 0){
+            $id = Field::where('type' , 'prenom')->where('data' , 'like' , '%'.$result['second'].'%')->first()->forms()->where('center_form', Auth::user()->center)->first()->id ;
+            if ($id !== null){
+                $ref = Form::where('id' , $id)->first()->fields()->where('type' , 'ref')->first()->data;
+                return response()->json(['status' => 200 , 'nom' => $nomExist , 'prenom' => $prenomExist ,'id' => $id , 'ref' => $ref]);
+            }else{
+                $ref = Form::where('id' , $id)->first()->fields()->where('type' , 'ref')->first()->data;
+                $center = Field::where('type' , 'prenom')->where('data' , 'like' , '%'.$result['second'].'%')->first()->forms()->first()->center_form ;
+                if ($center == null){
+
+                }else{
+                    return response()->json(['status' => 200 , 'nom' => $nomExist , 'prenom' => $prenomExist ,'id' => $id , 'ref' => $ref , 'center' => $center]);
+
+                }
+            }
+
+        }else{
+            return response()->json(['status' => 200 , 'result' => 0]);
+        }
+
+    }
+    public function storeSuivi(Request $request , $id){
+        $results = $request->all();
+        Log::info('the id is ******************* id');
+        Log::info($id);
+        $form = Form::where('id' , $id)->first();
+        $form->identifiant .= ' suivi' ;
+        $form->save();
+        foreach ($results as $key => $value){
+            $field = new Field();
+            $field->form_id = $id;
+            Log::info('**************** key ************');
+            Log::info($key);
+            $field->type = $key;
+            Log::info('***************** value ************');
+            Log::info($value);
+            $field->data = $value;
+            $field->save();
+        }
+        $fields = Field::where('data','coip')->where('type','Orientation-too')->get();
+        $arrOfForms = array();
+        foreach ($fields as $field){
+            $form = $field->forms()->where('identifiant' ,'like', '%placement%')->first();
+            if ($form !== null){
+                array_push($arrOfForms , $form);
+            }
+        }
+        $suivi = Form::where('center_form' , Auth::user()->center)->where('identifiant' , 'like' , '%suivi%')->get();
+        return view('components.suivi' , ['forms' => $arrOfForms  , 'suivi' => $suivi]);
     }
 }

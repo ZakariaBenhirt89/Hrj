@@ -41,7 +41,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::YvnXeXOPNqFHimuT',
+            '_route' => 'generated::gTi7qMGvTdQPGN0U',
           ),
           1 => NULL,
           2 => 
@@ -151,7 +151,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::E8EciJB8PIUqt41k',
+            '_route' => 'generated::LgY9F8jiFj8mw76W',
           ),
           1 => NULL,
           2 => 
@@ -225,7 +225,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Kbpypankdtrp3fWq',
+            '_route' => 'generated::dwcqnhnfU1y3VdJD',
           ),
           1 => NULL,
           2 => 
@@ -281,7 +281,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::WYSHQRyskEbNUC51',
+            '_route' => 'generated::D1fL1WI2mg0PesS1',
           ),
           1 => NULL,
           2 => 
@@ -372,7 +372,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::JINbflK6JyrPfOM7',
+            '_route' => 'generated::lFRSU6E1aiztWnXW',
           ),
           1 => NULL,
           2 => 
@@ -411,7 +411,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Ugm4syypBRyrJWpp',
+            '_route' => 'generated::9Dra105d4AyzAA0S',
           ),
           1 => NULL,
           2 => 
@@ -450,7 +450,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::HQtcUKYzNCLkPfhr',
+            '_route' => 'generated::sKCAOJvk0CMIq8xU',
           ),
           1 => NULL,
           2 => 
@@ -470,7 +470,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::sm2SgkGFhBJDGUQh',
+            '_route' => 'generated::sGF0WVvQXR8vdtvp',
           ),
           1 => NULL,
           2 => 
@@ -490,7 +490,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Nao2MxVfwEdayhhR',
+            '_route' => 'generated::5VIBJjdWnVtrz6Jp',
           ),
           1 => NULL,
           2 => 
@@ -510,7 +510,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::rhmRECdWTFrfEpN7',
+            '_route' => 'generated::yzDAZCnJeCsF0wyg',
           ),
           1 => NULL,
           2 => 
@@ -564,13 +564,33 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/admin_dashboard/search/searchdup' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.search.dup',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/user_dashboard' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::fJJBA0MeEc5Fuh3F',
+            '_route' => 'generated::HiJXggMikgEUR2OC',
           ),
           1 => NULL,
           2 => 
@@ -700,13 +720,93 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/suivi' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.suivi.go',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/rfc' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.rfc.go',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/placement' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.placement.go',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/charge' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.charge.go',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/upload' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'generated::MDMFhU7J3WYDjnQ8',
+            '_route' => 'generated::dOVpfnlzc1okDh8c',
           ),
           1 => NULL,
           2 => 
@@ -725,7 +825,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::5htgXowKHPNNlc84',
+            '_route' => 'generated::cHB1seEjQwWOGglL',
           ),
           1 => NULL,
           2 => 
@@ -745,7 +845,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::rKJBSbkRcR4FLcXS',
+            '_route' => 'generated::gt5QZu5Q3v1s7vhF',
           ),
           1 => NULL,
           2 => 
@@ -777,10 +877,29 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/store/charger' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.store.charger',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
     ),
     2 => 
     array (
-      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/livewire/(?|message/([^/]++)(*:68)|preview\\-file/([^/]++)(*:97))|/admin_dashboard/([^/]++)(*:130)|/userDetails/([^/]++)(*:159)|/comité/([^/]++)(*:184))/?$}sDu',
+      0 => '{^(?|/reset\\-password/([^/]++)(*:32)|/livewire/(?|message/([^/]++)(*:68)|preview\\-file/([^/]++)(*:97))|/admin_dashboard/([^/]++)(*:130)|/userDetails/([^/]++)(*:159)|/comité/([^/]++)(*:184)|/placement/([^/]++)(*:211)|/s(?|uivi/([^/]++)(*:237)|tore/(?|p(?|v/([^/]++)(*:267)|lacement/([^/]++)(*:292))|suivi/([^/]++)(*:315))))/?$}sDu',
     ),
     3 => 
     array (
@@ -920,6 +1039,118 @@ app('router')->setCompiledRoutes(
           5 => true,
           6 => NULL,
         ),
+      ),
+      211 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.user.placement',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      237 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.user.suivi',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      267 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.store.pv',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      292 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.store.placement',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      315 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'admin.store.suivi',
+          ),
+          1 => 
+          array (
+            0 => 'id',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
         1 => 
         array (
           0 => NULL,
@@ -975,7 +1206,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::YvnXeXOPNqFHimuT' => 
+    'generated::gTi7qMGvTdQPGN0U' => 
     array (
       'methods' => 
       array (
@@ -998,7 +1229,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::YvnXeXOPNqFHimuT',
+        'as' => 'generated::gTi7qMGvTdQPGN0U',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1244,7 +1475,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::E8EciJB8PIUqt41k' => 
+    'generated::LgY9F8jiFj8mw76W' => 
     array (
       'methods' => 
       array (
@@ -1266,7 +1497,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::E8EciJB8PIUqt41k',
+        'as' => 'generated::LgY9F8jiFj8mw76W',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1436,7 +1667,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Kbpypankdtrp3fWq' => 
+    'generated::dwcqnhnfU1y3VdJD' => 
     array (
       'methods' => 
       array (
@@ -1458,7 +1689,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Kbpypankdtrp3fWq',
+        'as' => 'generated::dwcqnhnfU1y3VdJD',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1513,7 +1744,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::WYSHQRyskEbNUC51' => 
+    'generated::D1fL1WI2mg0PesS1' => 
     array (
       'methods' => 
       array (
@@ -1536,7 +1767,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::WYSHQRyskEbNUC51',
+        'as' => 'generated::D1fL1WI2mg0PesS1',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1710,7 +1941,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::JINbflK6JyrPfOM7' => 
+    'generated::lFRSU6E1aiztWnXW' => 
     array (
       'methods' => 
       array (
@@ -1733,7 +1964,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::JINbflK6JyrPfOM7',
+        'as' => 'generated::lFRSU6E1aiztWnXW',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1789,7 +2020,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Ugm4syypBRyrJWpp' => 
+    'generated::9Dra105d4AyzAA0S' => 
     array (
       'methods' => 
       array (
@@ -1810,7 +2041,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 'web',
         ),
-        'as' => 'generated::Ugm4syypBRyrJWpp',
+        'as' => 'generated::9Dra105d4AyzAA0S',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1920,7 +2151,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::HQtcUKYzNCLkPfhr' => 
+    'generated::sKCAOJvk0CMIq8xU' => 
     array (
       'methods' => 
       array (
@@ -1932,7 +2163,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@source',
-        'as' => 'generated::HQtcUKYzNCLkPfhr',
+        'as' => 'generated::sKCAOJvk0CMIq8xU',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1948,7 +2179,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::sm2SgkGFhBJDGUQh' => 
+    'generated::sGF0WVvQXR8vdtvp' => 
     array (
       'methods' => 
       array (
@@ -1960,7 +2191,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
         'controller' => 'Livewire\\Controllers\\LivewireJavaScriptAssets@maps',
-        'as' => 'generated::sm2SgkGFhBJDGUQh',
+        'as' => 'generated::sGF0WVvQXR8vdtvp',
       ),
       'fallback' => false,
       'defaults' => 
@@ -1976,7 +2207,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Nao2MxVfwEdayhhR' => 
+    'generated::5VIBJjdWnVtrz6Jp' => 
     array (
       'methods' => 
       array (
@@ -1993,13 +2224,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:295:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:77:"function (\\Illuminate\\Http\\Request $request) {
     return $request->user();
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000002bc02507000000004e4e8138";}";s:4:"hash";s:44:"BqxevKh+dcJMlea5pDTn9qk5tdAJubzsRv6p/w2VzAM=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000007f23d23c0000000038a2e161";}";s:4:"hash";s:44:"P6DtfODhdyojyo3Kdfoy5XbQa/eDBeyJ7KH+5ZB0u/M=";}}',
         'namespace' => 'App\\Http\\Controllers',
         'prefix' => 'api',
         'where' => 
         array (
         ),
-        'as' => 'generated::Nao2MxVfwEdayhhR',
+        'as' => 'generated::5VIBJjdWnVtrz6Jp',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2015,7 +2246,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::rhmRECdWTFrfEpN7' => 
+    'generated::yzDAZCnJeCsF0wyg' => 
     array (
       'methods' => 
       array (
@@ -2031,13 +2262,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:47:"Laravel\\SerializableClosure\\SerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Signed":2:{s:12:"serializable";s:262:"O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:44:"function () {
     return \\view(\'welcome\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000002bc02505000000004e4e8138";}";s:4:"hash";s:44:"+ucqtuAid3MtJV7+/GX0C27ZiXJiAYodx2cNywSptes=";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"000000007f23d23e0000000038a2e161";}";s:4:"hash";s:44:"Q677kPggltRSCrJP+0nYP1ZkIdxSI5L61URVQx3NgCc=";}}',
         'namespace' => 'App\\Http\\Controllers',
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::rhmRECdWTFrfEpN7',
+        'as' => 'generated::yzDAZCnJeCsF0wyg',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2129,6 +2360,44 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
+    'admin.search.dup' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'admin_dashboard/search/searchdup',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@searchDup',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@searchDup',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.search.dup',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
     'center.dashboard' => 
     array (
       'methods' => 
@@ -2167,7 +2436,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::fJJBA0MeEc5Fuh3F' => 
+    'generated::HiJXggMikgEUR2OC' => 
     array (
       'methods' => 
       array (
@@ -2189,7 +2458,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::fJJBA0MeEc5Fuh3F',
+        'as' => 'generated::HiJXggMikgEUR2OC',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2304,6 +2573,82 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'admin.user.comite',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.user.placement' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'placement/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@goPlacement',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@goPlacement',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.user.placement',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.user.suivi' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suivi/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@goSuivi',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@goSuivi',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.user.suivi',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2505,7 +2850,159 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::MDMFhU7J3WYDjnQ8' => 
+    'admin.suivi.go' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'suivi',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@suivi',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@suivi',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.suivi.go',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.rfc.go' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'rfc',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@rfc',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@rfc',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.rfc.go',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.placement.go' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'placement',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@placement',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@placement',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.placement.go',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.charge.go' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'charge',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@charger',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@charger',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.charge.go',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'generated::dOVpfnlzc1okDh8c' => 
     array (
       'methods' => 
       array (
@@ -2526,7 +3023,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::MDMFhU7J3WYDjnQ8',
+        'as' => 'generated::dOVpfnlzc1okDh8c',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2542,7 +3039,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::5htgXowKHPNNlc84' => 
+    'generated::cHB1seEjQwWOGglL' => 
     array (
       'methods' => 
       array (
@@ -2564,7 +3061,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::5htgXowKHPNNlc84',
+        'as' => 'generated::cHB1seEjQwWOGglL',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2580,7 +3077,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::rKJBSbkRcR4FLcXS' => 
+    'generated::gt5QZu5Q3v1s7vhF' => 
     array (
       'methods' => 
       array (
@@ -2601,7 +3098,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::rKJBSbkRcR4FLcXS',
+        'as' => 'generated::gt5QZu5Q3v1s7vhF',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2639,6 +3136,154 @@ app('router')->setCompiledRoutes(
         array (
         ),
         'as' => 'admin.add.member',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.store.pv' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'store/pv/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@storePv',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@storePv',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.store.pv',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.store.placement' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'store/placement/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@storePlacement',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@storePlacement',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.store.placement',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.store.suivi' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'store/suivi/{id}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@storeSuivi',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@storeSuivi',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.store.suivi',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'admin.store.charger' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'store/charger',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+          1 => 'role:admin',
+        ),
+        'uses' => 'App\\Http\\Controllers\\Admin\\DashboardController@storecharger',
+        'controller' => 'App\\Http\\Controllers\\Admin\\DashboardController@storecharger',
+        'namespace' => 'App\\Http\\Controllers',
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'admin.store.charger',
       ),
       'fallback' => false,
       'defaults' => 

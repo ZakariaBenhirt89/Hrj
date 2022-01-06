@@ -16,6 +16,6 @@ class Field extends Model
         'data',
     ];
   public function forms(){
-      return $this->belongsTo(Form::class);
+      return $this->belongsTo(Form::class , 'form_id');
   }
 }

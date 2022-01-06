@@ -6,6 +6,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
+                                <h1 class="coip-title">Orientation</h1>
                                 <table id="example" class="display nowrap" style="width:100%">
                                     <thead>
                                     <tr>
@@ -21,7 +22,7 @@
                                     <tbody>
                                     @if(\App\Models\Form::all()->count() > 0)
 
-                                        @foreach( \App\Models\Form::where('center_form' , Auth::user()->center)->get() as $form)
+                                        @foreach( \App\Models\Form::where('center_form' , Auth::user()->center)->where('identifiant','acceuil')->get() as $form)
                                             <tr>
                                                 @foreach( $form->fields()->where('type' , 'nom')->get() as $f)
                                                     @foreach( $form->fields()->where('type' , 'prenom')->get() as $p )
@@ -39,7 +40,7 @@
                                                 @foreach( $form->fields()->where('type' , 'nation')->get() as $f)
                                                     <td>{{ $f->data }}</td>
                                                 @endforeach
-                                                <td><div class="d-inline-flex"><a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-small-4"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></a><div class="dropdown-menu dropdown-menu-end"><a href="{{ route('admin.user.comite' , ['id' => $form->id]) }}" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text me-50 font-small-4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>Details</a></div></div></td>
+                                                <td><div class="d-inline-flex"><a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-small-4"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></a><div class="dropdown-menu dropdown-menu-end"><a href="{{ route('admin.user.comite' , ['id' => $form->id]) }}" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text me-50 font-small-4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>Orientation</a></div></div></td>
 
                                             </tr>
 
@@ -52,13 +53,13 @@
                                     </tbody>
                                     <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                        <th>Pv de comité</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
                                     </tr>
                                     </tfoot>
                                 </table>
@@ -67,41 +68,7 @@
                     </div>
 
                     <!-- Modal to add new record -->
-                    <div class="modal modal-slide-in fade" id="modals-slide-in">
-                        <div class="modal-dialog sidebar-sm">
-                            <form class="add-new-record modal-content pt-0">
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">×</button>
-                                <div class="modal-header mb-1">
-                                    <h5 class="modal-title" id="exampleModalLabel">New Record</h5>
-                                </div>
-                                <div class="modal-body flex-grow-1">
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-fullname">Full Name</label>
-                                        <input type="text" class="form-control dt-full-name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe">
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-post">Post</label>
-                                        <input type="text" id="basic-icon-default-post" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer">
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-email">Email</label>
-                                        <input type="text" id="basic-icon-default-email" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com">
-                                        <small class="form-text"> You can use letters, numbers &amp; periods </small>
-                                    </div>
-                                    <div class="mb-1">
-                                        <label class="form-label" for="basic-icon-default-date">Joining Date</label>
-                                        <input type="text" class="form-control dt-date flatpickr-input" id="basic-icon-default-date" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" readonly="readonly">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label class="form-label" for="basic-icon-default-salary">Salary</label>
-                                        <input type="text" id="basic-icon-default-salary" class="form-control dt-salary" placeholder="$12000" aria-label="$12000">
-                                    </div>
-                                    <button type="button" class="btn btn-primary data-submit me-1 waves-effect waves-float waves-light">Submit</button>
-                                    <button type="reset" class="btn btn-outline-secondary waves-effect" data-bs-dismiss="modal">Cancel</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
                 </section>
             </div>
         </div>
@@ -112,6 +79,12 @@
         }
         .form-label-rtl{
             float: right;
+        }
+        .coip-title{
+            width: fit-content;
+            margin-top : 8px;
+            margin-left: 8px;
+            border-bottom: 1px solid white;
         }
     </style>
     <script>
@@ -161,5 +134,8 @@
 
 
         } );
+    </script>
+    <script>
+
     </script>
 </x-app-layout>

@@ -1,8 +1,7 @@
 require('./bootstrap');
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+
 
 
 console.dir(i18next)
@@ -106,21 +105,5 @@ const i18n =  i18next.use(langDetector).init({
 //     }
 // })
 //print student file
-console.dir(jsPDF)
-console.dir(html2canvas)
-function print(quality = 1) {
-    const filename  = 'dossier'+Date.now()+'.pdf';
-
-    html2canvas(document.querySelector('#dossier1')
-    ).then(canvas => {
-        let pdf = new jsPDF('p', 'mm', 'a4');
-        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-        pdf.save(filename);
-    });
-}
-$('#downloadDossier').on('click' , function (evt) {
-    console.log('file will be printed')
-    print()
-})
 
 

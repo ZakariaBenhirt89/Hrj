@@ -12,6 +12,7 @@ use Auth;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -89,6 +90,15 @@ class DashboardController extends Controller
     public function storeImage(Request $request){
               if (!Storage::disk('s3')->exists(Auth::user()->center)){
                   Storage::disk('s3')->makeDirectory(Auth::user()->center);
+                  Log::info('it work uploading pic');
+                  if ($request->hasFile('filepond')){
+                      Log::info('the file is there');
+                      Log::info($request->filepond->extension());
+                      //getClientOriginalName()
+                      Log::info($request->filepond->getClientOriginalName());
+                      $path  = Storage::disk('s3')->put(Auth::user()->center , $request->filepond);
+                      return response()->json(['status' => 200 , 'result' => $path ]);
+                  }
               }
               Log::info('it work uploading pic');
               if ($request->hasFile('filepond')){
@@ -534,4 +544,141 @@ class DashboardController extends Controller
         $suivi = Form::where('center_form' , Auth::user()->center)->where('identifiant' , 'like' , '%suivi%')->get();
         return view('components.suivi' , ['forms' => $arrOfForms  , 'suivi' => $suivi]);
     }
+    public function data(Request $request){
+        $data = array();
+        $tsiMob = Form::where('center_form' , Auth::user()->center)->where('identifiant','tsi mobi')->get();
+        $tsiAcc = Form::where('center_form' , Auth::user()->center)->where('identifiant','tsi acc')->get();
+        if ($tsiMob->count() > 0){
+            $data['mobi'] = $tsiMob;
+        }
+        if ($tsiAcc->count() > 0) {
+            Log::info(" acc is null");
+            $data['acc'] = $tsiAcc;
+        }
+        return view('components.data' , $data);
+
+    }
+    public function storeData(Request $request , $type){
+           $data = array();
+           $result = $request->all();
+           Log::info('************* type *******************');
+           Log::info($type);
+           foreach ($result as $key => $value){
+               Log::info('*********** key ************');
+               Log::info($key);
+               Log::info('************** value ****************');
+               Log::info($value);
+           }
+               $form = new Form();
+               $form->identifiant = 'tsi '.$type ;
+               $form->editor = Auth::user()->id ;
+               $form->center_form = Auth::user()->center ;
+               $form->save();
+               foreach ($result as $key => $value){
+                   $field = new Field();
+                   Log::info('*********** key ************');
+                   Log::info($key);
+                   $field->form_id = $form->id ;
+                   $field->type = $key;
+                   $field->data = $value;
+                   $field->save();
+                   Log::info('************** value ****************');
+                   Log::info($value);
+               }
+               $tsiMob = Form::where('center_form' , Auth::user()->center)->where('identifiant','tsi mobi')->get();
+               $tsiAcc = Form::where('center_form' , Auth::user()->center)->where('identifiant','tsi acc')->get();
+              if ($tsiMob->count() > 0){
+                  $data['mobi'] = $tsiMob;
+              }
+               if ($tsiAcc->count() > 0) {
+                   Log::info(" acc is null");
+                   $data['acc'] = $tsiAcc;
+               }
+               return view('components.data' , $data);
+
+    }
+    public function admin(Request $request){
+        $charge = User::where('center' , Auth::user()->center)->where('is_res' , true)->get() ;
+        return view('components.administration' , ['charge' => $charge]) ;
+    }
+    public function adminAdd(Request $request){
+        $results = $request->all();
+        Log::info("adding responsable");
+        foreach ($results as $key => $value){
+            Log::info("******** key ************");
+            Log::info($key);
+            Log::info("************* value **************");
+            Log::info($value);
+        }
+        $charger = new User();
+        $charger->name = $request->input('nomcharger') . $request->input('prenomcharger');
+        $charger->profile_photo_path = $request->input('photoCharger');
+        $charger->email = $request->input('username');
+        $charger->password = Hash::make($request->input('password'));
+        $charger->role = 'admin';
+        $charger->center = Auth::user()->center;
+        $charger->is_res = true;
+        $charger->is_active = true ;
+        $charger->save();
+        $charge = User::where('center' , Auth::user()->center)->where('is_res' , true)->where('is_active' , true)->get() ;
+        return view('components.administration' , ['charge' => $charge]) ;
+    }
+    public function desactivet(Request $request , $id){
+               Log::info('the must dc is ' . $id);
+               $user = User::where('id' , $id)->first() ;
+               $user->is_active = false ;
+               $user->save();
+               return redirect('/super');
+    }
+    public function activet(Request $request , $id){
+                Log::info('the must ac is ' . $id);
+                $user = User::where('id' , $id)->first() ;
+                $user->is_active = true ;
+                $user->save();
+                return redirect('/super');
+    }
+    public function createAdmin(Request $request){
+             Log::info($request->input('image'));
+             if ($request->has('email-id') && $request->has('password')){
+                 $user = new User();
+                 if ($request->has('email-id')){
+                     $user->email = $request->input('email-id');
+                 }
+                 if ($request->has('fname')){
+                     $user->name = $request->input('fname');
+                 }
+                 if ($request->has('password')){
+                     $user->password = Hash::make($request->input('password'));
+                 }
+                 if($request->has('image')){
+                     $user->profile_photo_path = $request->input('image');
+                 }
+                 if($request->has('center')){
+                     $user->center = $request->input('center');
+                 }
+                 $user->role = 'admin';
+                 $user->is_active = true;
+                 $user->is_res = false;
+                 $user->save();
+                 return redirect('/super');
+
+             }else{
+                 return redirect('/super');
+             }
+    }
+    public function desactivetRes(Request $request , $id){
+        Log::info('the must dc is ' . $id);
+        $user = User::where('id' , $id)->first() ;
+        $user->is_active = false ;
+        $user->save();
+        return redirect('/administration');
+    }
+    public function activetRes(Request $request , $id){
+        Log::info('the must ac is ' . $id);
+        $user = User::where('id' , $id)->first() ;
+        $user->is_active = true ;
+        $user->save();
+        return redirect('/administration');
+    }
+
 }

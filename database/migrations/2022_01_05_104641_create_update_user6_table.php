@@ -13,9 +13,9 @@ class CreateUpdateUser6Table extends Migration
      */
     public function up()
     {
-        Schema::create('update_user6', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function($table) {
+            $table->boolean('is_active')->nullable('true');
+            $table->boolean('is_super')->nullable('true');
         });
     }
 

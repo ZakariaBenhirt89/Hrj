@@ -3,74 +3,89 @@
         <div class="content-wrapper container-xxl p-0">
             <div class="content-body">
                 <section id="basic-datatable">
-                    <button id="addMob" type="button" class="btn btn-success waves-effect waves-float waves-light mb-2 w-20" >Ajouter Mobilisation <i data-feather='plus'></i></button>
+                    <div class="d-flex justify-content-between">
+                        <button id="tsiMob" type="button" class="btn btn-gradient-success waves-effect waves-float waves-light mb-2 w-20" >TSI Mobilisation <i data-feather='plus'></i></button>
+                        <button id="tsiAcc" type="button" class="btn btn-gradient-danger waves-effect waves-float waves-light mb-2 w-20" >TSI Acceuil <i data-feather='plus'></i></button>
+                        <button id="tsiOri" type="button" class="btn btn-gradient-secondary waves-effect waves-float waves-light mb-2 w-20" >TSI Orrientation <i data-feather='plus'></i></button>
+                        <button id="tsiRfc" type="button" class="btn btn-gradient-warning waves-effect waves-float waves-light mb-2 w-20" >TSI RFC <i data-feather='plus'></i></button>
+                        <button id="tsiPlacement" type="button" class="btn btn-gradient-info waves-effect waves-float waves-light mb-2 w-20" >TSI Placement <i data-feather='plus'></i></button>
+                        <button id="tsiSuivi" type="button" class="btn btn-gradient-dark waves-effect waves-float waves-light mb-2 w-20" >TSI Suivi <i data-feather='plus'></i></button>
+
+                    </div>
+
+
                     <div class="row">
+                        @isset($mobi)
                         <div class="col-12">
-                            <div class="card" style="width : fit-content;">
-                                <table id="example" class="display nowrap" style="width:100%">
+                            <div class="card " style="width : fit-content;">
+                                <h4 class="tsiTitle"> Tsi Mobilisation</h4>
+                                <table id="example" class="display" style="width:100%">
                                     <thead>
                                     <tr>
-                                        <th>reférence</th>
-                                        <th>nom et prénom</th>
-                                        <th>center</th>
-                                        <th>genre</th>
-                                        <th>age</th>
-                                        <th>data d'inscription</th>
-                                        <th>nationalité</th>
-                                        <th>lieu de naissance</th>
-                                        <th>niveau scholaire</th>
-                                        <th>Action</th>
+                                        <th> Date </th>
+                                        <th>Nombre de jeunes mobilisés</th>
+                                        <th>Nombre de sorties</th>
+                                        <th>sorties par quartiers</th>
+                                        <th>sorties par partenaire</th>
+                                        <th>interne</th>
+                                        <th>Nombre de nouveaux partenaires de mobilisation</th>
+                                        <th>Nombre de partenaires visités</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @if(\App\Models\Form::all()->count() > 0)
-
-                                        @foreach( \App\Models\Form::where('center_form' , Auth::user()->center)->where('identifiant','like' , 'acceuil%')->distinct()->get() as $form)
-                                            <tr>
-                                                @foreach( $form->fields()->where('type' , 'ref')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                @foreach( $form->fields()->where('type' , 'nom')->get() as $f)
-                                                    @foreach( $form->fields()->where('type' , 'prenom')->get() as $p )
-                                                        <td>{{ $f->data }} &nbsp; {{ $p->data }}</td>
-                                                    @endforeach
-                                                @endforeach
-                                                <td>{{ Auth::user()->center }}</td>
-                                                @foreach( $form->fields()->where('type' , 'sex')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                @foreach($form->fields()->where('type' , 'age')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                <td>{{ (new DateTime($form->created_at))->format('Y-m-d') }}</td>
-                                                @foreach( $form->fields()->where('type' , 'nation')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                @foreach( $form->fields()->where('type' , 'lieu-naissance')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                @foreach( $form->fields()->where('type' , 'niveauScholaire')->get() as $f)
-                                                    <td>{{ $f->data }}</td>
-                                                @endforeach
-                                                <td><div class="d-inline-flex"><a class="pe-1 dropdown-toggle hide-arrow text-primary" data-bs-toggle="dropdown"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-more-vertical font-small-4"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg></a><div class="dropdown-menu dropdown-menu-end"><a href="{{ route('admin.user.detail' , ['id' => $form->id]) }}" class="dropdown-item"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text me-50 font-small-4"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>Details</a></div></div></td>
-
-                                            </tr>
-
-                                        @endforeach
-                                    @else
-                                        <div class="nothing">
-                                            <h1>Désole rien à afficher</h1>
-                                        </div>
-                                    @endif
-                                    </tbody>
-                                    <tfoot>
-                                    <tr>
-
+                                    @foreach($mobi as $m)
+                                    <tr data-mobi="{{$m->id}}">
+                                        <td class="date-mobi" id="{{ $m->id }}"> {{ $m->created_at }}</td>
+                                        <td class="njmb">{{ $m->fields()->where('type', 'Nombre_de_jeunes_mobilisés')->first()->data }}</td>
+                                        <td>{{ $m->fields()->where('type', 'Nombre_de_sorties')->first()->data }}</td>
+                                        <td>{{ $m->fields()->where('type', 'Nombre_de_sorties_par_quartier')->first()->data }}</td>
+                                        <td>{{ $m->fields()->where('type', 'Nombre_de_sorties_par_partenaire')->first()->data }}</td>
+                                        <td class="njmc">{{ $m->fields()->where('type', 'Nombre_de_Mobilisation_interne')->first()->data }}</td>
+                                        <td>{{ $m->fields()->where('type', 'Nombre_de_nouveaux_partenaires_de_mobilisation')->first()->data }}</td>
+                                        <td>{{ $m->fields()->where('type', 'Nombre_de_partenaires_visités')->first()->data }}</td>
                                     </tr>
-                                    </tfoot>
+                                    @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
+                        @endisset
+                            @isset($acc)
+                                <div class="col-12 ">
+                                    <div class="card accueil" style="width : fit-content;">
+                                        <h4 class="tsiTitle acc"> Tsi Accueil</h4>
+                                        <table id="example1" class="display" style="width:100%">
+                                            <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Total des jeunes Accueillis</th>
+                                                <th>Nombre de jeunes accueillis  Via le chargé de mobilisation</th>
+                                                <th>Nombre de jeunes accueillis Via le bouche à oreille</th>
+                                                <th>Nombre de jeunes accueillis Via les réseaux sociaux</th>
+                                                <th>Nombre de jeunes accueillis Via les partenaires</th>
+                                                <th>Nombre de jeunes accueillis Via les ambassadeurs de la COIP</th>
+                                                <th>Nombre de jeunes accueillis Via d'autres sources de mobilisation</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($acc as $s)
+                                            <tr data-acc="{{$s->id}}">
+                                                <td class="date-acc" id="{{ $s->id }}"> {{ $s->created_at }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Total_des_jeunes_Accueillis')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Nombre_de_jeunes_accueillis__Via_le_chargé_de_mobilisation')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Nombre_de_jeunes_accueillis_Via_le_bouche_à_oreille')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Nombre_de_jeunes_accueillis_Via_les_réseaux_sociaux')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Nombre_de_jeunes_accueillis_Via_les_ambassadeurs_de_la_COIP')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', 'Nombre_de_jeunes_accueillis_Via_les_partenaires')->first()->data }}</td>
+                                                <td>{{ $s->fields()->where('type', "Nombre_de_jeunes_accueillis_Via_d'autres_sources_de_mobilisation")->first()->data }}</td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <hr>
+                            @endisset
                     </div>
 
                     <!-- Modal to add new record -->
@@ -120,69 +135,104 @@
                     </div>
                     <div class="modal-body pb-5 px-sm-5 pt-50">
                         <div class="text-center mb-2">
-                            <h1 class="mb-1">Formulaire de Mobilisation</h1>
+                            <h1 class="mb-1">Indicature de Mobilisation</h1>
                         </div>
-                        <form id="mobForm" class="row gy-1 pt-75" method="POST" action="{{ route('admin.mobi.create') }}" >
+                        <form id="mobForm" class="row gy-1 pt-75" method="POST" action="{{ route('admin.store.data' , ['type' => 'mobi']) }}" >
                             @csrf
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="chargéName">Nom du Chargé</label>
-                                <label class="form-label form-label-rtl" for="chargéName">إسم المسؤول</label>
+                                <label class="form-label" for="chargéName">effectué par</label>
                                 <input type="text" id="chargéName" name="chergéName" class="form-control" readonly="readonly" value="{{Auth::user()->name}}" />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="dateMob">Heure et Date de mobilisation</label>
-                                <label class="form-label form-label-rtl" for="dateMob">تاريخ و ساعة عملية التعبئة </label>
+                                <label class="form-label" for="dateMob">Heure et Date de d'operation</label>
                                 <input type="text" id="dateMob" name="dateMob" class="form-control" readonly="readonly"  />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="numMob">Nombre de sortie</label>
-                                <label class="form-label form-label-rtl" for="numMob">عدد الخرجات التعبئة </label>
-                                <input type="text" id="numMob" name="numMob" class="form-control"  />
+                                <label class="form-label" for="numMob">Nombre de jeunes mobilisés</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes mobilisés" class="form-control"  />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="typeMob">Type de sortie</label>
-                                <label class="form-label form-label-rtl" for="typeMob">نوع التعبئة </label>
-                                <select class="form-select" name="typeMob">
-                                    <option value="chez partenaire">chez partenaire</option>
-                                    <option value="porte à porte">porte à porte</option>
-                                    <option value="mobilisation interne">mobilisation interne</option>
-                                </select>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label" for="quartierMob">Quartiers</label>
-                                <label class="form-label form-label-rtl" for="quartierMob">أحياء التعبئة</label>
-                                <select id="quartierMob" class="js-example-basic-multiple" name="states[]" multiple="multiple">
-                                    @if( Auth::user()->center == 'BN')
-                                        <option value="AIN DEYAB">AIN DEYAB</option>
-                                        <option value="AIN SEBAA">AIN SEBAA</option>
-                                        <option value="AL FIDA">AL FIDA</option>
-                                        <option value="HAY MOHAMEDI">HAY MOHAMEDI</option>
-                                        <option value="LAHRAOUINE">LAHRAOUINE</option>
-                                        <option value="L'ANCIENNE VILLE">L'ANCIENNE VILLE</option>
-                                        <option value="MERS SELTAN">MERS SELTAN</option>
-                                        <option value="MOULAY RACHID">MOULAY RACHID </option>
-                                        <option value="ROCHES NOIRES">ROCHES NOIRES </option>
-                                        <option value="SIDI BERNOUSSI">SIDI BERNOUSSI </option>
-                                        <option value="SIDI OTHMAN ">SIDI OTHMAN  </option>
-                                        <option value="AUTRES">AUTRES</option>
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="col-12 col-md-6" id="quertierSpef" hidden>
-                                <label class="form-label" for="quertierAutre">Spécifier quartier</label>
-                                <label class="form-label form-label-rtl" for="quertierAutre"> تحديد الشارع</label>
-                                <input type="text" id="quertierAutre" name="quertierAutre" class="form-control" />
+                                <label class="form-label" for="typeMob">Nombre de sorties 'globale'</label>
+                                <input type="number" id="numMob" name="Nombre de sorties" class="form-control"  />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="numMobHomme">nombre de mobilisé par homme</label>
-                                <label class="form-label form-label-rtl" for="numMobHomme">عدد الدكور  </label>
-                                <input type="text" id="numMobHomme" name="numMobHomme" class="form-control"   />
+                                <label class="form-label" for="typeMob">Nombre de sorties par quartier</label>
+                                <input type="number" id="numMob" name="Nombre de sorties par quartier" class="form-control"  />
                             </div>
                             <div class="col-12 col-md-6">
-                                <label class="form-label" for="numMobFemme">nombre de mobilisé par femme</label>
-                                <label class="form-label form-label-rtl" for="numMobFemme">عدد اﻹناث  </label>
-                                <input type="text" id="numMobFemme" name="numMobFemme" class="form-control"   />
+                                <label class="form-label" for="typeMob">Nombre de sorties par partenaire</label>
+                                <input type="number" id="numMob" name="Nombre de sorties par partenaire" class="form-control"  />
                             </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de Mobilisation interne </label>
+                                <input type="number" id="numMob" name="Nombre de Mobilisation interne" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de nouveaux partenaires de mobilisation</label>
+                                <input type="number" id="numMob" name="Nombre de nouveaux partenaires de mobilisation" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de partenaires visités</label>
+                                <input type="number" id="numMob" name="Nombre de partenaires visités" class="form-control"  />
+                            </div>
+
+                            <div class="col-12 text-center mt-2 pt-50">
+                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="accueil" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-edit-user">
+                <div class="modal-content">
+                    <div class="modal-header bg-transparent">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body pb-5 px-sm-5 pt-50">
+                        <div class="text-center mb-2">
+                            <h1 class="mb-1">Indicature d'acceuil</h1>
+                        </div>
+                        <form id="mobForm" class="row gy-1 pt-75" method="POST" action="{{ route('admin.store.data' , ['type' => 'acc']) }}" >
+                            @csrf
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="chargéName">effectué par</label>
+                                <input type="text" id="chargéName" name="chergéName" class="form-control" readonly="readonly" value="{{Auth::user()->name}}" />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="dateMob">Heure et Date de d'operation</label>
+                                <input type="text" id="dateMob" name="dateMob" class="form-control" readonly="readonly"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="numMob">Total des jeunes Accueillis</label>
+                                <input type="number" id="numMob" name="Total des jeunes Accueillis" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis  Via le chargé de mobilisation</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis  Via le chargé de mobilisation" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis Via le bouche à oreille</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis Via le bouche à oreille" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis Via les réseaux sociaux</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis Via les réseaux sociaux" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis Via les ambassadeurs de la COIP</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis Via les ambassadeurs de la COIP" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis Via les partenaires</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis Via les partenaires" class="form-control"  />
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label" for="typeMob">Nombre de jeunes accueillis Via d'autres sources de mobilisation</label>
+                                <input type="number" id="numMob" name="Nombre de jeunes accueillis Via d'autres sources de mobilisation" class="form-control"  />
+                            </div>
+
                             <div class="col-12 text-center mt-2 pt-50">
                                 <button type="submit" class="btn btn-primary me-1">Submit</button>
                             </div>
@@ -193,25 +243,31 @@
         </div>
     </div>
     <style>
-        [input='search']{
-            margin-left: 12px;
-        }
-        .form-label-rtl{
-            float: right;
-        }
-        tr {
-            border-top : solid 1px cornsilk;
-        }
+   .tsiTitle{
+       width: fit-content;
+       margin: 14px;
+       border-bottom: 1px solid #5316af;
+   }
+
+
     </style>
     <script>
         $(document).ready(function() {
-            $('#example').DataTable( {
+            $('.display').DataTable( {
                 dom: 'Bfrtip',
-                "order": [[ 5, "desc" ]],
                 buttons: [
-                    'copy', 'excel', 'pdf', 'print'
+                     'excel', 'pdf'
                 ]
             } );
+            // if ($('#example1').length){
+            //     $('#example1').DataTable( {
+            //         dom: 'Bfrtip',
+            //         buttons: [
+            //             'excel', 'pdf'
+            //         ]
+            //     } );
+            // }
+
             const copyBtn = $('.buttons-copy')
             console.log(copyBtn)
             copyBtn.addClass('btn')
@@ -241,13 +297,7 @@
             buttonPdf.addClass('waves-light')
             buttonPdf.append("&nbsp;<i data-feather='arrow-down'></i>")
             // print buttons
-            const printPrint = $('.buttons-print')
-            printPrint.addClass('btn')
-            printPrint.addClass('btn-primary')
-            printPrint.addClass('waves-effect')
-            printPrint.addClass('waves-float')
-            printPrint.addClass('waves-light')
-            printPrint.append("&nbsp;<i data-feather='printer'></i>")
+
 
 
         } );
@@ -255,12 +305,15 @@
 
     </script>
     <script>
-        $('#addMob').on('click' , function (evt) {
+        $('#tsiMob').on('click' , function (evt) {
             $('#mobilization').modal('show')
+        })
+        $('#tsiAcc').on('click' , function (evt) {
+            $('#accueil').modal('show')
         })
         const d = new Date()
         var date_format_str = d.getFullYear().toString()+"-"+((d.getMonth()+1).toString().length==2?(d.getMonth()+1).toString():"0"+(d.getMonth()+1).toString())+"-"+(d.getDate().toString().length==2?d.getDate().toString():"0"+d.getDate().toString())+" "+(d.getHours().toString().length==2?d.getHours().toString():"0"+d.getHours().toString())+":"+((parseInt(d.getMinutes()/5)*5).toString().length==2?(parseInt(d.getMinutes()/5)*5).toString():"0"+(parseInt(d.getMinutes()/5)*5).toString())+":00";
-        $('#dateMob').val(date_format_str)
+        $('[name="dateMob"]').val(date_format_str)
         let multiple =   $('.js-example-basic-multiple').select2();
 
         multiple.on('change' , function (evt) {
@@ -303,6 +356,235 @@
                 $(this).hasClass('is-invalid') ? '' :  $(this).addClass('is-invalid')
             }
         })
-
+       $('[type="submit"]').on('click' , function (evt) {
+           $(this).closest('form').submit()
+       })
     </script>
+    <script>
+       $(document).ready(function () {
+           const component = `<section id="genere">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Generer les taux en %</h4>
+                                </div>
+                                <div class="card-body">
+
+                                        <div class="row">
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">données mobilisation</label>
+                                                    <select class="form-select" id="basicSelect1">
+                                             @isset($mobi)
+           <option> </option>
+@foreach($mobi as $ac)
+           <option value="{{ $ac->created_at }}">{{ $ac->created_at }}</option>
+                                            @endforeach
+           @endisset
+                                        </select>
+                                                </div>
+                                            </div>
+                                         <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">données acceuil</label>
+                                                    <select class="form-select" id="basicSelect2">
+                                          @isset($acc)
+               <option> </option>
+                                          @foreach($acc as $ac)
+                                            <option value="{{ $ac->created_at }}">{{ $ac->created_at }}</option>
+                                            @endforeach
+                                            @endisset
+                                        </select>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="col-12">
+                                                <button id="createTaux" class="btn btn-danger me-1 waves-effect waves-float waves-light">generé</button>
+                                                <button id="exportTaux" class="btn btn-success me-1 waves-effect waves-float waves-light">export</button>
+                                            </div>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                     <div class="row" id="tauxHolder">
+                     </div>
+                     </div>
+                </section>`
+           $('.accueil').append(component)
+           const mobi = new Map()
+           const acc = new Map()
+           const track1 = new Map()
+           const track2 = new Map()
+           let arr1 = []
+           let arr2 = []
+           $('.date-mobi').each(function () {
+               mobi.set( (new Date($(this).text())).valueOf() , $(this).attr('id') )
+           })
+           $('.date-acc').each(function () {
+               acc.set( (new Date($(this).text())).valueOf() , $(this).attr('id') )
+           })
+           console.table(mobi)
+           console.table(acc)
+           $('#basicSelect1').on('change' , function (evt) {
+               arr1 = []
+               if (track1.get('tr1') !== null){
+                   const selector = '[data-mobi="'+track1.get('tr1')+'"]'
+                   $(selector).removeClass('border-success')
+               }
+               console.log(new Date(evt.target.value))
+               console.log('the id ', mobi.get((new Date(evt.target.value)).valueOf()))
+               const id = "#" + mobi.get((new Date(evt.target.value)).valueOf())
+               $(id).closest('tr').toggleClass('border-success')
+               $(id).siblings().each(function () {
+                   arr1.push($(this).text())
+               })
+               track1.set('tr1' ,  $(id).closest('tr').attr('data-mobi'))
+               console.table(track1)
+               console.log('the length ', arr1.length)
+               console.log(arr1)
+
+           })
+           $('#basicSelect2').on('change' , function (evt) {
+               arr2 = []
+               if (track2.get('tr2') !== null){
+                   const selector = '[data-acc="'+track2.get('tr2')+'"]'
+                   $(selector).removeClass('border-success')
+               }
+               console.log(new Date(evt.target.value))
+               console.log(' the id ', acc.get((new Date(evt.target.value)).valueOf()))
+               const id = "#" + acc.get((new Date(evt.target.value)).valueOf())
+               $(id).closest('tr').toggleClass('border-success')
+               $(id).siblings().each(function () {
+                   arr2.push($(this).text())
+               })
+               track2.set('tr2' , $(id).closest('tr').attr('data-acc') )
+               console.table(track2)
+               console.log('the lenght is ' , arr2.length)
+               console.dir(arr2)
+           })
+           $('#createTaux').on('click' , function (evt) {
+               evt.preventDefault()
+               console.log('create table')
+               const table = document.createElement('table')
+               table.classList.add('display');
+               table.setAttribute('id' , 'new')
+               const thead = document.createElement('tr')
+               const tr = document.createElement('thead')
+               const tr1 = document.createElement('th')
+               const tr2 = document.createElement('th')
+               const tr3 = document.createElement('th')
+               const tr4 = document.createElement('th')
+               const tr5 = document.createElement('th')
+               const tr6 = document.createElement('th')
+               const tr7 = document.createElement('th')
+               const tr8 = document.createElement('th')
+               tr1.innerText = 'Taux de mobilisation via le chargé de mobilisation'
+               tr2.innerText = 'Taux de mobilisation via le bouche à oreille'
+               tr3.innerText = 'Taux de mobilisation via les réseaux sociaux'
+               tr4.innerText = 'Taux de mobilisation via les partenaires'
+               tr5.innerText = 'Taux de mobilisation via les ambassadeurs de la COIP'
+               tr6.innerText = "Taux de mobilisation via d'autres sources de provenance"
+               tr7.innerText = 'Taux de mobilisation'
+               tr8.innerText = "Taux de Transformation"
+               thead.appendChild(tr1)
+               thead.appendChild(tr2)
+               thead.appendChild(tr3)
+               thead.appendChild(tr4)
+               thead.appendChild(tr5)
+               thead.appendChild(tr6)
+               thead.appendChild(tr7)
+               thead.appendChild(tr8)
+               tr.append(thead)
+               table.appendChild(tr)
+               const body = document.createElement('tbody')
+               body.setAttribute('id' , 'tauxAccId')
+               if ($('#tauxAccId').length){
+                   const row = document.createElement('tr')
+                   for (let i = 0; i < 8 ; i++) {
+                       const td = document.createElement('td')
+                       if(i < 6){
+                           let data = Math.floor(parseInt(arr2[i+1]) / parseInt(arr2[0]) * 100)
+                           td.innerText = data+' %'
+                           row.appendChild(td)
+                       }
+                       if (i === 6){
+                           let data = Math.floor(parseInt(arr2[0]) / parseInt(arr1[4]) * 100)
+                           td.innerText = data+' %'
+                           row.appendChild(td)
+                       }
+                       if (i === 7){
+                           let data = Math.floor(parseInt(arr2[0]) / parseInt(arr1[0]) * 100)
+                           td.innerText = data+' %'
+                           row.appendChild(td)
+                       }
+                   }
+                   document.getElementById('tauxAccId').appendChild(row)
+
+               }else {
+                   const second = document.createElement('tr')
+                   for (let i = 0; i < 8 ; i++) {
+                       const td = document.createElement('td')
+                       if(i < 6){
+                           let data = Math.floor(parseInt(arr2[i+1]) / parseInt(arr2[0]) * 100)
+                           td.innerText = data+' %'
+                           second.appendChild(td)
+                       }
+                       if (i === 6){
+                           let data = Math.floor(parseInt(arr2[0]) / parseInt(arr1[4]) * 100)
+                           td.innerText = data+' %'
+                           second.appendChild(td)
+                       }
+                       if (i === 7){
+                           let data = Math.floor(parseInt(arr2[0]) / parseInt(arr1[0]) * 100)
+                           td.innerText = data+' %'
+                           second.appendChild(td)
+                       }
+                   }
+                   body.appendChild(second)
+                   table.appendChild(body)
+                   document.getElementById('tauxHolder').appendChild(table)
+                   $('#new').dataTable({
+                       dom: 'Bfrtip',
+                       buttons: [
+                           'excel', 'pdf'
+                       ] ,
+                       select: true
+                   } )
+               }
+
+
+           })
+           $('#exportTaux').on('click' , function (evt) {
+               evt.preventDefault()
+               console.log("*******************")
+               if ($('#new').length){
+                   $("#new").table2excel({
+
+
+                       exclude:".noExl",
+
+                       name:"Worksheet Name",
+
+                       filename:"SomeFile",//do not include extension
+
+                       fileext:".xls" // file extension
+
+                   });
+
+               }else {
+                   console.log('nothing to do ')
+               }
+           })
+       })
+    </script>
+
 </x-app-layout>

@@ -18,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/desactivated', function () {
+    return view('components.desactivated');
+});
+Route::get('/super', function () {
+    return view('components.super');
+});
 
 Route::get('/admin_dashboard/indexMobi', 'Admin\DashboardController@indexOne')->middleware('role:admin')->name('indexMobi');
 Route::get('/admin_dashboard/ficheAcc', 'Admin\DashboardController@ficheAcc')->middleware('role:admin')->name('ficheAcc');
@@ -40,6 +46,9 @@ Route::get('/suivi', 'Admin\DashboardController@suivi')->middleware('role:admin'
 Route::get('/rfc', 'Admin\DashboardController@rfc')->middleware('role:admin')->name('admin.rfc.go');
 Route::get('/placement', 'Admin\DashboardController@placement')->middleware('role:admin')->name('admin.placement.go');
 Route::get('/charge', 'Admin\DashboardController@charger')->middleware('role:admin')->name('admin.charge.go');
+Route::get('/data', 'Admin\DashboardController@data')->middleware('role:admin')->name('admin.data.go');
+Route::get('/administration', 'Admin\DashboardController@admin')->middleware('role:admin')->name('admin.administration.go');
+Route::post('/administration/add', 'Admin\DashboardController@adminAdd')->middleware('role:admin')->name('admin.administration.add');
 
 Route::post('/upload' , 'UploadController@upload')->middleware('role:admin');;
 Route::get('/search' , 'UploadController@search')->middleware('role:admin');;
@@ -49,4 +58,10 @@ Route::post('/store/pv/{id}' , 'Admin\DashboardController@storePv')->middleware(
 Route::post('/store/placement/{id}' , 'Admin\DashboardController@storePlacement')->middleware('role:admin')->name('admin.store.placement');
 Route::post('/store/suivi/{id}' , 'Admin\DashboardController@storeSuivi')->middleware('role:admin')->name('admin.store.suivi');
 Route::post('/store/charger' , 'Admin\DashboardController@storecharger')->middleware('role:admin')->name('admin.store.charger');
+Route::post('/store/data/{type}' , 'Admin\DashboardController@storeData')->middleware('role:admin')->name('admin.store.data');
+Route::get('/deactivet/{id}' , 'Admin\DashboardController@desactivet')->middleware('role:admin')->name('admin.dc.user');
+Route::get('/activet/{id}' , 'Admin\DashboardController@activet')->middleware('role:admin')->name('admin.ac.user');
+Route::post('/createAdmin' , 'Admin\DashboardController@createAdmin')->middleware('role:admin')->name('admin.store.user');
+Route::get('/deactivet/res/{id}' , 'Admin\DashboardController@desactivetRes')->middleware('role:admin')->name('admin.dc.res');
+Route::get('/activet/res/{id}' , 'Admin\DashboardController@activetRes')->middleware('role:admin')->name('admin.ac.res');
 

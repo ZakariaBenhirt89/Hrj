@@ -22,22 +22,31 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             $role = Auth::user()->role;
+            $active = Auth::user()->is_active ;
             Log::info(Auth::user()->center);
-
-            switch ($role) {
-                case 'admin':
-                    return redirect('/admin_dashboard/'.Auth::user()->center);
-                    break;
-                case 'user':
-                    return redirect('/user_dashboard');
-                    break;
-                case 'teacher':
-                    return redirect('/teacher_dashboard');
-                    break;
-                default:
-                    return redirect('/');
-                    break;
+            if ($active){
+                if (Auth::user()->is_super){
+                    return redirect('/super');
+                }else{
+                    switch ($role) {
+                        case 'admin':
+                            return redirect('/admin_dashboard/'.Auth::user()->center);
+                            break;
+                        case 'user':
+                            return redirect('/user_dashboard');
+                            break;
+                        case 'teacher':
+                            return redirect('/teacher_dashboard');
+                            break;
+                        default:
+                            return redirect('/');
+                            break;
+                    }
+                }
+            }else{
+               return redirect('/desactivated');
             }
+
         }
         return $next($request);
     }

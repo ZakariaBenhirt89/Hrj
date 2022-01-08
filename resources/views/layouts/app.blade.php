@@ -98,6 +98,7 @@
         <script src="{{ asset('js/buttonComp.js') }}" defer></script>
         <script src="{{ asset('app-assets/vendors/js/forms/validation/jquery.validate.min.js') }}"></script>
         <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNlBv0dK-iotdgWbs9-CJzVWFZ1zwwFqM&libraries=places&callback=initMap"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
 
     </head>
     <body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click" data-menu="vertical-menu-modern" data-col="">
@@ -125,10 +126,37 @@
                 </li>
 
                 <li class="nav-item dropdown dropdown-user"><a class="nav-link dropdown-toggle dropdown-user-link" id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder">Belvdere Admin</span><span class="user-status">Admin</span></div><span class="avatar"><img class="round" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1638950709/Teamwork_ycjdaz.png" alt="avatar" height="40" width="40"><span class="avatar-status-online"></span></span>
+                        <div class="user-nav d-sm-flex d-none"><span class="user-name fw-bolder"> {{ Auth::user()->name }}
+                            </span><span class="user-status">
+                                @switch( Auth::user()->center)
+                                    @case( "BN" )
+                                    Bèlveder
+                                    @break
+                                    @case( "SM" )
+                                    Sidi Maarouf
+                                    @break
+                                    @case( "MK" )
+                                    Mkansaa
+                                    @break
+                                    @case( "PJN" )
+                                    PJN
+                                    @break
+                                    @case( "BO" )
+                                    Bouskoura
+                                    @break
+                                    @default
+                                @endswitch
+                                @if(Auth::user()->is_res)
+                                    Responsable
+                                @elseif(Auth::user()->is_super)
+                                    Super
+                                @else
+                                    Admin
+                                @endif
+                            </span></div><span class="avatar">@if(Auth::user()->profile_photo_path !== null) <img class="round" src="{{ Auth::user()->profile_photo_path }}" alt="avatar" height="40" width="40"> @else <img class="round" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1638950709/Teamwork_ycjdaz.png" alt="avatar" height="40" width="40">  @endif<span class="avatar-status-online"></span></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user"><a class="dropdown-item" href="#"><i class="me-50" data-feather="user"></i> Profile</a>
-                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="me-50" data-feather="settings"></i> Settings</a><form method="POST" action="{{ route('logout') }}">
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+                        <div class="dropdown-divider"></div><form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -153,7 +181,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow content-right" data-scroll-to-active="true">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('indexMobi') }}"><span class="brand-logo">
+                <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('center.dashboard' , ['center' => Auth::user()->center]) }}"><span class="brand-logo">
 <svg  height="24" viewBox="0 0 135 95" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <path d="M0 0L135 0L135 95L0 95L0 0Z" id="path_1" />
@@ -176,6 +204,9 @@
 </svg>
                         </span>
                         <h1 class="brand-text">SARP
+                            @if(Auth::user()->is_super)
+                                <sub>Super Admin</sub>
+                            @else
                             @switch( Auth::user()->center)
                                 @case( "BN" )
                                 <sub>Bèlveder</sub>
@@ -189,10 +220,12 @@
                                 @case( "PJN" )
                                 <sub>PJN</sub>
                                 @break
-
+                                    @case( "BO" )
+                                    <sub>Bouskoura</sub>
+                                    @break
                                 @default
-
                             @endswitch
+                            @endif
                         </h1>
 
                     </a></li>
@@ -208,10 +241,20 @@
                     </ul>
                 </li>
                 <hr>
+                @if( Auth::user()->is_res)
                 <li><a class="d-flex align-items-center holla" href="{{ route('indexMobi') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/social-svgrepo-com.svg') }}" alt="icon" height="20" width="20"> <span class="menu-item text-truncate" data-i18n="Analytics" >Mobilisation</span></a>
                 </li>
-                <li ><a class="d-flex align-items-center holla" href="{{ route('ficheAcc') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/welcome-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Acceuil</span></a>
-                </li>
+                    <li ><a class="d-flex align-items-center holla" href="{{ route('ficheAcc') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/welcome-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Acceuil</span></a>
+                    </li>
+                @elseif(Auth::user()->is_super)
+                    <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/wheel.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Les admins des centres</span></a>
+                    </li>
+                @else
+                    <li><a class="d-flex align-items-center holla" href="{{ route('indexMobi') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/social-svgrepo-com.svg') }}" alt="icon" height="20" width="20"> <span class="menu-item text-truncate" data-i18n="Analytics" >Mobilisation</span></a>
+                    </li>
+                    <li ><a class="d-flex align-items-center holla" href="{{ route('ficheAcc') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/welcome-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Acceuil</span></a>
+                    </li>
+
                 <li ><a class="d-flex align-items-center holla" href="{{ route('admin.orientation.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/directions-svgrepo-com.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">Orientation</span></a>
                 </li>
                 <li ><a class="d-flex align-items-center holla" href="{{ route('admin.rfc.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/reinforcement.svg') }}" alt="icon" height="20" width="20"><span class="menu-item text-truncate" data-i18n="eCommerce">RFC</span></a>
@@ -220,14 +263,14 @@
                 </li>
                 <li ><a class="d-flex align-items-center holla" href="{{ route('admin.suivi.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/train-track-svgrepo-com.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Suivi</span></a>
                 </li>
-                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/all.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Tous les données</span></a>
+                <li ><a class="d-flex align-items-center holla" href="{{route('admin.data.go')}}"><img class="sideIcon" src="{{ asset('app-assets/icons/all.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Tous les données</span></a>
                 </li>
-                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/administration.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Administration</span></a>
-                </li>
-                <li ><a class="d-flex align-items-center holla" href="#"><img class="sideIcon" src="{{ asset('app-assets/icons/partner.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Partenaire</span></a>
+
+                <li ><a class="d-flex align-items-center holla" href="{{ route('admin.administration.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/partner.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Administration</span></a>
                 </li>
                 <li ><a class="d-flex align-items-center holla" href="{{ route('admin.charge.go') }}"><img class="sideIcon" src="{{ asset('app-assets/icons/person.svg') }}" alt="icon" height="30" width="30"><span class="menu-item text-truncate" data-i18n="eCommerce">Chargé d’accompagnement</span></a>
                 </li>
+                @endif
                 <li class=" nav-item">
                     <hr>
                     <img class="coip-logo" src="https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639577068/Sans_titre_500_x_250_px_gflzv8.png" width="250">
@@ -360,6 +403,8 @@
     <script src="https://cdn.jsdelivr.net/npm/places.js@^1.17.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
     <script src="{{ asset('app-assets/vendors/js/charts/chart.min.js') }}"></script>
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
     <script>
 
     </script>

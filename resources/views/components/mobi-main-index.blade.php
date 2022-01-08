@@ -165,6 +165,65 @@
                                         <option value="SIDI BERNOUSSI">SIDI BERNOUSSI </option>
                                         <option value="SIDI OTHMAN ">SIDI OTHMAN  </option>
                                         <option value="AUTRES">AUTRES</option>
+                                    @elseif( Auth::user()->center == 'PJN')
+                                        <option value="BEN ABID">BEN ABID</option>
+                                        <option value="TAMARIS">TAMARIS</option>
+                                        <option value="DAR BOUAZZA LE CENTRE">DAR BOUAZZA LE CENTRE</option>
+                                        <option value="OULAD HMED 1">OULAD HMED 1</option>
+                                        <option value="OULAD HMED 2">OULAD HMED 2</option>
+                                        <option value="OULAD AZZOUZ">OULAD AZZOUZ</option>
+                                        <option value="HART LGHABA">HART LGHABA</option>
+                                        <option value="OULAD ABOU OULAD HMIDA 1">OULAD ABOU OULAD HMIDA 1</option>
+                                        <option value="OULAD ABOU OULAD HMIDA 2">OULAD ABOU OULAD HMIDA 2</option>
+                                        <option value="HARET HAMRI 1">HARET HAMRI 1</option>
+                                        <option value="HARET HAMRI 2">HARET HAMRI 2</option>
+                                        <option value="ERRAHMA">ERRAHMA</option>
+                                        <option value="AUTRES">AUTRES</option>
+                                    @elseif( Auth::user()->center == 'MK')
+                                        <option value="AIN HALOUF">AIN HALOUF</option>
+                                        <option value="DAOURATE LOUZE">DAOURATE LOUZE</option>
+                                        <option value="DOUAR EL HISSEN">DOUAR EL HISSEN</option>
+                                        <option value="DOUAR MHIRCHA">DOUAR MHIRCHA</option>
+                                        <option value="DOUAR MZABIYINE">DOUAR MZABIYINE</option>
+                                        <option value="DOUAR SANYA">DOUAR SANYA</option>
+                                        <option value="DOUAR ZITOUNA">DOUAR ZITOUNA</option>
+                                        <option value="MKANSSA 1">MKANSSA 1</option>
+                                        <option value="MKANSSA 2">MKANSSA 2</option>
+                                        <option value="MKANSSA 3">MKANSSA 3</option>
+                                        <option value="MKANSSA 4">MKANSSA 4</option>
+                                        <option value="MKANSSA 5">MKANSSA 5</option>
+                                        <option value="AUTRES">AUTRES</option>
+                                    @elseif( Auth::user()->center == 'SD')
+                                        <option value="AIN CHOCK">AIN CHOCK</option>
+                                        <option value="BACHKOU">BACHKOU</option>
+                                        <option value="BIN LEMDOUN">BIN LEMDOUN</option>
+                                        <option value="BOUSKOURA">BOUSKOURA</option>
+                                        <option value="CSEC-SM-HJ">CSEC-SM-HJ</option>
+                                        <option value="DERB EL KHEIR">DERB EL KHEIR</option>
+                                        <option value="DERB SULTAN">DERB SULTAN</option>
+                                        <option value="EL OULFA">EL OULFA</option>
+                                        <option value="HAY MOULAY ABDELLAH">HAY MOULAY ABDELLAH</option>
+                                        <option value="INARA">INARA</option>
+                                        <option value="LISSASFA">LISSASFA</option>
+                                        <option value="NASSIM">NASSIM</option>
+                                        <option value="SBATA">SBATA</option>
+                                        <option value="SIDI MAAROUF">SIDI MAAROUF</option>
+                                        <option value="AUTRES">AUTRES</option>
+                                    @elseif( Auth::user()->center == 'BO')
+                                        <option value="AL IZDIHAR">AL IZDIHAR</option>
+                                        <option value="BOUSKOURA">BOUSKOURA</option>
+                                        <option value="CHRAKA">CHRAKA</option>
+                                        <option value="DRABNA">DRABNA</option>
+                                        <option value="LAHOUAMI">LAHOUAMI</option>
+                                        <option value="LAMSALHA">LAMSALHA</option>
+                                        <option value="LGWASSAM 1">LGWASSAM 1</option>
+                                        <option value="LGWASSAM 2">LGWASSAM 2</option>
+                                        <option value="OULED BEN AMER">OULED BEN AMER</option>
+                                        <option value="OULED MALEK">OULED MALEK</option>
+                                        <option value="OULED SALEH">OULED SALEH</option>
+                                        <option value="RMEL LAHLAL">RMEL LAHLAL</option>
+                                        <option value="VICTORIA">VICTORIA</option>
+                                        <option value="AUTRES">AUTRES</option>
                                     @endif
                                 </select>
                             </div>

@@ -244,9 +244,8 @@ class DashboardController extends Controller
             return view('components.pvcomité' , [ 'id' => $id ,'url' =>$img , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' =>$email , 'phone' => $gsm , 'nscholaire' => $nscolaire , 'comite' => $arr] );
         }else{
             $url = 'https://res.cloudinary.com/dy6vgsgr8/image/upload/v1639571913/photo_2021-12-15_13-24-52_xgsjgw.jpg';
-            $sub = collect(['data' => 'rien' ] );
             Log::info('the 2');
-            return view('components.pvcomité' , ['id' => $id ,'url' =>$url  , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' => $email , 'phone' => $gsm , 'nscholaire' => $nscolaire ,  'comite' => $sub]);
+            return view('components.pvcomité' , ['id' => $id ,'url' =>$url  , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' => $email , 'phone' => $gsm , 'nscholaire' => $nscolaire ]);
         }
 
     }

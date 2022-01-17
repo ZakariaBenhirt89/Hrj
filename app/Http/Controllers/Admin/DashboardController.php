@@ -239,7 +239,7 @@ class DashboardController extends Controller
             Log::info('*********************');
         }
         Log::info($img);
-        if ($img !== null && $comite->count() > 0){
+        if ($comite->count() > 0){
             Log::info('the one');
             return view('components.pvcomité' , [ 'id' => $id ,'url' =>$img , 'nom' => $nom , 'prenom' => $prenom , 'cin' => $cin , 'address' => $address , 'email' =>$email , 'phone' => $gsm , 'nscholaire' => $nscolaire , 'comite' => $arr] );
         }else{

@@ -98,9 +98,13 @@
                                         <div class="col-12 col-sm-6 mb-1 ">
                                             <label class="form-label" >Membres de Comité</label>
                                             <select class="form-select js-example-basic-single"  name="comité-members[]" multiple="multiple">
-                                                @foreach( $comite as $com)
+                                            @if(\App\Models\Form::where('identifiant','member comite')->where('center_form' , Auth::user()->center)->count()  > 0)
+                                            @foreach( \App\Models\Form::where('identifiant','member comite')->where('center_form' , Auth::user()->center)->get() as $com)
                                                     <option value="{{ $com->data }}"> {{ $com->data }} </option>
                                                 @endforeach
+                                                @else
+                                                <option value=""> rien pas de chargé </option>
+                                                @endif
                                             </select>
                                         </div>
                                         <hr>

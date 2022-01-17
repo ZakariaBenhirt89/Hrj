@@ -618,7 +618,7 @@
             rules : {
                 nom : {
                     required : true,
-                    regex : '^[A-Za-zء-ي]+$'
+                    regex : '([A-Za-zء-ي]|\s)+$'
                 },
                 prenom : {
                     required : true,

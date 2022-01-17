@@ -2,29 +2,168 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <!-- This example requires Tailwind CSS v2.0+ -->
    <div class="app-content content">
-       <div class="component1">
-           <div class="row">
-               <div class="col-12">
-                   <div class="card">
-                       <div class="row">
-                           <div class="col-12">
-                               <div class="card">
-                                   <div class="card-header">
-                                       <div>
-                                           <h4 class="card-title">Statistics</h4>
-                                           <span class="card-subtitle text-muted">Commercial networks and enterprises</span>
-                                       </div>
+       <div class="content-overlay"></div>
+       <div class="header-navbar-shadow"></div>
+       <div class="content-wrapper container-xxl p-0">
+           <div class="content-header row">
+           </div>
+           <div class="content-body">
+               <!-- Dashboard Ecommerce Starts -->
+               <section id="dashboard-ecommerce">
+                   <div class="row match-height">
+                       <!-- Medal Card -->
+                       <div class="col-xl-4 col-md-6 col-12">
+                           <div class="card card-congratulation-medal">
+                               <div class="card-body">
+                                   <h5>Nouvelle Version 🎉 Sarp!</h5>
+                                   <p class="card-text font-small-3">développer sur mesure pour élaborer les besoins de votre societe</p>
+                                   <h3 class="mb-75 mt-2 pt-50">
+                                       <a href="#">2022-2023</a>
+                                   </h3>
+
+
+                               </div>
+                           </div>
+                       </div>
+                       <!--/ Medal Card -->
+
+                       <!-- Statistics Card -->
+                       <div class="col-xl-8 col-md-6 col-12">
+                           <div class="card card-statistics">
+                               <div class="card-header">
+                                   <h4 class="card-title">Statistics</h4>
+                                   <div class="d-flex align-items-center">
+                                       <p class="card-text font-small-2 me-25 mb-0">Updated 1 month ago</p>
                                    </div>
-                                   <div class="card-body">
-                                       <div style="height:450px"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas class="line-chart-ex chartjs chartjs-render-monitor" data-height="450" style="display: block; width: 1227px; height: 450px;" width="1227" height="450"></canvas></div>
+                               </div>
+                               <div class="card-body statistics-body">
+                                   <div class="row">
+                                       <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                           <div class="d-flex flex-row">
+                                               <div class="avatar bg-light-primary me-2">
+                                                   <div class="avatar-content">
+                                                       <i data-feather='check-circle'></i>
+                                                   </div>
+                                               </div>
+                                               <div class="my-auto">
+                                                   <h4 class="fw-bolder mb-0">23</h4>
+                                                   <p class="card-text font-small-3 mb-0"> Integration</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-xl-0">
+                                           <div class="d-flex flex-row">
+                                               <div class="avatar bg-light-info me-2">
+                                                   <div class="avatar-content">
+                                                       <i data-feather="user" class="avatar-icon"></i>
+                                                   </div>
+                                               </div>
+                                               <div class="my-auto">
+                                                   <h4 class="fw-bolder mb-0">8</h4>
+                                                   <p class="card-text font-small-3 mb-0">Admins</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-xl-3 col-sm-6 col-12 mb-2 mb-sm-0">
+                                           <div class="d-flex flex-row">
+                                               <div class="avatar bg-light-danger me-2">
+                                                   <div class="avatar-content">
+                                                       <i data-feather="box" class="avatar-icon"></i>
+                                                   </div>
+                                               </div>
+                                               <div class="my-auto">
+                                                   <h4 class="fw-bolder mb-0">5</h4>
+                                                   <p class="card-text font-small-3 mb-0">Centre</p>
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-xl-3 col-sm-6 col-12">
+                                           <div class="d-flex flex-row">
+                                               <div class="avatar bg-light-success me-2">
+                                                   <div class="avatar-content">
+                                                       <i data-feather="dollar-sign" class="avatar-icon"></i>
+                                                   </div>
+                                               </div>
+                                               <div class="my-auto">
+                                                   <h4 class="fw-bolder mb-0">1</h4>
+                                                   <p class="card-text font-small-3 mb-0">Projects</p>
+                                               </div>
+                                           </div>
+                                       </div>
                                    </div>
                                </div>
                            </div>
                        </div>
+                       <!--/ Statistics Card -->
                    </div>
-               </div>
-           </div>
 
+                   <div class="row match-height">
+                       <div class="col-lg-4 col-12">
+                           <div class="row match-height">
+                               <!-- Bar Chart - Orders -->
+                               <div class="col-lg-6 col-md-3 col-6">
+                                   <div class="card">
+                                       <div class="card-body pb-50">
+                                           <h6>Accueils</h6>
+                                           <h2 class="fw-bolder mb-1">27</h2>
+                                           <div id="statistics-order-chart"></div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <!--/ Bar Chart - Orders -->
+
+                               <!-- Line Chart - Profit -->
+                               <div class="col-lg-6 col-md-3 col-6">
+                                   <div class="card card-tiny-line-stats">
+                                       <div class="card-body pb-50">
+                                           <h6>Orienté</h6>
+                                           <h2 class="fw-bolder mb-1">12</h2>
+                                           <div id="statistics-profit-chart"></div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <!--/ Line Chart - Profit -->
+
+                               <!-- Earnings Card -->
+                               <div class="col-lg-12 col-md-6 col-12">
+                                   <div class="card earnings-card">
+                                       <div class="card-body">
+                                           <div class="row">
+                                               <div class="col-6">
+                                                   <h4 class="card-title mb-1">Project principale</h4>
+                                                   <h5 class="mb-1">COIP</h5>
+                                                   <p class="card-text text-muted font-small-2">
+                                                       <span class="fw-bolder">68.2%</span><span> des acceuillis benifice de ce programme.</span>
+                                                   </p>
+                                               </div>
+                                               <div class="col-6">
+                                                   <div id="earnings-chart"></div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <!--/ Earnings Card -->
+                           </div>
+                       </div>
+
+                       <!-- Revenue Report Card -->
+                       <div class="col-lg-8 col-12">
+                           <div class="card card-revenue-budget">
+                               <div class="row mx-0">
+                                   <!-- chart should be there -->
+                                   <div style="height:450px"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div><canvas class="line-chart-ex chartjs chartjs-render-monitor" data-height="450" style="display: block; width: 1227px; height: 450px;" width="1227" height="450"></canvas></div>
+                               </div>
+                           </div>
+                       </div>
+                       <!--/ Revenue Report Card -->
+                   </div>
+
+
+               </section>
+               <!-- Dashboard Ecommerce ends -->
+
+           </div>
        </div>
    </div>
     <style>

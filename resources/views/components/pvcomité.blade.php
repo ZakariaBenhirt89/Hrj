@@ -99,7 +99,7 @@
                                             <label class="form-label" >Membres de Comité</label>
                                             <select class="form-select js-example-basic-single"  name="comité-members[]" multiple="multiple">
                                             @isset($comite)
-                                                @if( $comite->count() > 0)
+                                                @if( count($comite) > 0)
                                                 @foreach( $comite as $com)
                                                     <option value="{{ $com->data }}"> {{ $com->data }}</option>
                                                     @endforeach
